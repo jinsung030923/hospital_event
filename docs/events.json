@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-09T18:40+09:00",
+ "updated_at": "2026-10-10T06:31+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원"
@@ -15,19 +15,19 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-10-09T18:40+09:00",
+   "checked_at": "2026-10-10T06:31+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-10-09T18:40+09:00",
+   "checked_at": "2026-10-10T06:31+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-10-09T18:40+09:00",
+   "checked_at": "2026-10-10T06:31+09:00",
    "error": ""
   }
  },
