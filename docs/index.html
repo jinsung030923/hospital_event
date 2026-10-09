@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>병원 학술행사 달력</title>
+<meta name="description" content="서울권 대학병원의 학술행사·연수강좌를 날짜별로 모아 봅니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --ink: #15212b;
+  --muted: #5b6975;
+  --line: #dce3e9;
+  --soft: #eaeff3;
+  --sat: #2e5fc4;
+  --sun: #c43d3d;
+  --h0: #1f4fd6;
+  --h1: #0e9467;
+  --h2: #d9560b;
+  --h3: #8a3ffc;
+  --h4: #b3249a;
+  --h5: #5b6975;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1418; --surface: #151d23; --ink: #e8eef2; --muted: #93a1ac;
+    --line: #26323b; --soft: #1d2830; --sat: #7ea2f2; --sun: #ef7a7a;
+    --h0: #6f95ff; --h1: #34c796; --h2: #ff8a4c; --h3: #b48aff; --h4: #e46fd0; --h5: #93a1ac;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1418; --surface: #151d23; --ink: #e8eef2; --muted: #93a1ac;
+  --line: #26323b; --soft: #1d2830; --sat: #7ea2f2; --sun: #ef7a7a;
+  --h0: #6f95ff; --h1: #34c796; --h2: #ff8a4c; --h3: #b48aff; --h4: #e46fd0; --h5: #93a1ac;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 15px/1.55 "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+a { color: inherit; }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 20px 16px 48px; }
+
+header.top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; margin-bottom: 14px; }
+header.top h1 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+header.top .stamp { color: var(--muted); font-size: 13px; }
+
+.notice {
+  background: var(--soft); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 10px 14px; margin-bottom: 14px; font-size: 14px;
+}
+.notice[hidden] { display: none; }
+
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px;
+  background: var(--surface); font-size: 14px; line-height: 1.2;
+}
+.chip i { width: 9px; height: 9px; border-radius: 50%; background: var(--hc); flex: none; }
+.chip small { color: var(--muted); font-size: 12px; }
+.chip[aria-pressed="false"] { color: var(--muted); background: transparent; }
+.chip[aria-pressed="false"] i { background: transparent; box-shadow: inset 0 0 0 1.5px var(--hc); }
+.spacer { flex: 1 1 12px; }
+.search {
+  flex: 0 1 220px; min-width: 150px; padding: 7px 12px;
+  border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
+}
+.toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--muted); user-select: none; }
+.toggle input { accent-color: var(--ink); width: 16px; height: 16px; margin: 0; }
+
+.layout { display: grid; grid-template-columns: 1fr; gap: 20px; align-items: start; }
+@media (min-width: 900px) {
+  .layout { grid-template-columns: 340px 1fr; gap: 32px; }
+  .cal { position: sticky; top: 16px; }
+}
+
+/* ---------- calendar ---------- */
+.cal { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 12px 14px; }
+.cal-head { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+.cal-head h2 { margin: 0; font-size: 16px; font-weight: 600; flex: 1; padding-left: 4px; }
+.nav {
+  border: 1px solid var(--line); background: transparent; border-radius: 8px;
+  min-width: 34px; height: 34px; padding: 0 10px; font-size: 14px; line-height: 1;
+}
+.nav:hover { background: var(--soft); }
+.grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.dow { text-align: center; font-size: 12px; color: var(--muted); padding: 4px 0; }
+.dow.sat { color: var(--sat); } .dow.sun { color: var(--sun); }
+.day {
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+  gap: 3px; min-height: 50px; padding: 5px 0 4px;
+  border: 1px solid transparent; background: transparent; border-radius: 8px;
+}
+.day:hover { background: var(--soft); }
+.day .n { font-size: 14px; line-height: 20px; min-width: 22px; text-align: center; border-radius: 11px; }
+.day.sat .n { color: var(--sat); } .day.sun .n { color: var(--sun); }
+.day.out .n { opacity: .35; }
+.day.today .n { background: var(--ink); color: var(--bg); }
+.day.sel { border-color: var(--ink); }
+.dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; max-width: 34px; min-height: 6px; }
+.dots b { width: 6px; height: 6px; border-radius: 50%; background: var(--hc); }
+.dots em { font-style: normal; font-size: 10px; line-height: 6px; color: var(--muted); }
+.day.has { font-weight: 500; }
+
+/* ---------- agenda ---------- */
+.agenda { min-width: 0; }
+.month-h {
+  margin: 22px 0 6px; padding-bottom: 6px; font-size: 13px; font-weight: 600; color: var(--muted);
+  border-bottom: 1px solid var(--line);
+}
+.month-h:first-child { margin-top: 0; }
+.group { display: grid; grid-template-columns: 56px 1fr; gap: 0 14px; padding: 14px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 12px; }
+.group.flash { animation: flash 1.4s ease-out; }
+@keyframes flash { from { background: var(--soft); } to { background: transparent; } }
+.gutter { text-align: center; line-height: 1.1; padding-top: 2px; }
+.gutter .d { font-size: 28px; font-weight: 600; letter-spacing: -0.02em; }
+.gutter .w { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.gutter.sat .d, .gutter.sat .w { color: var(--sat); }
+.gutter.sun .d, .gutter.sun .w { color: var(--sun); }
+.group.today .gutter .d { background: var(--ink); color: var(--bg); border-radius: 8px; padding: 2px 0; }
+.group.today .gutter .w { color: var(--ink); font-weight: 600; }
+.items { display: grid; gap: 14px; min-width: 0; }
+.ev { border-left: 3px solid var(--hc); padding-left: 12px; min-width: 0; }
+.ev.past { opacity: .55; }
+.meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; font-size: 13px; color: var(--muted); }
+.meta .hosp { color: var(--hc); font-weight: 600; }
+.meta .time { color: var(--ink); }
+.ev h3 { margin: 2px 0 2px; font-size: 16px; font-weight: 600; line-height: 1.4; word-break: keep-all; overflow-wrap: anywhere; }
+.ev h3 a { text-decoration: none; }
+.ev h3 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.sub { font-size: 13px; color: var(--muted); }
+.tag { display: inline-block; font-size: 12px; border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; margin-left: 4px; color: var(--muted); }
+.empty { padding: 40px 8px; text-align: center; color: var(--muted); }
+
+footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+footer ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 4px; }
+footer li i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--hc); margin-right: 8px; }
+footer li.bad { color: var(--sun); }
+footer p { margin: 8px 0 0; }
+
+@media (max-width: 520px) {
+  .group { grid-template-columns: 46px 1fr; gap: 0 10px; }
+  .gutter .d { font-size: 24px; }
+  .search { flex: 1 1 100%; }
+  .day { min-height: 46px; }
+}
+@media (prefers-reduced-motion: reduce) { .group.flash { animation: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>병원 학술행사 달력</h1>
+    <span class="stamp" id="stamp"></span>
+  </header>
+
+  <div class="notice" id="notice" hidden></div>
+
+  <div class="controls">
+    <div class="chips" id="chips" role="group" aria-label="병원 선택"></div>
+    <span class="spacer"></span>
+    <input class="search" id="q" type="search" placeholder="제목·주관·장소 검색" aria-label="행사 검색">
+    <label class="toggle"><input type="checkbox" id="showPast"> 지난 행사 포함</label>
+    <label class="toggle"><input type="checkbox" id="showPublic"> 건강강좌 포함</label>
+  </div>
+
+  <div class="layout">
+    <section class="cal" aria-label="달력">
+      <div class="cal-head">
+        <h2 id="calTitle"></h2>
+        <button class="nav" id="prev" aria-label="이전 달">‹</button>
+        <button class="nav" id="todayBtn">오늘</button>
+        <button class="nav" id="next" aria-label="다음 달">›</button>
+      </div>
+      <div class="grid" id="dow"></div>
+      <div class="grid" id="days"></div>
+    </section>
+
+    <main class="agenda" id="agenda" aria-live="polite"></main>
+  </div>
+
+  <footer id="foot"></footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var WEEK = ["일", "월", "화", "수", "목", "금", "토"];
+  var TODAY = new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Seoul" });
+
+  var state = { data: null, hidden: {}, showPublic: false, showPast: false, q: "", y: 0, m: 0, sel: "" };
+  var $ = function (id) { return document.getElementById(id); };
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function iso(y, m, d) { return y + "-" + pad(m + 1) + "-" + pad(d); }
+  function parts(s) { var a = s.split("-"); return { y: +a[0], m: +a[1] - 1, d: +a[2] }; }
+  function weekday(s) { var p = parts(s); return new Date(Date.UTC(p.y, p.m, p.d)).getUTCDay(); }
+  function addDay(s) { var p = parts(s); return new Date(Date.UTC(p.y, p.m, p.d + 1)).toISOString().slice(0, 10); }
+  function md(s) { var p = parts(s); return (p.m + 1) + "." + p.d; }
+  function safeUrl(u) { return /^https?:\/\//.test(u || "") ? u : ""; }
+  function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+
+  var hospitalKeys = [];
+  function colorOf(key) { var i = hospitalKeys.indexOf(key); return "var(--h" + (i < 0 ? 5 : Math.min(i, 5)) + ")"; }
+  function nameOf(key) { var h = state.data.hospitals[key]; return h ? h.name : key; }
+
+  function visible() {
+    var q = state.q.trim().toLowerCase();
+    return state.data.events.filter(function (e) {
+      if (state.hidden[e.hospital]) return false;
+      if (!state.showPublic && e.kind === "건강강좌") return false;
+      if (q && (e.title + " " + e.organizer + " " + e.location).toLowerCase().indexOf(q) < 0) return false;
+      return true;
+    });
+  }
+
+  /* ---------- chips ---------- */
+  function renderChips() {
+    var box = $("chips");
+    box.textContent = "";
+    var counts = {};
+    state.data.events.forEach(function (e) {
+      if (e.end_date >= TODAY && (state.showPublic || e.kind !== "건강강좌")) counts[e.hospital] = (counts[e.hospital] || 0) + 1;
+    });
+    hospitalKeys.forEach(function (k) {
+      var b = el("button", "chip");
+      b.type = "button";
+      b.style.setProperty("--hc", colorOf(k));
+      b.setAttribute("aria-pressed", state.hidden[k] ? "false" : "true");
+      b.appendChild(el("i"));
+      b.appendChild(document.createTextNode(nameOf(k)));
+      b.appendChild(el("small", null, String(counts[k] || 0)));
+      b.addEventListener("click", function () {
+        state.hidden[k] = !state.hidden[k];
+        store("hidden", JSON.stringify(state.hidden));
+        renderAll();
+      });
+      box.appendChild(b);
+    });
+  }
+
+  /* ---------- calendar ---------- */
+  function renderDow() {
+    var box = $("dow");
+    WEEK.forEach(function (w, i) {
+      box.appendChild(el("div", "dow" + (i === 0 ? " sun" : i === 6 ? " sat" : ""), w));
+    });
+  }
+
+  function dayMap(events) {
+    var map = {};
+    events.forEach(function (e) {
+      var d = e.start_date, guard = 0;
+      while (d <= e.end_date && guard++ < 31) {
+        (map[d] = map[d] || []).push(e);
+        d = addDay(d);
+      }
+    });
+    return map;
+  }
+
+  function renderCalendar(events) {
+    $("calTitle").textContent = state.y + "년 " + (state.m + 1) + "월";
+    var box = $("days");
+    box.textContent = "";
+    var map = dayMap(events);
+    var first = new Date(Date.UTC(state.y, state.m, 1)).getUTCDay();
+    var start = new Date(Date.UTC(state.y, state.m, 1 - first));
+    for (var i = 0; i < 42; i++) {
+      var dt = new Date(start.getTime() + i * 86400000);
+      var s = dt.toISOString().slice(0, 10);
+      var out = dt.getUTCMonth() !== state.m;
+      if (i >= 35 && out) break; // 마지막 줄이 전부 다음 달이면 생략
+      var list = map[s] || [];
+      var dow = dt.getUTCDay();
+      var cls = "day" + (out ? " out" : "") + (dow === 0 ? " sun" : dow === 6 ? " sat" : "") +
+        (s === TODAY ? " today" : "") + (s === state.sel ? " sel" : "") + (list.length ? " has" : "");
+      var b = el("button", cls);
+      b.type = "button";
+      b.dataset.date = s;
+      b.setAttribute("aria-label", (dt.getUTCMonth() + 1) + "월 " + dt.getUTCDate() + "일" + (list.length ? ", 행사 " + list.length + "건" : ""));
+      b.appendChild(el("span", "n", String(dt.getUTCDate())));
+      var dots = el("span", "dots");
+      list.slice(0, 4).forEach(function (e) {
+        var d = el("b"); d.style.setProperty("--hc", colorOf(e.hospital)); dots.appendChild(d);
+      });
+      if (list.length > 4) dots.appendChild(el("em", null, "+"));
+      b.appendChild(dots);
+      b.addEventListener("click", onDay);
+      box.appendChild(b);
+    }
+  }
+
+  function onDay(ev) {
+    var s = ev.currentTarget.dataset.date;
+    state.sel = s;
+    var p = parts(s);
+    state.y = p.y; state.m = p.m;
+    if (s < TODAY && !state.showPast) {
+      state.showPast = true;
+      $("showPast").checked = true;
+    }
+    renderAll();
+    var groups = document.querySelectorAll(".group");
+    var target = null;
+    for (var i = 0; i < groups.length; i++) {
+      if (groups[i].dataset.date >= s) { target = groups[i]; break; }
+    }
+    if (!target && groups.length) target = groups[groups.length - 1];
+    if (target) {
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      target.classList.add("flash");
+    }
+  }
+
+  /* ---------- agenda ---------- */
+  function timeText(e) {
+    if (e.start_date !== e.end_date) return md(e.start_date) + " ~ " + md(e.end_date);
+    if (e.start_time) return e.start_time + (e.end_time ? "–" + e.end_time : "");
+    return "시간 미정";
+  }
+
+  function renderAgenda(events) {
+    var box = $("agenda");
+    box.textContent = "";
+    var list = events.filter(function (e) { return state.showPast || e.end_date >= TODAY; });
+
+    if (!state.data.events.length) {
+      box.appendChild(el("div", "empty", "아직 수집된 행사가 없습니다. GitHub의 Actions 탭에서 ‘행사 수집’을 한 번 실행해 주세요."));
+      return;
+    }
+    if (!list.length) {
+      box.appendChild(el("div", "empty", "조건에 맞는 행사가 없습니다. 병원 선택을 바꾸거나 ‘지난 행사 포함’을 켜 보세요."));
+      return;
+    }
+
+    var groups = {}, order = [];
+    list.forEach(function (e) {
+      var key = (!state.showPast && e.start_date < TODAY) ? TODAY : e.start_date; // 진행 중인 여러 날 행사는 오늘에 묶는다
+      if (!groups[key]) { groups[key] = []; order.push(key); }
+      groups[key].push(e);
+    });
+    order.sort();
+
+    var lastMonth = "";
+    order.forEach(function (day) {
+      var p = parts(day);
+      var month = p.y + "년 " + (p.m + 1) + "월";
+      if (month !== lastMonth) { box.appendChild(el("h2", "month-h", month)); lastMonth = month; }
+
+      var dow = weekday(day);
+      var g = el("section", "group" + (day === TODAY ? " today" : ""));
+      g.dataset.date = day;
+      var gut = el("div", "gutter" + (dow === 0 ? " sun" : dow === 6 ? " sat" : ""));
+      gut.appendChild(el("div", "d", String(p.d)));
+      gut.appendChild(el("div", "w", day === TODAY ? "오늘" : WEEK[dow]));
+      g.appendChild(gut);
+
+      var items = el("div", "items");
+      groups[day].forEach(function (e) {
+        var card = el("article", "ev" + (e.end_date < TODAY ? " past" : ""));
+        card.style.setProperty("--hc", colorOf(e.hospital));
+
+        var meta = el("div", "meta");
+        meta.appendChild(el("span", "hosp", nameOf(e.hospital)));
+        meta.appendChild(el("span", "time", timeText(e)));
+        if (e.start_date < day && e.end_date >= TODAY) meta.appendChild(el("span", null, "진행 중 (" + md(e.start_date) + " 시작)"));
+        if (e.reg_end) meta.appendChild(el("span", null, "신청 ~ " + md(e.reg_end)));
+        card.appendChild(meta);
+
+        var h = el("h3");
+        var url = safeUrl(e.url);
+        if (url) {
+          var a = el("a", null, e.title);
+          a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer";
+          h.appendChild(a);
+        } else {
+          h.textContent = e.title;
+        }
+        if (e.kind === "건강강좌") h.appendChild(el("span", "tag", "건강강좌"));
+        card.appendChild(h);
+
+        var sub = [e.organizer && ("주관 " + e.organizer), e.location].filter(Boolean).join(" · ");
+        if (sub) card.appendChild(el("div", "sub", sub));
+        items.appendChild(card);
+      });
+      g.appendChild(items);
+      box.appendChild(g);
+    });
+  }
+
+  /* ---------- footer / notice ---------- */
+  function renderFooter() {
+    var d = state.data;
+    var checked = Object.keys(d.sources || {}).some(function (k) { return d.sources[k].checked_at; });
+    var notice = $("notice");
+    if (!checked) {
+      notice.hidden = false;
+      notice.textContent = "자동 수집이 아직 한 번도 실행되지 않았습니다. 지금 보이는 행사는 초기 예시이며, 수집이 실행되면 전체 목록으로 바뀝니다.";
+    } else {
+      notice.hidden = true;
+    }
+    $("stamp").textContent = d.updated_at ? "갱신 " + d.updated_at.replace("T", " ").slice(0, 16) : "";
+
+    var foot = $("foot");
+    foot.textContent = "";
+    foot.appendChild(el("strong", null, "수집 현황"));
+    var ul = el("ul");
+    hospitalKeys.forEach(function (k) {
+      var s = (d.sources || {})[k] || {};
+      var li = el("li", s.ok === false ? "bad" : "");
+      var dot = el("i"); dot.style.setProperty("--hc", colorOf(k));
+      li.appendChild(dot);
+      var txt;
+      if (s.ok === false) txt = nameOf(k) + " — 수집 실패" + (s.error ? ": " + s.error : "");
+      else if (s.checked_at) txt = nameOf(k) + " — " + s.count + "건 (확인 " + s.checked_at.replace("T", " ") + ")";
+      else txt = nameOf(k) + " — 수집 전";
+      li.appendChild(document.createTextNode(txt));
+      ul.appendChild(li);
+    });
+    foot.appendChild(ul);
+    foot.appendChild(el("p", null, "각 병원 홈페이지의 공개 게시판을 하루 한 번 읽어 옵니다. 일정은 바뀔 수 있으니 신청 전에 원문 링크에서 확인하세요."));
+  }
+
+  function renderAll() {
+    var events = visible();
+    renderChips();
+    renderCalendar(events);
+    renderAgenda(events);
+  }
+
+  /* ---------- boot ---------- */
+  function boot(data) {
+    data.events = data.events || [];
+    data.hospitals = data.hospitals || {};
+    state.data = data;
+    hospitalKeys = Object.keys(data.hospitals);
+    data.events.forEach(function (e) { if (hospitalKeys.indexOf(e.hospital) < 0) hospitalKeys.push(e.hospital); });
+    try { state.hidden = JSON.parse(load("hidden") || "{}") || {}; } catch (e) { state.hidden = {}; }
+
+    var t = parts(TODAY);
+    state.y = t.y; state.m = t.m;
+
+    renderDow();
+    renderFooter();
+    renderAll();
+
+    $("prev").addEventListener("click", function () {
+      state.m--; if (state.m < 0) { state.m = 11; state.y--; } renderAll();
+    });
+    $("next").addEventListener("click", function () {
+      state.m++; if (state.m > 11) { state.m = 0; state.y++; } renderAll();
+    });
+    $("todayBtn").addEventListener("click", function () {
+      state.y = t.y; state.m = t.m; state.sel = TODAY; renderAll();
+      window.scrollTo({ top: 0 });
+    });
+    $("q").addEventListener("input", function (ev) { state.q = ev.target.value; renderAll(); });
+    $("showPast").addEventListener("change", function (ev) { state.showPast = ev.target.checked; renderAll(); });
+    $("showPublic").addEventListener("change", function (ev) { state.showPublic = ev.target.checked; renderAll(); });
+  }
+
+  fetch("events.json", { cache: "no-cache" })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(boot)
+    .catch(function (err) {
+      var box = $("agenda");
+      box.appendChild(el("div", "empty", "행사 데이터를 불러오지 못했습니다 (" + err.message + "). 잠시 후 다시 시도해 주세요."));
+    });
+})();
+</script>
+</body>
+</html>
