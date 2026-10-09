@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-09T18:17+09:00",
+ "updated_at": "2026-10-09T18:40+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원"
@@ -15,19 +15,19 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-10-09T18:17+09:00",
+   "checked_at": "2026-10-09T18:40+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-10-09T18:17+09:00",
+   "checked_at": "2026-10-09T18:40+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-10-09T18:17+09:00",
+   "checked_at": "2026-10-09T18:40+09:00",
    "error": ""
   }
  },
@@ -175,7 +175,7 @@
    "end_date": "2026-07-02",
    "start_time": "17:30",
    "end_time": "19:35",
-   "location": "온라인 HMP 세미나 (링크) ☞",
+   "location": "온라인 HMP 세미나",
    "organizer": "",
    "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=417",
    "reg_start": "",
@@ -730,9 +730,9 @@
    "end_date": "2026-10-18",
    "start_time": "08:30",
    "end_time": "16:30",
-   "location": "",
+   "location": "동관 대강당",
    "organizer": "태아치료센터",
-   "url": "https://www.amc.seoul.kr/asan/academy/event/eventRegistInfo.do?eventId=1601",
+   "url": "https://www.amc.seoul.kr/asan/academy/event/eventDetail.do?eventId=1601",
    "reg_start": "",
    "reg_end": "",
    "kind": "학술"
@@ -745,9 +745,9 @@
    "end_date": "2026-10-20",
    "start_time": "13:00",
    "end_time": "18:00",
-   "location": "",
+   "location": "롯데호텔 에메랄드룸",
    "organizer": "소아청소년병원",
-   "url": "https://www.amc.seoul.kr/asan/academy/event/eventRegistInfo.do?eventId=1627",
+   "url": "https://www.amc.seoul.kr/asan/academy/event/eventDetail.do?eventId=1627",
    "reg_start": "",
    "reg_end": "",
    "kind": "학술"
@@ -775,9 +775,9 @@
    "end_date": "2026-10-24",
    "start_time": "09:00",
    "end_time": "16:30",
-   "location": "",
+   "location": "아산생명과학연구원 지하 1층 대강당",
    "organizer": "소화기내과",
-   "url": "https://www.amc.seoul.kr/asan/academy/event/eventRegistInfo.do?eventId=1607",
+   "url": "https://www.amc.seoul.kr/asan/academy/event/eventDetail.do?eventId=1607",
    "reg_start": "",
    "reg_end": "",
    "kind": "학술"
@@ -790,9 +790,9 @@
    "end_date": "2026-10-29",
    "start_time": "09:00",
    "end_time": "17:10",
-   "location": "",
+   "location": "아산생명과학연구원 지하 1층 대강당",
    "organizer": "의학유전학센터",
-   "url": "https://www.amc.seoul.kr/asan/academy/event/eventRegistInfo.do?eventId=1618",
+   "url": "https://www.amc.seoul.kr/asan/academy/event/eventDetail.do?eventId=1618",
    "reg_start": "",
    "reg_end": "",
    "kind": "학술"
@@ -835,9 +835,9 @@
    "end_date": "2026-10-31",
    "start_time": "08:30",
    "end_time": "16:45",
-   "location": "",
+   "location": "동관 대강당 외 4",
    "organizer": "중환자실",
-   "url": "https://www.amc.seoul.kr/asan/academy/event/eventRegistInfo.do?eventId=1620",
+   "url": "https://www.amc.seoul.kr/asan/academy/event/eventDetail.do?eventId=1620",
    "reg_start": "",
    "reg_end": "",
    "kind": "학술"
@@ -925,9 +925,9 @@
    "end_date": "2026-11-20",
    "start_time": "08:45",
    "end_time": "17:55",
-   "location": "",
+   "location": "동관 대강당",
    "organizer": "신경과",
-   "url": "https://www.amc.seoul.kr/asan/academy/event/eventRegistInfo.do?eventId=1629",
+   "url": "https://www.amc.seoul.kr/asan/academy/event/eventDetail.do?eventId=1629",
    "reg_start": "",
    "reg_end": "",
    "kind": "학술"
