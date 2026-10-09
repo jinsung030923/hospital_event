@@ -26,6 +26,17 @@ _PLACE = re.compile(r"장\s*소\s*[:：]\s*(.+?)(?=\s+(?:[-○▶●■]|주\s*�
 _ORG = re.compile(r"주\s*[관최]\s*[:：]\s*(\S+)")
 
 
+_URL = re.compile(r"https?://\S*")
+_NOISE = re.compile(r"\(\s*(?:링크|클릭|바로가기)\s*\)|[☞▶▷→※●■○◆◇★☆]")
+
+
+def _clean_place(raw: str) -> str:
+    """'온라인 HMP 세미나 (링크) ☞ https://...' 같은 값에서 안내 문구와 주소를 걷어낸다."""
+    text = _URL.sub("", raw)
+    text = _NOISE.sub(" ", text)
+    return clean(text).strip(" -,:;")[:60]
+
+
 def _title(anchor, text: str) -> str:
     strong = anchor.select_one("strong, b, .tit, .title, .subject, dt")
     if strong and clean(strong.get_text()):
@@ -76,7 +87,7 @@ def parse_list(html: str) -> list[Event]:
             start_date=start, end_date=end,
             start_time=hhmm(sh, sm) if sh else "",
             end_time=hhmm(eh, em) if eh else "",
-            location=clean(place.group(1))[:60] if place else "",
+            location=_clean_place(place.group(1)) if place else "",
             organizer=clean(org.group(1)) if org else "",
             url=f"{BASE}/hyumc/board/seminarBoardView.do?no={no}",
             kind=classify(title),

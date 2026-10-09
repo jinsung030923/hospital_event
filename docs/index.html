@@ -119,6 +119,7 @@ header.top .stamp { color: var(--muted); font-size: 13px; }
 .day.has { font-weight: 500; }
 
 /* ---------- agenda ---------- */
+.legend { margin: 10px 4px 0; font-size: 12px; line-height: 1.5; color: var(--muted); }
 .agenda { min-width: 0; }
 .month-h {
   margin: 22px 0 6px; padding-bottom: 6px; font-size: 13px; font-weight: 600; color: var(--muted);
@@ -190,6 +191,7 @@ footer p { margin: 8px 0 0; }
       </div>
       <div class="grid" id="dow"></div>
       <div class="grid" id="days"></div>
+      <p class="legend">점 하나가 행사 1건이고 색은 병원입니다. 여러 날 행사는 날마다 찍히고, 8일을 넘는 과정은 시작일에만 찍힙니다.</p>
     </section>
 
     <main class="agenda" id="agenda" aria-live="polite"></main>
@@ -227,6 +229,11 @@ footer p { margin: 8px 0 0; }
   function colorOf(key) { var i = hospitalKeys.indexOf(key); return "var(--h" + (i < 0 ? 5 : Math.min(i, 5)) + ")"; }
   function nameOf(key) { var h = state.data.hospitals[key]; return h ? h.name : key; }
 
+  // 8일 넘게 이어지는 교육과정은 매일 점을 찍으면 달력이 지저분해지므로 시작일에만 표시한다.
+  var LONG_DAYS = 7;
+  function isLong(e) { return (Date.parse(e.end_date) - Date.parse(e.start_date)) / 86400000 > LONG_DAYS; }
+  function upcoming(e) { return isLong(e) ? e.start_date >= TODAY : e.end_date >= TODAY; }
+
   function visible() {
     var q = state.q.trim().toLowerCase();
     return state.data.events.filter(function (e) {
@@ -243,7 +250,7 @@ footer p { margin: 8px 0 0; }
     box.textContent = "";
     var counts = {};
     state.data.events.forEach(function (e) {
-      if (e.end_date >= TODAY && (state.showPublic || e.kind !== "건강강좌")) counts[e.hospital] = (counts[e.hospital] || 0) + 1;
+      if (upcoming(e) && (state.showPublic || e.kind !== "건강강좌")) counts[e.hospital] = (counts[e.hospital] || 0) + 1;
     });
     hospitalKeys.forEach(function (k) {
       var b = el("button", "chip");
@@ -273,8 +280,8 @@ footer p { margin: 8px 0 0; }
   function dayMap(events) {
     var map = {};
     events.forEach(function (e) {
-      var d = e.start_date, guard = 0;
-      while (d <= e.end_date && guard++ < 31) {
+      var d = e.start_date, guard = 0, last = isLong(e) ? e.start_date : e.end_date;
+      while (d <= last && guard++ < 31) {
         (map[d] = map[d] || []).push(e);
         d = addDay(d);
       }
@@ -347,7 +354,7 @@ footer p { margin: 8px 0 0; }
   function renderAgenda(events) {
     var box = $("agenda");
     box.textContent = "";
-    var list = events.filter(function (e) { return state.showPast || e.end_date >= TODAY; });
+    var list = events.filter(function (e) { return state.showPast || upcoming(e); });
 
     if (!state.data.events.length) {
       box.appendChild(el("div", "empty", "아직 수집된 행사가 없습니다. GitHub의 Actions 탭에서 ‘행사 수집’을 한 번 실행해 주세요."));
@@ -360,7 +367,7 @@ footer p { margin: 8px 0 0; }
 
     var groups = {}, order = [];
     list.forEach(function (e) {
-      var key = (!state.showPast && e.start_date < TODAY) ? TODAY : e.start_date; // 진행 중인 여러 날 행사는 오늘에 묶는다
+      var key = (!state.showPast && e.start_date < TODAY && !isLong(e)) ? TODAY : e.start_date; // 진행 중인 여러 날 행사는 오늘에 묶는다
       if (!groups[key]) { groups[key] = []; order.push(key); }
       groups[key].push(e);
     });
@@ -382,13 +389,13 @@ footer p { margin: 8px 0 0; }
 
       var items = el("div", "items");
       groups[day].forEach(function (e) {
-        var card = el("article", "ev" + (e.end_date < TODAY ? " past" : ""));
+        var card = el("article", "ev" + (!upcoming(e) ? " past" : ""));
         card.style.setProperty("--hc", colorOf(e.hospital));
 
         var meta = el("div", "meta");
         meta.appendChild(el("span", "hosp", nameOf(e.hospital)));
         meta.appendChild(el("span", "time", timeText(e)));
-        if (e.start_date < day && e.end_date >= TODAY) meta.appendChild(el("span", null, "진행 중 (" + md(e.start_date) + " 시작)"));
+        if (e.start_date < day && e.end_date >= TODAY && !isLong(e)) meta.appendChild(el("span", null, "진행 중 (" + md(e.start_date) + " 시작)"));
         if (e.reg_end) meta.appendChild(el("span", null, "신청 ~ " + md(e.reg_end)));
         card.appendChild(meta);
 
@@ -402,6 +409,7 @@ footer p { margin: 8px 0 0; }
           h.textContent = e.title;
         }
         if (e.kind === "건강강좌") h.appendChild(el("span", "tag", "건강강좌"));
+        if (isLong(e)) h.appendChild(el("span", "tag", "장기 과정"));
         card.appendChild(h);
 
         var sub = [e.organizer && ("주관 " + e.organizer), e.location].filter(Boolean).join(" · ");

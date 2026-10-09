@@ -45,7 +45,7 @@ def test_asan():
     e = by_title(ev, "CADASIL")
     assert (e.id, e.start_date, e.start_time, e.end_time) == ("amc-1629", "2026-11-20", "08:45", "17:55")
     assert e.organizer == "신경과"
-    assert e.url.endswith("eventId=1629")
+    assert "eventId=1629" in e.url
     nca = by_title(ev, "NCA")
     assert (nca.start_date, nca.end_date) == ("2026-11-19", "2026-11-20")
     assert nca.id.startswith("amc-x") and nca.url == asan.LIST_URL  # 상세 링크 없는 '예정' 행사
@@ -53,6 +53,19 @@ def test_asan():
     assert (rng.start_date, rng.end_date) == ("2026-09-11", "2026-12-05")
     assert by_title(ev, "Genetics").title.endswith("Medical Center")  # &amp; 처리
     assert len({e.id for e in ev}) == 10
+    assert e.url.endswith("eventDetail.do?eventId=1629")  # '조회'(사전등록 조회)가 아니라 상세 페이지
+
+
+def test_asan_detail_place():
+    assert asan.parse_detail(read("asan_detail.html")) == "롯데호텔 에메랄드룸"
+    assert asan.parse_detail("<html><body>장소 없음</body></html>") == ""
+
+
+def test_hanyang_place_cleanup():
+    f = hanyang._clean_place
+    assert f("온라인 HMP 세미나 (링크) ☞ https://example.com/x") == "온라인 HMP 세미나"
+    assert f("한양대학교병원 본관 3층 HY이음홀") == "한양대학교병원 본관 3층 HY이음홀"
+    assert f("(링크) ☞") == ""
 
 
 def test_hanyang():

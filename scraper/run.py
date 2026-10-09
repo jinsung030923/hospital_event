@@ -9,6 +9,7 @@
 from __future__ import annotations
 
 import argparse
+import inspect
 import json
 import sys
 from datetime import datetime, timedelta
@@ -52,7 +53,10 @@ def main() -> int:
 
     for mod in SOURCES:
         try:
-            events = mod.scrape()
+            if "known" in inspect.signature(mod.scrape).parameters:
+                events = mod.scrape(known=merged)
+            else:
+                events = mod.scrape()
             for ev in events:
                 merged[ev.id] = ev.to_dict()
             sources[mod.KEY] = {"ok": True, "count": len(events),
