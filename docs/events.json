@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-10T23:13+09:00",
+ "updated_at": "2026-10-11T06:29+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원",
@@ -26,31 +26,31 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-10-10T23:13+09:00",
+   "checked_at": "2026-10-11T06:29+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-10-10T23:13+09:00",
+   "checked_at": "2026-10-11T06:29+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-10-10T23:13+09:00",
+   "checked_at": "2026-10-11T06:29+09:00",
    "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-10-10T23:13+09:00",
+   "checked_at": "2026-10-11T06:29+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-10-10T23:13+09:00",
+   "checked_at": "2026-10-11T06:29+09:00",
    "error": ""
   }
  },
@@ -171,7 +171,7 @@
    "end_date": "2026-06-04",
    "start_time": "13:40",
    "end_time": "17:00",
-   "location": "장소 : Basement Level 1, Ajou Hall, Main Building, Ajou Univer",
+   "location": "Basement Level 1, Ajou Hall, Main Building, Ajou University ",
    "organizer": "외과학교실",
    "url": "https://hosp.ajoumc.or.kr/board/commBoardHLectureView.do?no=71781",
    "reg_start": "",
