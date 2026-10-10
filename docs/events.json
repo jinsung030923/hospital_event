@@ -1,51 +1,56 @@
 {
- "updated_at": "2026-10-10T22:20+09:00",
+ "updated_at": "2026-10-10T23:13+09:00",
  "hospitals": {
   "smc": {
-   "name": "삼성서울병원"
+   "name": "삼성서울병원",
+   "url": "https://www.samsunghospital.com/home/info/scienceList.do"
   },
   "amc": {
-   "name": "서울아산병원"
+   "name": "서울아산병원",
+   "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do"
   },
   "hyumc": {
-   "name": "한양대학교병원"
+   "name": "한양대학교병원",
+   "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardList.do"
   },
   "eulji": {
-   "name": "을지대학교병원"
+   "name": "을지대학교병원",
+   "url": "https://refer.eulji.or.kr/news/news_pg02_01.jsp"
   },
   "ajou": {
-   "name": "아주대학교병원"
+   "name": "아주대학교병원",
+   "url": "https://hosp.ajoumc.or.kr/board/commBoardHLectureList.do"
   }
  },
  "sources": {
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-10-10T22:20+09:00",
+   "checked_at": "2026-10-10T23:13+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-10-10T22:20+09:00",
+   "checked_at": "2026-10-10T23:13+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-10-10T22:20+09:00",
+   "checked_at": "2026-10-10T23:13+09:00",
    "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-10-10T22:20+09:00",
+   "checked_at": "2026-10-10T23:13+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-10-10T22:20+09:00",
+   "checked_at": "2026-10-10T23:13+09:00",
    "error": ""
   }
  },
