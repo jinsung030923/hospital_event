@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-10T06:31+09:00",
+ "updated_at": "2026-10-10T22:18+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원"
@@ -9,25 +9,43 @@
   },
   "hyumc": {
    "name": "한양대학교병원"
+  },
+  "eulji": {
+   "name": "을지대학교병원"
+  },
+  "ajou": {
+   "name": "아주대학교병원"
   }
  },
  "sources": {
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-10-10T06:31+09:00",
+   "checked_at": "2026-10-10T22:18+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-10-10T06:31+09:00",
+   "checked_at": "2026-10-10T22:18+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-10-10T06:31+09:00",
+   "checked_at": "2026-10-10T22:18+09:00",
+   "error": ""
+  },
+  "eulji": {
+   "ok": true,
+   "count": 7,
+   "checked_at": "2026-10-10T22:18+09:00",
+   "error": ""
+  },
+  "ajou": {
+   "ok": true,
+   "count": 12,
+   "checked_at": "2026-10-10T22:18+09:00",
    "error": ""
   }
  },
@@ -45,7 +63,28 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23213",
    "reg_start": "2026-04-13",
    "reg_end": "2026-05-06",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "외과"
+   ]
+  },
+  {
+   "id": "eulji-19872",
+   "hospital": "eulji",
+   "title": "2026년 노원을지대학교병원 신경과 개원의 연수강좌",
+   "start_date": "2026-05-09",
+   "end_date": "2026-05-09",
+   "start_time": "",
+   "end_time": "",
+   "location": "",
+   "organizer": "",
+   "url": "https://refer.eulji.or.kr/news/news_pg02_02.jsp?board_code=BOARD_126&board_sequence=19872",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "학술",
+   "depts": [
+    "신경과"
+   ]
   },
   {
    "id": "smc-23214",
@@ -60,7 +99,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23214",
    "reg_start": "2026-01-19",
    "reg_end": "2026-05-01",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "smc-23212",
@@ -75,7 +117,28 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23212",
    "reg_start": "2026-04-13",
    "reg_end": "2026-05-20",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
+  },
+  {
+   "id": "eulji-19989",
+   "hospital": "eulji",
+   "title": "대한두통학회 2026년 제 1회 서울.경기지역 연수강좌 : 편두통 치료의 새로운 전략",
+   "start_date": "2026-05-30",
+   "end_date": "2026-05-30",
+   "start_time": "14:50",
+   "end_time": "18:15",
+   "location": "",
+   "organizer": "",
+   "url": "https://refer.eulji.or.kr/news/news_pg02_02.jsp?board_code=BOARD_126&board_sequence=19989",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "학술",
+   "depts": [
+    "신경과"
+   ]
   },
   {
    "id": "hyumc-415",
@@ -90,7 +153,28 @@
    "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=415",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
+  },
+  {
+   "id": "ajou-71781",
+   "hospital": "ajou",
+   "title": "2026 Ajou–Hebei International Collaborative Seminar 일시 :",
+   "start_date": "2026-06-04",
+   "end_date": "2026-06-04",
+   "start_time": "13:40",
+   "end_time": "17:00",
+   "location": "장소 : Basement Level 1, Ajou Hall, Main Building, Ajou Univer",
+   "organizer": "외과학교실",
+   "url": "https://hosp.ajoumc.or.kr/board/commBoardHLectureView.do?no=71781",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "학술",
+   "depts": [
+    "외과"
+   ]
   },
   {
    "id": "smc-23219",
@@ -105,7 +189,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23219",
    "reg_start": "2026-05-27",
    "reg_end": "2026-06-11",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "smc-23217",
@@ -120,7 +207,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23217",
    "reg_start": "2026-05-21",
    "reg_end": "2026-06-19",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "병리과"
+   ]
   },
   {
    "id": "smc-23210",
@@ -135,7 +225,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23210",
    "reg_start": "2026-04-08",
    "reg_end": "2026-06-12",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "내과"
+   ]
   },
   {
    "id": "hyumc-416",
@@ -150,7 +243,10 @@
    "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=416",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "산부인과"
+   ]
   },
   {
    "id": "smc-23215",
@@ -165,7 +261,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23215",
    "reg_start": "2026-05-01",
    "reg_end": "2026-06-25",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "hyumc-417",
@@ -180,7 +279,10 @@
    "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=417",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "smc-23216",
@@ -195,7 +297,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23216",
    "reg_start": "2026-05-18",
    "reg_end": "2026-06-28",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "신경과"
+   ]
   },
   {
    "id": "smc-23218",
@@ -210,7 +315,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23218",
    "reg_start": "2026-06-09",
    "reg_end": "2026-06-26",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "내과"
+   ]
   },
   {
    "id": "smc-23221",
@@ -225,7 +333,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23221",
    "reg_start": "2026-07-01",
    "reg_end": "2026-07-09",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "hyumc-418",
@@ -240,7 +351,10 @@
    "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=418",
    "reg_start": "",
    "reg_end": "",
-   "kind": "건강강좌"
+   "kind": "건강강좌",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "hyumc-420",
@@ -255,7 +369,10 @@
    "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=420",
    "reg_start": "",
    "reg_end": "",
-   "kind": "건강강좌"
+   "kind": "건강강좌",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "amc-x69d0aab0",
@@ -270,7 +387,10 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "응급의학과"
+   ]
   },
   {
    "id": "hyumc-419",
@@ -285,7 +405,10 @@
    "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=419",
    "reg_start": "",
    "reg_end": "",
-   "kind": "건강강좌"
+   "kind": "건강강좌",
+   "depts": [
+    "소아청소년과"
+   ]
   },
   {
    "id": "amc-x3331d1d3",
@@ -300,7 +423,11 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "소아청소년과",
+    "내과"
+   ]
   },
   {
    "id": "hyumc-421",
@@ -315,7 +442,10 @@
    "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=421",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "응급의학과"
+   ]
   },
   {
    "id": "amc-x7b9e8bd0",
@@ -330,7 +460,10 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "신경외과"
+   ]
   },
   {
    "id": "amc-xe39001bc",
@@ -345,7 +478,10 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "재활의학과"
+   ]
   },
   {
    "id": "smc-23226",
@@ -360,7 +496,29 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23226",
    "reg_start": "2026-07-22",
    "reg_end": "2026-08-12",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "소아청소년과",
+    "외과"
+   ]
+  },
+  {
+   "id": "eulji-20444",
+   "hospital": "eulji",
+   "title": "을지 염증성 장질환 심포지엄",
+   "start_date": "2026-08-22",
+   "end_date": "2026-08-22",
+   "start_time": "16:00",
+   "end_time": "19:20",
+   "location": "",
+   "organizer": "",
+   "url": "https://refer.eulji.or.kr/news/news_pg02_02.jsp?board_code=BOARD_126&board_sequence=20444",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "smc-23228",
@@ -375,7 +533,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23228",
    "reg_start": "2026-08-03",
    "reg_end": "2026-08-26",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "외과"
+   ]
   },
   {
    "id": "amc-x9b56ecfd",
@@ -390,7 +551,10 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "외과"
+   ]
   },
   {
    "id": "hyumc-427",
@@ -405,7 +569,10 @@
    "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=427",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "amc-x53a17229",
@@ -420,7 +587,10 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "내과"
+   ]
   },
   {
    "id": "hyumc-425",
@@ -435,7 +605,10 @@
    "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=425",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "종양(암)"
+   ]
   },
   {
    "id": "smc-23222",
@@ -450,7 +623,28 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23222",
    "reg_start": "2026-07-13",
    "reg_end": "2026-08-28",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "중환자의학"
+   ]
+  },
+  {
+   "id": "eulji-20501",
+   "hospital": "eulji",
+   "title": "2026년 이비인후과 연수강좌",
+   "start_date": "2026-09-05",
+   "end_date": "2026-09-05",
+   "start_time": "15:00",
+   "end_time": "18:20",
+   "location": "",
+   "organizer": "",
+   "url": "https://refer.eulji.or.kr/news/news_pg02_02.jsp?board_code=BOARD_126&board_sequence=20501",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "학술",
+   "depts": [
+    "이비인후과"
+   ]
   },
   {
    "id": "amc-x91fb59b4",
@@ -465,7 +659,10 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "내과"
+   ]
   },
   {
    "id": "smc-23232",
@@ -480,7 +677,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23232",
    "reg_start": "2026-08-27",
    "reg_end": "2026-09-10",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "amc-x34d1aa55",
@@ -495,7 +695,10 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "이비인후과"
+   ]
   },
   {
    "id": "smc-23230",
@@ -510,7 +713,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23230",
    "reg_start": "2026-08-10",
    "reg_end": "2026-09-04",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "amc-x256fe4cf",
@@ -525,7 +731,10 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "응급의학과"
+   ]
   },
   {
    "id": "amc-xc3b2328b",
@@ -540,7 +749,11 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "소아청소년과",
+    "응급의학과"
+   ]
   },
   {
    "id": "amc-xe411dd21",
@@ -555,7 +768,10 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "이비인후과"
+   ]
   },
   {
    "id": "hyumc-426",
@@ -570,7 +786,10 @@
    "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=426",
    "reg_start": "",
    "reg_end": "",
-   "kind": "건강강좌"
+   "kind": "건강강좌",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "smc-23227",
@@ -585,7 +804,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23227",
    "reg_start": "2026-07-29",
    "reg_end": "2026-09-09",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "소아청소년과"
+   ]
   },
   {
    "id": "smc-23231",
@@ -600,7 +822,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23231",
    "reg_start": "2026-08-19",
    "reg_end": "2026-09-17",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "hyumc-422",
@@ -615,7 +840,10 @@
    "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=422",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "amc-x94b64d33",
@@ -630,7 +858,10 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "신경과"
+   ]
   },
   {
    "id": "smc-23225",
@@ -645,7 +876,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23225",
    "reg_start": "2026-07-21",
    "reg_end": "2026-09-09",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "외과"
+   ]
   },
   {
    "id": "hyumc-428",
@@ -660,7 +894,10 @@
    "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=428",
    "reg_start": "",
    "reg_end": "",
-   "kind": "건강강좌"
+   "kind": "건강강좌",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "hyumc-430",
@@ -675,7 +912,10 @@
    "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=430",
    "reg_start": "",
    "reg_end": "",
-   "kind": "건강강좌"
+   "kind": "건강강좌",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "hyumc-431",
@@ -690,7 +930,10 @@
    "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=431",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "smc-23235",
@@ -705,7 +948,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23235",
    "reg_start": "2026-09-18",
    "reg_end": "2026-10-02",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "smc-23237",
@@ -720,7 +966,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23237",
    "reg_start": "2026-10-06",
    "reg_end": "2026-10-06",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "amc-1601",
@@ -735,7 +984,10 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventDetail.do?eventId=1601",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "산부인과"
+   ]
   },
   {
    "id": "amc-1627",
@@ -750,7 +1002,10 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventDetail.do?eventId=1627",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "소아청소년과"
+   ]
   },
   {
    "id": "smc-23236",
@@ -765,7 +1020,28 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23236",
    "reg_start": "2026-09-21",
    "reg_end": "2026-10-14",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "외과"
+   ]
+  },
+  {
+   "id": "eulji-20721",
+   "hospital": "eulji",
+   "title": "2026년 비뇨의학과 개원의 연수강좌",
+   "start_date": "2026-10-23",
+   "end_date": "2026-10-23",
+   "start_time": "18:30",
+   "end_time": "21:00",
+   "location": "",
+   "organizer": "",
+   "url": "https://refer.eulji.or.kr/news/news_pg02_02.jsp?board_code=BOARD_126&board_sequence=20721",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "학술",
+   "depts": [
+    "비뇨의학과"
+   ]
   },
   {
    "id": "amc-1607",
@@ -780,7 +1056,10 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventDetail.do?eventId=1607",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "내과"
+   ]
   },
   {
    "id": "amc-1618",
@@ -795,7 +1074,10 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventDetail.do?eventId=1618",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "hyumc-438",
@@ -810,7 +1092,10 @@
    "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=438",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "hyumc-437",
@@ -825,7 +1110,10 @@
    "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=437",
    "reg_start": "",
    "reg_end": "",
-   "kind": "건강강좌"
+   "kind": "건강강좌",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "amc-1620",
@@ -840,7 +1128,10 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventDetail.do?eventId=1620",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "중환자의학"
+   ]
   },
   {
    "id": "smc-23233",
@@ -855,7 +1146,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23233",
    "reg_start": "2026-09-01",
    "reg_end": "2026-10-23",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "신경과"
+   ]
   },
   {
    "id": "hyumc-433",
@@ -870,7 +1164,28 @@
    "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=433",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
+  },
+  {
+   "id": "eulji-20684",
+   "hospital": "eulji",
+   "title": "제 14회 내과 개원의 연수강좌",
+   "start_date": "2026-11-08",
+   "end_date": "2026-11-08",
+   "start_time": "08:30",
+   "end_time": "13:00",
+   "location": "",
+   "organizer": "",
+   "url": "https://refer.eulji.or.kr/news/news_pg02_02.jsp?board_code=BOARD_126&board_sequence=20684",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "학술",
+   "depts": [
+    "내과"
+   ]
   },
   {
    "id": "smc-23220",
@@ -885,7 +1200,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23220",
    "reg_start": "2026-08-03",
    "reg_end": "2026-11-06",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "중환자의학"
+   ]
   },
   {
    "id": "amc-xfc2b2077",
@@ -900,7 +1218,10 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "amc-xb7138f03",
@@ -915,7 +1236,10 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "외과"
+   ]
   },
   {
    "id": "amc-1629",
@@ -930,7 +1254,10 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventDetail.do?eventId=1629",
    "reg_start": "",
    "reg_end": "",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "신경과"
+   ]
   },
   {
    "id": "smc-23238",
@@ -945,7 +1272,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23238",
    "reg_start": "2026-10-02",
    "reg_end": "2026-11-19",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
   },
   {
    "id": "smc-23229",
@@ -960,7 +1290,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23229",
    "reg_start": "2026-07-20",
    "reg_end": "2026-11-13",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "종양(암)"
+   ]
   },
   {
    "id": "smc-23239",
@@ -975,7 +1308,10 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23239",
    "reg_start": "2026-10-06",
    "reg_end": "2026-11-23",
-   "kind": "학술"
+   "kind": "학술",
+   "depts": [
+    "종양(암)"
+   ]
   },
   {
    "id": "hyumc-429",
@@ -989,8 +1325,11 @@
    "organizer": "",
    "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=429",
    "reg_start": "",
-   "reg_end": "",
-   "kind": "학술"
+   "reg_end": "2026-11-13",
+   "kind": "학술",
+   "depts": [
+    "내과"
+   ]
   }
  ]
 }
