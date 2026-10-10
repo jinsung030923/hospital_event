@@ -80,7 +80,7 @@ def main() -> int:
 
     result = {
         "updated_at": now.isoformat(timespec="minutes"),
-        "hospitals": {m.KEY: {"name": m.NAME} for m in SOURCES},
+        "hospitals": {m.KEY: {"name": m.NAME, "url": getattr(m, "LIST_URL", "")} for m in SOURCES},
         "sources": sources,
         "events": events,
     }

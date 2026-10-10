@@ -3,143 +3,231 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>병원 학술행사 달력</title>
-<meta name="description" content="서울권 대학병원의 학술행사·연수강좌를 날짜별로 모아 봅니다.">
+<title>메디캘린더 MediCal</title>
+<meta name="description" content="의대생·전공의를 위해 대학병원 학술행사, 서브인턴십, 전공의 모집 정보를 한곳에 모읍니다.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f4f6f8;
+  --navy: #14294a;
+  --navy-2: #1e3a66;
+  --navy-3: #2c5191;
+  --sky: #e8eef8;
+  --bg: #f4f6f9;
   --surface: #ffffff;
-  --ink: #15212b;
-  --muted: #5b6975;
-  --line: #dce3e9;
-  --soft: #eaeff3;
+  --ink: #18222f;
+  --muted: #5d6a7c;
+  --line: #dce2ea;
+  --soft: #edf1f6;
+  --on-navy: #ffffff;
+  --on-navy-muted: #b7c4da;
   --sat: #2e5fc4;
   --sun: #c43d3d;
-  --h0: #1f4fd6;
-  --h1: #0e9467;
-  --h2: #d9560b;
-  --h3: #8a3ffc;
-  --h4: #b3249a;
-  --h5: #5b6975;
-  --radius: 10px;
+  --h0: #1f4fd6; --h1: #0e9467; --h2: #d9560b; --h3: #8a3ffc; --h4: #b3249a; --h5: #5b6975;
+  --radius: 8px;
+  --wrap: 1180px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0e1418; --surface: #151d23; --ink: #e8eef2; --muted: #93a1ac;
-    --line: #26323b; --soft: #1d2830; --sat: #7ea2f2; --sun: #ef7a7a;
+    --navy: #0f1d35; --navy-2: #1a2f52; --navy-3: #7ea2f2; --sky: #1a2638;
+    --bg: #0d131b; --surface: #141c27; --ink: #e6ecf3; --muted: #95a3b6;
+    --line: #253244; --soft: #1b2533; --on-navy-muted: #9fb0cc;
+    --sat: #7ea2f2; --sun: #ef7a7a;
     --h0: #6f95ff; --h1: #34c796; --h2: #ff8a4c; --h3: #b48aff; --h4: #e46fd0; --h5: #93a1ac;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0e1418; --surface: #151d23; --ink: #e8eef2; --muted: #93a1ac;
-  --line: #26323b; --soft: #1d2830; --sat: #7ea2f2; --sun: #ef7a7a;
+  --navy: #0f1d35; --navy-2: #1a2f52; --navy-3: #7ea2f2; --sky: #1a2638;
+  --bg: #0d131b; --surface: #141c27; --ink: #e6ecf3; --muted: #95a3b6;
+  --line: #253244; --soft: #1b2533; --on-navy-muted: #9fb0cc;
+  --sat: #7ea2f2; --sun: #ef7a7a;
   --h0: #6f95ff; --h1: #34c796; --h2: #ff8a4c; --h3: #b48aff; --h4: #e46fd0; --h5: #93a1ac;
 }
 
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--ink);
-  font: 400 15px/1.55 "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 15px/1.6 "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   font-variant-numeric: tabular-nums;
 }
-button, input { font: inherit; color: inherit; }
+button, input, select { font: inherit; color: inherit; }
 button { cursor: pointer; }
-:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 a { color: inherit; }
+:focus-visible { outline: 2px solid var(--navy-3); outline-offset: 2px; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 16px; }
+[hidden] { display: none !important; }
 
-.wrap { max-width: 1120px; margin: 0 auto; padding: 20px 16px 48px; }
-
-header.top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; margin-bottom: 14px; }
-header.top h1 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
-header.top .stamp { color: var(--muted); font-size: 13px; }
-
-.notice {
-  background: var(--soft); border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 10px 14px; margin-bottom: 14px; font-size: 14px;
+/* ---------- header ---------- */
+.util { background: var(--navy); color: var(--on-navy-muted); font-size: 12px; }
+.util .wrap { display: flex; justify-content: space-between; gap: 12px; padding-top: 6px; padding-bottom: 6px; }
+.util strong { color: var(--on-navy); font-weight: 500; }
+.gnb { background: var(--surface); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; }
+.gnb .wrap { display: flex; align-items: center; gap: 24px; min-height: 68px; }
+.logo { display: flex; align-items: baseline; gap: 8px; text-decoration: none; color: var(--navy); white-space: nowrap; }
+:root[data-theme="dark"] .logo, .logo { color: var(--navy-3); }
+@media (prefers-color-scheme: light) { .logo { color: var(--navy); } }
+.logo b { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+.logo span { font-size: 13px; font-weight: 600; color: var(--muted); }
+.menu { display: flex; margin: 0 0 0 auto; padding: 0; list-style: none; }
+.menu > li { position: relative; }
+.menu > li > a {
+  display: block; padding: 22px 18px; font-size: 16px; font-weight: 600; text-decoration: none;
+  border-bottom: 3px solid transparent;
 }
-.notice[hidden] { display: none; }
+.menu > li > a[aria-current="page"] { color: var(--navy-3); border-bottom-color: var(--navy-3); }
+.menu > li:hover > a { color: var(--navy-3); }
+.sub {
+  position: absolute; left: 50%; top: 100%; transform: translateX(-50%); min-width: 170px;
+  margin: 0; padding: 8px 0; list-style: none; background: var(--surface);
+  border: 1px solid var(--line); border-top: 3px solid var(--navy-3); border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: 0 10px 24px rgba(20, 41, 74, .12); display: none;
+}
+.menu > li:hover .sub, .menu > li:focus-within .sub { display: block; }
+.sub a { display: block; padding: 8px 18px; font-size: 14px; text-decoration: none; color: var(--muted); white-space: nowrap; }
+.sub a:hover { color: var(--navy-3); background: var(--soft); }
+.burger { display: none; margin-left: auto; border: 1px solid var(--line); background: transparent; border-radius: 8px; width: 42px; height: 42px; }
+.burger i, .burger i::before, .burger i::after { display: block; width: 18px; height: 2px; background: var(--ink); margin: 0 auto; position: relative; content: ""; }
+.burger i::before { position: absolute; top: -6px; } .burger i::after { position: absolute; top: 6px; }
+.drawer { display: none; }
+@media (max-width: 860px) {
+  .menu { display: none; }
+  .burger { display: block; }
+  .drawer { display: block; position: fixed; inset: 0; z-index: 40; background: rgba(10, 20, 35, .45); }
+  .drawer[hidden] { display: none !important; }
+  .drawer nav { position: absolute; right: 0; top: 0; bottom: 0; width: min(320px, 86vw); background: var(--surface); padding: 16px 20px; overflow-y: auto; }
+  .drawer .close { float: right; border: 0; background: transparent; font-size: 15px; color: var(--muted); padding: 6px; }
+  .drawer h5 { margin: 22px 0 6px; font-size: 16px; }
+  .drawer h5 a { text-decoration: none; }
+  .drawer ul { list-style: none; margin: 0; padding: 0 0 0 2px; }
+  .drawer li a { display: block; padding: 6px 0; color: var(--muted); text-decoration: none; font-size: 14px; }
+}
 
-.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px; }
+/* ---------- page title band ---------- */
+.band { background: var(--navy-2); color: var(--on-navy); }
+.band .wrap { padding-top: 34px; padding-bottom: 30px; }
+.crumb { font-size: 13px; color: var(--on-navy-muted); margin-bottom: 6px; }
+.crumb a { text-decoration: none; }
+.band h1 { margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.01em; }
+.band p { margin: 6px 0 0; color: var(--on-navy-muted); font-size: 14px; }
+
+main { padding-bottom: 56px; }
+.section { margin-top: 40px; }
+.section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.section-head h2 { margin: 0; font-size: 21px; font-weight: 700; color: var(--ink); }
+.more { font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none; }
+.more:hover { color: var(--navy-3); }
+
+/* ---------- home hero ---------- */
+.hero { background: var(--navy); color: var(--on-navy); }
+.hero .wrap { display: grid; grid-template-columns: 1fr; gap: 24px; padding-top: 36px; padding-bottom: 40px; }
+@media (min-width: 900px) { .hero .wrap { grid-template-columns: 0.9fr 1.1fr; gap: 40px; } }
+.hero-intro h1 { margin: 0; font-size: 30px; line-height: 1.3; font-weight: 700; letter-spacing: -0.02em; }
+.hero-intro p { margin: 12px 0 0; color: var(--on-navy-muted); }
+.hero-stat { display: flex; gap: 28px; margin-top: 22px; }
+.hero-stat div { font-size: 13px; color: var(--on-navy-muted); }
+.hero-stat b { display: block; font-size: 26px; color: var(--on-navy); font-weight: 700; line-height: 1.2; }
+.hero-boards { display: grid; gap: 14px; grid-template-columns: 1fr; }
+@media (min-width: 560px) { .hero-boards { grid-template-columns: 1fr 1fr; } }
+.hb { background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .14); border-radius: var(--radius); padding: 14px 16px; }
+.hb h3 { margin: 0 0 8px; font-size: 14px; font-weight: 600; color: var(--on-navy-muted); }
+.hb ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.hb li a { display: grid; grid-template-columns: auto 1fr; gap: 10px; text-decoration: none; align-items: baseline; }
+.hb li a:hover .t { text-decoration: underline; text-underline-offset: 3px; }
+.hb .d { font-size: 13px; color: var(--on-navy-muted); min-width: 64px; }
+.hb .d.urgent { color: #ffb4a8; font-weight: 600; }
+.hb .t { font-size: 14px; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.hb .empty-hb { font-size: 13px; color: var(--on-navy-muted); }
+
+/* ---------- quick menu ---------- */
+.quick { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: -1px; }
+@media (min-width: 720px) { .quick { grid-template-columns: repeat(4, 1fr); } }
+.quick a {
+  display: flex; align-items: center; gap: 14px; padding: 18px; background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none;
+}
+.quick a:hover { border-color: var(--navy-3); }
+.quick svg { width: 34px; height: 34px; flex: none; color: var(--navy-3); }
+.quick b { display: block; font-size: 15px; font-weight: 600; }
+.quick small { display: block; font-size: 12px; color: var(--muted); }
+@media (max-width: 560px) {
+  .quick a { flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px; }
+  .quick svg { width: 28px; height: 28px; }
+  .util .tagline { display: none; }
+}
+
+/* ---------- tabbed board ---------- */
+.board { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--line); padding: 0 8px; overflow-x: auto; }
+.tabs button { border: 0; background: transparent; padding: 14px 14px 12px; font-size: 15px; font-weight: 600; color: var(--muted); border-bottom: 3px solid transparent; white-space: nowrap; }
+.tabs button[aria-selected="true"] { color: var(--navy-3); border-bottom-color: var(--navy-3); }
+.board ul { list-style: none; margin: 0; padding: 4px 18px; }
+.board li { border-bottom: 1px solid var(--line); }
+.board li:last-child { border-bottom: 0; }
+.board li a { display: grid; grid-template-columns: 92px 1fr auto; gap: 12px; align-items: baseline; padding: 12px 0; text-decoration: none; }
+.board .cat { font-size: 12px; font-weight: 600; color: var(--hc, var(--navy-3)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.board .t { font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.board li a:hover .t { color: var(--navy-3); }
+.board .dt { font-size: 13px; color: var(--muted); white-space: nowrap; }
+.board .empty { padding: 28px 8px; }
+@media (max-width: 560px) { .board li a { grid-template-columns: 1fr auto; } .board .cat { grid-column: 1 / -1; } }
+
+/* ---------- hospitals grid ---------- */
+.hosp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
+.hosp-grid a { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--hc); border-radius: var(--radius); text-decoration: none; }
+.hosp-grid a:hover { border-color: var(--hc); }
+.hosp-grid b { font-weight: 600; }
+.hosp-grid small { color: var(--muted); font-size: 12px; display: block; }
+
+/* ---------- events page ---------- */
+.notice { background: var(--sky); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 14px; margin-top: 24px; font-size: 14px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 24px 0 18px; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px;
-  background: var(--surface); font-size: 14px; line-height: 1.2;
-}
+.chip { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); font-size: 14px; line-height: 1.2; }
 .chip i { width: 9px; height: 9px; border-radius: 50%; background: var(--hc); flex: none; }
 .chip small { color: var(--muted); font-size: 12px; }
 .chip[aria-pressed="false"] { color: var(--muted); background: transparent; }
 .chip[aria-pressed="false"] i { background: transparent; box-shadow: inset 0 0 0 1.5px var(--hc); }
 .spacer { flex: 1 1 12px; }
-.search {
-  flex: 0 1 220px; min-width: 150px; padding: 7px 12px;
-  border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
-}
-.select {
-  flex: 0 1 170px; min-width: 130px; padding: 7px 12px;
-  border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
-}
-.select[hidden] { display: none; }
+.search, .select { padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+.search { flex: 0 1 220px; min-width: 150px; }
+.select { flex: 0 1 170px; min-width: 130px; }
 .toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--muted); user-select: none; }
-.toggle input { accent-color: var(--ink); width: 16px; height: 16px; margin: 0; }
-
+.toggle input { accent-color: var(--navy-3); width: 16px; height: 16px; margin: 0; }
 .layout { display: grid; grid-template-columns: 1fr; gap: 20px; align-items: start; }
-@media (min-width: 900px) {
-  .layout { grid-template-columns: 340px 1fr; gap: 32px; }
-  .cal { position: sticky; top: 16px; }
-}
-
-/* ---------- calendar ---------- */
+@media (min-width: 900px) { .layout { grid-template-columns: 340px 1fr; gap: 32px; } .cal { position: sticky; top: 84px; } }
 .cal { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 12px 14px; }
 .cal-head { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
 .cal-head h2 { margin: 0; font-size: 16px; font-weight: 600; flex: 1; padding-left: 4px; }
-.nav {
-  border: 1px solid var(--line); background: transparent; border-radius: 8px;
-  min-width: 34px; height: 34px; padding: 0 10px; font-size: 14px; line-height: 1;
-}
+.nav { border: 1px solid var(--line); background: transparent; border-radius: 8px; min-width: 34px; height: 34px; padding: 0 10px; font-size: 14px; line-height: 1; }
 .nav:hover { background: var(--soft); }
 .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
 .dow { text-align: center; font-size: 12px; color: var(--muted); padding: 4px 0; }
 .dow.sat { color: var(--sat); } .dow.sun { color: var(--sun); }
-.day {
-  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-  gap: 3px; min-height: 50px; padding: 5px 0 4px;
-  border: 1px solid transparent; background: transparent; border-radius: 8px;
-}
+.day { display: flex; flex-direction: column; align-items: center; gap: 3px; min-height: 50px; padding: 5px 0 4px; border: 1px solid transparent; background: transparent; border-radius: 8px; }
 .day:hover { background: var(--soft); }
 .day .n { font-size: 14px; line-height: 20px; min-width: 22px; text-align: center; border-radius: 11px; }
 .day.sat .n { color: var(--sat); } .day.sun .n { color: var(--sun); }
 .day.out .n { opacity: .35; }
-.day.today .n { background: var(--ink); color: var(--bg); }
-.day.sel { border-color: var(--ink); }
+.day.today .n { background: var(--navy-3); color: #fff; }
+.day.sel { border-color: var(--navy-3); }
 .dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; max-width: 34px; min-height: 6px; }
 .dots b { width: 6px; height: 6px; border-radius: 50%; background: var(--hc); }
 .dots em { font-style: normal; font-size: 10px; line-height: 6px; color: var(--muted); }
-.day.has { font-weight: 500; }
-
-/* ---------- agenda ---------- */
 .legend { margin: 10px 4px 0; font-size: 12px; line-height: 1.5; color: var(--muted); }
 .agenda { min-width: 0; }
-.month-h {
-  margin: 22px 0 6px; padding-bottom: 6px; font-size: 13px; font-weight: 600; color: var(--muted);
-  border-bottom: 1px solid var(--line);
-}
+.month-h { margin: 22px 0 6px; padding-bottom: 6px; font-size: 13px; font-weight: 600; color: var(--muted); border-bottom: 2px solid var(--navy-3); }
 .month-h:first-child { margin-top: 0; }
-.group { display: grid; grid-template-columns: 56px 1fr; gap: 0 14px; padding: 14px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 12px; }
+.group { display: grid; grid-template-columns: 56px 1fr; gap: 0 14px; padding: 14px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 84px; }
 .group.flash { animation: flash 1.4s ease-out; }
-@keyframes flash { from { background: var(--soft); } to { background: transparent; } }
+@keyframes flash { from { background: var(--sky); } to { background: transparent; } }
 .gutter { text-align: center; line-height: 1.1; padding-top: 2px; }
 .gutter .d { font-size: 28px; font-weight: 600; letter-spacing: -0.02em; }
 .gutter .w { font-size: 12px; color: var(--muted); margin-top: 2px; }
 .gutter.sat .d, .gutter.sat .w { color: var(--sat); }
 .gutter.sun .d, .gutter.sun .w { color: var(--sun); }
-.group.today .gutter .d { background: var(--ink); color: var(--bg); border-radius: 8px; padding: 2px 0; }
+.group.today .gutter .d { background: var(--navy-3); color: #fff; border-radius: 8px; padding: 2px 0; }
 .group.today .gutter .w { color: var(--ink); font-weight: 600; }
 .items { display: grid; gap: 14px; min-width: 0; }
 .ev { border-left: 3px solid var(--hc); padding-left: 12px; min-width: 0; }
@@ -147,90 +235,255 @@ header.top .stamp { color: var(--muted); font-size: 13px; }
 .meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; font-size: 13px; color: var(--muted); }
 .meta .hosp { color: var(--hc); font-weight: 600; }
 .meta .time { color: var(--ink); }
-.ev h3 { margin: 2px 0 2px; font-size: 16px; font-weight: 600; line-height: 1.4; word-break: keep-all; overflow-wrap: anywhere; }
-.ev h3 a { text-decoration: none; }
-.ev h3 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .meta .dday { font-weight: 600; }
 .meta .dday.urgent { color: var(--sun); }
 .meta .dday.closed { color: var(--muted); font-weight: 400; }
-.sub { font-size: 13px; color: var(--muted); }
-.tag { display: inline-block; font-size: 12px; border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; margin-left: 4px; color: var(--muted); }
+.ev h3 { margin: 2px 0; font-size: 16px; font-weight: 600; line-height: 1.4; word-break: keep-all; overflow-wrap: anywhere; }
+.ev h3 a { text-decoration: none; }
+.ev h3 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.ev .subline { font-size: 13px; color: var(--muted); }
+.tag { display: inline-block; font-size: 12px; border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; margin-left: 4px; color: var(--muted); font-weight: 400; }
 .empty { padding: 40px 8px; text-align: center; color: var(--muted); }
-
-footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
-footer ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 4px; }
-footer li i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--hc); margin-right: 8px; }
-footer li.bad { color: var(--sun); }
-footer p { margin: 8px 0 0; }
-
 @media (max-width: 520px) {
   .group { grid-template-columns: 46px 1fr; gap: 0 10px; }
   .gutter .d { font-size: 24px; }
-  .search { flex: 1 1 100%; }
-  .select { flex: 1 1 100%; }
+  .search, .select { flex: 1 1 100%; }
   .day { min-height: 46px; }
 }
+
+/* ---------- coming soon / about ---------- */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+.card h2 { margin: 0 0 8px; font-size: 19px; }
+.card p { margin: 0 0 10px; color: var(--muted); }
+.card ul { margin: 0; padding-left: 20px; color: var(--muted); }
+.card li { margin: 4px 0; }
+.soon { display: inline-block; font-size: 12px; font-weight: 600; color: var(--navy-3); background: var(--sky); border-radius: 4px; padding: 2px 8px; margin-bottom: 10px; }
+.cols { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 800px) { .cols { grid-template-columns: 1fr 1fr; } }
+table.status { width: 100%; border-collapse: collapse; font-size: 14px; }
+table.status th, table.status td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.status th { font-size: 13px; color: var(--muted); font-weight: 600; border-bottom: 2px solid var(--navy-3); }
+table.status td i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--hc); margin-right: 8px; }
+table.status .bad { color: var(--sun); }
+
+/* ---------- footer ---------- */
+footer { background: var(--navy); color: var(--on-navy-muted); font-size: 13px; }
+footer .wrap { padding-top: 28px; padding-bottom: 32px; display: grid; gap: 10px; }
+footer .flogo { color: var(--on-navy); font-weight: 700; font-size: 17px; }
+footer p { margin: 0; }
+footer nav { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+footer nav a { text-decoration: none; color: var(--on-navy); }
+
 @media (prefers-reduced-motion: reduce) { .group.flash { animation: none; } }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="top">
-    <h1>병원 학술행사 달력</h1>
-    <span class="stamp" id="stamp"></span>
-  </header>
+<div class="util"><div class="wrap"><span class="tagline">의대생·전공의를 위한 대학병원 학술정보 모음</span><span id="stamp"></span></div></div>
 
-  <div class="notice" id="notice" hidden></div>
-
-  <div class="controls">
-    <div class="chips" id="chips" role="group" aria-label="병원 선택"></div>
-    <span class="spacer"></span>
-    <select class="select" id="dept" aria-label="진료과 선택" hidden></select>
-    <input class="search" id="q" type="search" placeholder="제목·주관·장소 검색" aria-label="행사 검색">
-    <label class="toggle"><input type="checkbox" id="showPast"> 지난 행사 포함</label>
-    <label class="toggle"><input type="checkbox" id="showPublic"> 건강강좌 포함</label>
+<header class="gnb">
+  <div class="wrap">
+    <a class="logo" href="#/"><b>MediCal</b><span>메디캘린더</span></a>
+    <ul class="menu" id="menu"></ul>
+    <button class="burger" id="burger" aria-label="메뉴 열기" aria-expanded="false"><i></i></button>
   </div>
+</header>
+<div class="drawer" id="drawer" hidden><nav aria-label="전체 메뉴"><button class="close" id="drawerClose">닫기 ✕</button><div id="drawerBody"></div></nav></div>
 
-  <div class="layout">
-    <section class="cal" aria-label="달력">
-      <div class="cal-head">
-        <h2 id="calTitle"></h2>
-        <button class="nav" id="prev" aria-label="이전 달">‹</button>
-        <button class="nav" id="todayBtn">오늘</button>
-        <button class="nav" id="next" aria-label="다음 달">›</button>
+<!-- ===================== 홈 ===================== -->
+<main id="page-home" data-page="home">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-intro">
+        <h1>여러 병원 홈페이지를<br>돌아다니지 않아도 됩니다</h1>
+        <p>대학병원 학술행사와 연수강좌를 매일 아침 모아 날짜순으로 보여드립니다. 서브인턴십과 전공의 모집 공고도 곧 함께 모읍니다.</p>
+        <div class="hero-stat">
+          <div><b id="statWeek">-</b>앞으로 30일 행사</div>
+          <div><b id="statDue">-</b>7일 안에 신청 마감</div>
+          <div><b id="statHosp">-</b>수집 병원</div>
+        </div>
       </div>
-      <div class="grid" id="dow"></div>
-      <div class="grid" id="days"></div>
-      <p class="legend">점 하나가 행사 1건이고 색은 병원입니다. 여러 날 행사는 날마다 찍히고, 8일을 넘는 과정은 시작일에만 찍힙니다.</p>
+      <div class="hero-boards">
+        <div class="hb"><h3>다가오는 학술행사</h3><ul id="hbWeek"></ul></div>
+        <div class="hb"><h3>신청 마감 임박</h3><ul id="hbDue"></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="section" aria-label="바로가기">
+      <div class="quick">
+        <a href="#/events"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M7.5 14h2M11 14h2M14.5 14h2M7.5 17.5h2M11 17.5h2"/></svg><span><b>학술행사 달력</b><small>병원·진료과별로 보기</small></span></a>
+        <a href="#/subintern"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="7" r="3.5"/><path d="M5 21v-1.5A5.5 5.5 0 0 1 10.5 14h3a5.5 5.5 0 0 1 5.5 5.5V21M12 14v4M10.5 18h3"/></svg><span><b>서브인턴십</b><small>선택실습 모집 공고</small></span></a>
+        <a href="#/residency"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 12h7M9 15.5h7M9 19h4"/></svg><span><b>전공의·인턴 모집</b><small>병원별 모집 공고</small></span></a>
+        <a href="#/events?due=1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg><span><b>마감 임박</b><small>신청 마감 순으로 보기</small></span></a>
+      </div>
     </section>
 
-    <main class="agenda" id="agenda" aria-live="polite"></main>
-  </div>
+    <section class="section">
+      <div class="section-head"><h2>새 소식</h2><a class="more" id="boardMore" href="#/events">MORE +</a></div>
+      <div class="board">
+        <div class="tabs" role="tablist" id="boardTabs">
+          <button role="tab" data-tab="events" aria-selected="true">학술행사</button>
+          <button role="tab" data-tab="subintern" aria-selected="false">서브인턴십</button>
+          <button role="tab" data-tab="residency" aria-selected="false">전공의·인턴 모집</button>
+        </div>
+        <ul id="boardList"></ul>
+      </div>
+    </section>
 
-  <footer id="foot"></footer>
-</div>
+    <section class="section">
+      <div class="section-head"><h2>수집 중인 병원</h2><a class="more" href="#/about">수집 현황 +</a></div>
+      <div class="hosp-grid" id="hospGrid"></div>
+    </section>
+  </div>
+</main>
+
+<!-- ===================== 학술행사 ===================== -->
+<main id="page-events" data-page="events" hidden>
+  <section class="band"><div class="wrap">
+    <div class="crumb"><a href="#/">홈</a> &gt; 학술행사</div>
+    <h1>학술행사</h1>
+    <p>대학병원 연수강좌·심포지엄을 날짜순으로 모았습니다. 날짜를 누르면 그날 행사로 이동합니다.</p>
+  </div></section>
+  <div class="wrap">
+    <div class="notice" id="notice" hidden></div>
+    <div class="controls">
+      <div class="chips" id="chips" role="group" aria-label="병원 선택"></div>
+      <span class="spacer"></span>
+      <select class="select" id="dept" aria-label="진료과 선택" hidden></select>
+      <input class="search" id="q" type="search" placeholder="제목·주관·장소 검색" aria-label="행사 검색">
+      <label class="toggle"><input type="checkbox" id="onlyDue"> 신청 가능만</label>
+      <label class="toggle"><input type="checkbox" id="showPast"> 지난 행사 포함</label>
+      <label class="toggle"><input type="checkbox" id="showPublic"> 건강강좌 포함</label>
+    </div>
+    <div class="layout">
+      <section class="cal" aria-label="달력">
+        <div class="cal-head">
+          <h2 id="calTitle"></h2>
+          <button class="nav" id="prev" aria-label="이전 달">‹</button>
+          <button class="nav" id="todayBtn">오늘</button>
+          <button class="nav" id="next" aria-label="다음 달">›</button>
+        </div>
+        <div class="grid" id="dow"></div>
+        <div class="grid" id="days"></div>
+        <p class="legend">점 하나가 행사 1건이고 색은 병원입니다. 여러 날 행사는 날마다 찍히고, 8일을 넘는 과정은 시작일에만 찍힙니다.</p>
+      </section>
+      <div class="agenda" id="agenda" aria-live="polite"></div>
+    </div>
+  </div>
+</main>
+
+<!-- ===================== 서브인턴십 ===================== -->
+<main id="page-subintern" data-page="subintern" hidden>
+  <section class="band"><div class="wrap">
+    <div class="crumb"><a href="#/">홈</a> &gt; 서브인턴십/선택실습</div>
+    <h1>서브인턴십 · 선택실습</h1>
+    <p>병원·진료과별 서브인턴십과 선택실습 모집 공고를 모읍니다.</p>
+  </div></section>
+  <div class="wrap section">
+    <div class="cols">
+      <div class="card">
+        <span class="soon">준비 중</span>
+        <h2>모집 공고 목록</h2>
+        <p>공고가 모이면 이 자리에 아래 항목으로 정리된 표가 나옵니다.</p>
+        <ul><li>병원 · 진료과</li><li>모집 기간과 신청 마감 D-day</li><li>대상(학년·학교 제한)과 인원</li><li>원문 공고 링크</li></ul>
+      </div>
+      <div class="card">
+        <h2>어디서 모으나요?</h2>
+        <p>서브인턴십 공고는 병원 교육수련부 페이지와 의과대학 학생 게시판에 흩어져 올라옵니다. 의대 게시판에는 다른 병원 공고도 함께 올라와서 이 두 곳을 출처로 확인하고 있습니다.</p>
+        <p>먼저 보고 싶은 병원이 있으면 알려 주세요.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ===================== 전공의 모집 ===================== -->
+<main id="page-residency" data-page="residency" hidden>
+  <section class="band"><div class="wrap">
+    <div class="crumb"><a href="#/">홈</a> &gt; 전공의/인턴 모집공고</div>
+    <h1>전공의 · 인턴 모집공고</h1>
+    <p>병원별 인턴·레지던트 모집 공고와 설명회 일정을 모읍니다.</p>
+  </div></section>
+  <div class="wrap section">
+    <div class="cols">
+      <div class="card">
+        <span class="soon">준비 중</span>
+        <h2>모집 공고 목록</h2>
+        <p>공고가 모이면 이 자리에 아래 항목으로 정리된 표가 나옵니다.</p>
+        <ul><li>병원 · 모집 구분(인턴/레지던트/전임의)</li><li>원서 접수 기간과 마감 D-day</li><li>모집 과목과 인원</li><li>병원 설명회 일정</li><li>원문 공고 링크</li></ul>
+      </div>
+      <div class="card">
+        <h2>어디서 모으나요?</h2>
+        <p>각 병원 채용·교육수련 페이지의 모집 공고를 출처로 확인하고 있습니다. 자동 수집을 허용하지 않는 병원(robots.txt)은 제외합니다.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ===================== 안내 ===================== -->
+<main id="page-about" data-page="about" hidden>
+  <section class="band"><div class="wrap">
+    <div class="crumb"><a href="#/">홈</a> &gt; 안내</div>
+    <h1>안내</h1>
+    <p>메디캘린더가 무엇을, 어떻게 모으는지 설명합니다.</p>
+  </div></section>
+  <div class="wrap">
+    <section class="section" id="about-intro">
+      <div class="card">
+        <h2>사이트 소개</h2>
+        <p>여러 병원 홈페이지를 하나씩 찾아 들어가지 않아도 되도록 의대생·전공의에게 필요한 학술 정보를 모아 보여주는 개인 프로젝트입니다.</p>
+        <p>각 병원의 공개 게시판을 하루 한 번 읽어 옵니다. 일정은 바뀔 수 있으니 신청 전에는 반드시 원문 링크에서 확인하세요.</p>
+      </div>
+    </section>
+    <section class="section" id="about-status">
+      <div class="section-head"><h2>수집 현황</h2></div>
+      <div class="card" style="padding:8px 16px 4px">
+        <table class="status"><thead><tr><th>병원</th><th>상태</th><th>원본 게시판</th></tr></thead><tbody id="statusBody"></tbody></table>
+      </div>
+    </section>
+    <section class="section">
+      <div class="card">
+        <h2>수집하지 않는 병원</h2>
+        <ul>
+          <li>통합 학술행사 게시판이 없거나 오래됨: 서울대병원, 서울성모, 고려대 안암·구로·안산, 경희대, 이대, 건국대, 한림대 성심, 세브란스</li>
+          <li>자동 수집을 허용하지 않음(robots.txt): 분당서울대, 가톨릭 계열, 강동경희대, 강남세브란스, 중앙대, 명지병원</li>
+          <li>행사일이 이미지에만 있음: 순천향대 서울병원</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo">MediCal 메디캘린더</div>
+    <nav><a href="#/events">학술행사</a><a href="#/subintern">서브인턴십/선택실습</a><a href="#/residency">전공의/인턴 모집</a><a href="#/about">안내</a></nav>
+    <p>각 병원 홈페이지의 공개 게시판을 하루 한 번 읽어 옵니다. 일정과 내용은 원문 링크에서 최종 확인하세요.</p>
+    <p>개인 프로젝트이며 각 병원과 관련이 없습니다.</p>
+  </div>
+</footer>
 
 <script>
 (function () {
   "use strict";
   var WEEK = ["일", "월", "화", "수", "목", "금", "토"];
   var TODAY = new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Seoul" });
+  var MENU = [
+    { path: "events", label: "학술행사", sub: [["달력 보기", "#/events"], ["마감 임박", "#/events?due=1"], ["지난 행사", "#/events?past=1"]] },
+    { path: "subintern", label: "서브인턴십/선택실습", sub: [["모집 공고", "#/subintern"]] },
+    { path: "residency", label: "전공의/인턴 모집공고", sub: [["모집 공고", "#/residency"]] },
+    { path: "about", label: "안내", sub: [["사이트 소개", "#/about"], ["수집 현황", "#/about?s=status"]] }
+  ];
 
-  var state = { data: null, hidden: {}, showPublic: false, showPast: false, q: "", dept: "", y: 0, m: 0, sel: "" };
+  var state = { data: null, hidden: {}, showPublic: false, showPast: false, onlyDue: false, q: "", dept: "", y: 0, m: 0, sel: "" };
   var $ = function (id) { return document.getElementById(id); };
-
-  function el(tag, cls, text) {
-    var n = document.createElement(tag);
-    if (cls) n.className = cls;
-    if (text != null) n.textContent = text;
-    return n;
-  }
+  function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
   function pad(n) { return (n < 10 ? "0" : "") + n; }
-  function iso(y, m, d) { return y + "-" + pad(m + 1) + "-" + pad(d); }
   function parts(s) { var a = s.split("-"); return { y: +a[0], m: +a[1] - 1, d: +a[2] }; }
   function weekday(s) { var p = parts(s); return new Date(Date.UTC(p.y, p.m, p.d)).getUTCDay(); }
-  function addDay(s) { var p = parts(s); return new Date(Date.UTC(p.y, p.m, p.d + 1)).toISOString().slice(0, 10); }
+  function addDays(s, n) { var p = parts(s); return new Date(Date.UTC(p.y, p.m, p.d + n)).toISOString().slice(0, 10); }
   function md(s) { var p = parts(s); return (p.m + 1) + "." + p.d; }
+  function daysUntil(s) { return Math.round((Date.parse(s) - Date.parse(TODAY)) / 86400000); }
   function safeUrl(u) { return /^https?:\/\//.test(u || "") ? u : ""; }
   function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
   function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
@@ -239,151 +492,220 @@ footer p { margin: 8px 0 0; }
   function colorOf(key) { var i = hospitalKeys.indexOf(key); return "var(--h" + (i < 0 ? 5 : Math.min(i, 5)) + ")"; }
   function nameOf(key) { var h = state.data.hospitals[key]; return h ? h.name : key; }
 
-  // 8일 넘게 이어지는 교육과정은 매일 점을 찍으면 달력이 지저분해지므로 시작일에만 표시한다.
   var LONG_DAYS = 7;
   function isLong(e) { return (Date.parse(e.end_date) - Date.parse(e.start_date)) / 86400000 > LONG_DAYS; }
   function upcoming(e) { return isLong(e) ? e.start_date >= TODAY : e.end_date >= TODAY; }
+  function regOpen(e) { return e.reg_end && e.reg_end >= TODAY && upcoming(e); }
+  function academic(e) { return e.kind !== "건강강좌"; }
 
+  /* ================= 메뉴 · 라우팅 ================= */
+  function buildMenu() {
+    var ul = $("menu"), body = $("drawerBody");
+    MENU.forEach(function (m) {
+      var li = el("li"), a = el("a", null, m.label);
+      a.href = "#/" + m.path; a.dataset.path = m.path;
+      li.appendChild(a);
+      var sub = el("ul", "sub");
+      m.sub.forEach(function (s) { var sl = el("li"), sa = el("a", null, s[0]); sa.href = s[1]; sl.appendChild(sa); sub.appendChild(sl); });
+      li.appendChild(sub);
+      ul.appendChild(li);
+
+      var h = el("h5"), ha = el("a", null, m.label); ha.href = "#/" + m.path; h.appendChild(ha); body.appendChild(h);
+      var dl = el("ul");
+      m.sub.forEach(function (s) { var sl = el("li"), sa = el("a", null, s[0]); sa.href = s[1]; sl.appendChild(sa); dl.appendChild(sl); });
+      body.appendChild(dl);
+    });
+    function setDrawer(open) { $("drawer").hidden = !open; $("burger").setAttribute("aria-expanded", String(open)); }
+    $("burger").addEventListener("click", function () { setDrawer(true); });
+    $("drawerClose").addEventListener("click", function () { setDrawer(false); });
+    $("drawer").addEventListener("click", function (ev) { if (ev.target === $("drawer") || ev.target.tagName === "A") setDrawer(false); });
+  }
+
+  function parseHash() {
+    var h = location.hash.replace(/^#\/?/, "");
+    var q = {}, i = h.indexOf("?");
+    if (i >= 0) { h.slice(i + 1).split("&").forEach(function (kv) { var p = kv.split("="); q[p[0]] = decodeURIComponent(p[1] || ""); }); h = h.slice(0, i); }
+    return { page: h || "home", q: q };
+  }
+
+  var eventsReady = false;
+  function route() {
+    var r = parseHash();
+    var pages = ["home", "events", "subintern", "residency", "about"];
+    if (pages.indexOf(r.page) < 0) r.page = "home";
+    pages.forEach(function (p) { $("page-" + p).hidden = p !== r.page; });
+    document.querySelectorAll("#menu > li > a").forEach(function (a) {
+      if (a.dataset.path === r.page) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    var label = { home: "", events: "학술행사", subintern: "서브인턴십", residency: "전공의 모집", about: "안내" }[r.page];
+    document.title = (label ? label + " | " : "") + "메디캘린더 MediCal";
+    if (!state.data) return;
+    if (r.page === "events") {
+      if (!eventsReady) { initEvents(); eventsReady = true; }
+      if ("due" in r.q) state.onlyDue = r.q.due === "1";
+      if (r.q.past === "1") state.showPast = true;
+      $("onlyDue").checked = state.onlyDue;
+      $("showPast").checked = state.showPast;
+      renderAll();
+    }
+    if (r.page === "about" && r.q.s === "status") { var t = $("about-status"); if (t) t.scrollIntoView(); } else window.scrollTo(0, 0);
+  }
+
+  /* ================= 홈 ================= */
+  function boardLink(cat, color, title, date, href, cls) {
+    var li = el("li"), a = el("a" , cls);
+    a.href = href;
+    var c = el("span", "cat", cat); if (color) c.style.setProperty("--hc", color);
+    a.appendChild(c); a.appendChild(el("span", "t", title)); a.appendChild(el("span", "dt", date));
+    li.appendChild(a);
+    return li;
+  }
+
+  function renderHome() {
+    var ev = state.data.events.filter(function (e) { return academic(e) && upcoming(e) && !isLong(e); });
+    var weekEnd = addDays(TODAY, 6), monthEnd = addDays(TODAY, 29);
+    var week = ev.filter(function (e) { return e.start_date <= monthEnd; });
+    var due = ev.filter(function (e) { return regOpen(e) && e.reg_end <= weekEnd; })
+      .sort(function (a, b) { return a.reg_end < b.reg_end ? -1 : a.reg_end > b.reg_end ? 1 : 0; });
+    $("statWeek").textContent = week.length + "건";
+    $("statDue").textContent = due.length + "건";
+    $("statHosp").textContent = hospitalKeys.length + "곳";
+
+    function fill(id, list, dateFn, urgentFn, emptyText) {
+      var ul = $(id); ul.textContent = "";
+      if (!list.length) { ul.appendChild(el("li", "empty-hb", emptyText)); return; }
+      list.slice(0, 4).forEach(function (e) {
+        var li = el("li"), a = el("a"); a.href = "#/events?go=" + e.start_date;
+        a.addEventListener("click", function () { pendingGo = e.start_date; });
+        a.appendChild(el("span", "d" + (urgentFn && urgentFn(e) ? " urgent" : ""), dateFn(e)));
+        a.appendChild(el("span", "t", "[" + nameOf(e.hospital).replace(/학교병원|병원/, "") + "] " + e.title));
+        li.appendChild(a); ul.appendChild(li);
+      });
+    }
+    fill("hbWeek", week, function (e) { return md(e.start_date) + " (" + WEEK[weekday(e.start_date)] + ")"; }, null, "예정된 학술행사가 없습니다.");
+    fill("hbDue", due, function (e) { var d = daysUntil(e.reg_end); return d === 0 ? "오늘 마감" : "D-" + d; }, function (e) { return daysUntil(e.reg_end) <= 3; }, "7일 안에 마감되는 신청이 없습니다.");
+
+    renderBoard("events");
+    var grid = $("hospGrid"); grid.textContent = "";
+    hospitalKeys.forEach(function (k) {
+      var a = el("a"); a.href = safeUrl((state.data.hospitals[k] || {}).url) || "#/about?s=status";
+      if (a.href.indexOf("http") === 0) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
+      a.style.setProperty("--hc", colorOf(k));
+      var n = state.data.events.filter(function (e) { return e.hospital === k && academic(e) && upcoming(e); }).length;
+      var t = el("span"); t.appendChild(el("b", null, nameOf(k))); t.appendChild(el("small", null, "다가오는 행사 " + n + "건"));
+      a.appendChild(t); a.appendChild(el("span", null, "↗"));
+      grid.appendChild(a);
+    });
+  }
+
+  var pendingGo = "";
+  function renderBoard(tab) {
+    document.querySelectorAll("#boardTabs button").forEach(function (b) { b.setAttribute("aria-selected", String(b.dataset.tab === tab)); });
+    $("boardMore").href = "#/" + tab;
+    var ul = $("boardList"); ul.textContent = "";
+    if (tab !== "events") {
+      ul.appendChild(el("li", "empty", tab === "subintern" ? "서브인턴십 공고는 준비 중입니다." : "전공의·인턴 모집 공고는 준비 중입니다."));
+      return;
+    }
+    var list = state.data.events.filter(function (e) { return academic(e) && upcoming(e) && !isLong(e); }).slice(0, 6);
+    if (!list.length) { ul.appendChild(el("li", "empty", "다가오는 학술행사가 없습니다.")); return; }
+    list.forEach(function (e) {
+      var li = boardLink(nameOf(e.hospital), colorOf(e.hospital), e.title, md(e.start_date) + " (" + WEEK[weekday(e.start_date)] + ")", "#/events?go=" + e.start_date);
+      li.firstChild.addEventListener("click", function () { pendingGo = e.start_date; });
+      ul.appendChild(li);
+    });
+  }
+
+  /* ================= 학술행사 ================= */
   function visible(skipDept) {
     var q = state.q.trim().toLowerCase();
     return state.data.events.filter(function (e) {
       if (state.hidden[e.hospital]) return false;
       if (!skipDept && state.dept && (e.depts || []).indexOf(state.dept) < 0) return false;
-      if (!state.showPublic && e.kind === "건강강좌") return false;
+      if (!state.showPublic && !academic(e)) return false;
+      if (state.onlyDue && !regOpen(e)) return false;
       if (q && (e.title + " " + e.organizer + " " + e.location).toLowerCase().indexOf(q) < 0) return false;
       return true;
     });
   }
 
-  /* ---------- chips ---------- */
   function renderChips() {
-    var box = $("chips");
-    box.textContent = "";
+    var box = $("chips"); box.textContent = "";
     var counts = {};
-    state.data.events.forEach(function (e) {
-      if (upcoming(e) && (state.showPublic || e.kind !== "건강강좌")) counts[e.hospital] = (counts[e.hospital] || 0) + 1;
-    });
+    state.data.events.forEach(function (e) { if (upcoming(e) && (state.showPublic || academic(e))) counts[e.hospital] = (counts[e.hospital] || 0) + 1; });
     hospitalKeys.forEach(function (k) {
-      var b = el("button", "chip");
-      b.type = "button";
+      var b = el("button", "chip"); b.type = "button";
       b.style.setProperty("--hc", colorOf(k));
       b.setAttribute("aria-pressed", state.hidden[k] ? "false" : "true");
-      b.appendChild(el("i"));
-      b.appendChild(document.createTextNode(nameOf(k)));
-      b.appendChild(el("small", null, String(counts[k] || 0)));
-      b.addEventListener("click", function () {
-        state.hidden[k] = !state.hidden[k];
-        store("hidden", JSON.stringify(state.hidden));
-        renderAll();
-      });
+      b.appendChild(el("i")); b.appendChild(document.createTextNode(nameOf(k))); b.appendChild(el("small", null, String(counts[k] || 0)));
+      b.addEventListener("click", function () { state.hidden[k] = !state.hidden[k]; store("hidden", JSON.stringify(state.hidden)); renderAll(); });
       box.appendChild(b);
     });
   }
 
-  /* ---------- 진료과 ---------- */
   function renderDept() {
-    var sel = $("dept");
-    var counts = {}, any = false;
+    var sel = $("dept"), counts = {}, any = false;
     state.data.events.forEach(function (e) { if ((e.depts || []).length) any = true; });
     visible(true).forEach(function (e) {
       if (!(state.showPast || upcoming(e))) return;
       (e.depts || []).forEach(function (d) { counts[d] = (counts[d] || 0) + 1; });
     });
-    if (state.dept && !(state.dept in counts)) counts[state.dept] = 0; // 선택한 값이 사라져 목록이 조용히 바뀌지 않게 한다
-    var names = Object.keys(counts).sort(function (a, b) {
-      return (a === "기타") - (b === "기타") || counts[b] - counts[a] || a.localeCompare(b, "ko");
-    });
+    if (state.dept && !(state.dept in counts)) counts[state.dept] = 0;
+    var names = Object.keys(counts).sort(function (a, b) { return (a === "기타") - (b === "기타") || counts[b] - counts[a] || a.localeCompare(b, "ko"); });
     sel.textContent = "";
-    var all = document.createElement("option");
-    all.value = ""; all.textContent = "진료과 전체";
-    sel.appendChild(all);
-    names.forEach(function (d) {
-      var o = document.createElement("option");
-      o.value = d; o.textContent = d + " (" + counts[d] + ")";
-      sel.appendChild(o);
-    });
-    sel.value = state.dept;
-    sel.hidden = !any;
+    var all = el("option", null, "진료과 전체"); all.value = ""; sel.appendChild(all);
+    names.forEach(function (d) { var o = el("option", null, d + " (" + counts[d] + ")"); o.value = d; sel.appendChild(o); });
+    sel.value = state.dept; sel.hidden = !any;
   }
 
-  /* 신청 마감 D-day */
   function regBadge(e) {
     if (!e.reg_end || e.end_date < TODAY) return null;
-    var diff = Math.round((Date.parse(e.reg_end) - Date.parse(TODAY)) / 86400000);
+    var diff = daysUntil(e.reg_end);
     if (diff < 0) return { text: "신청 마감", cls: "closed" };
-    return {
-      text: (diff === 0 ? "신청 D-day" : "신청 D-" + diff) + " (" + md(e.reg_end) + " 마감)",
-      cls: diff <= 3 ? "urgent" : ""
-    };
+    return { text: (diff === 0 ? "신청 D-day" : "신청 D-" + diff) + " (" + md(e.reg_end) + " 마감)", cls: diff <= 3 ? "urgent" : "" };
   }
 
-  /* ---------- calendar ---------- */
-  function renderDow() {
-    var box = $("dow");
-    WEEK.forEach(function (w, i) {
-      box.appendChild(el("div", "dow" + (i === 0 ? " sun" : i === 6 ? " sat" : ""), w));
-    });
-  }
+  function renderDow() { WEEK.forEach(function (w, i) { $("dow").appendChild(el("div", "dow" + (i === 0 ? " sun" : i === 6 ? " sat" : ""), w)); }); }
 
   function dayMap(events) {
     var map = {};
     events.forEach(function (e) {
       var d = e.start_date, guard = 0, last = isLong(e) ? e.start_date : e.end_date;
-      while (d <= last && guard++ < 31) {
-        (map[d] = map[d] || []).push(e);
-        d = addDay(d);
-      }
+      while (d <= last && guard++ < 31) { (map[d] = map[d] || []).push(e); d = addDays(d, 1); }
     });
     return map;
   }
 
   function renderCalendar(events) {
     $("calTitle").textContent = state.y + "년 " + (state.m + 1) + "월";
-    var box = $("days");
-    box.textContent = "";
+    var box = $("days"); box.textContent = "";
     var map = dayMap(events);
     var first = new Date(Date.UTC(state.y, state.m, 1)).getUTCDay();
     var start = new Date(Date.UTC(state.y, state.m, 1 - first));
     for (var i = 0; i < 42; i++) {
-      var dt = new Date(start.getTime() + i * 86400000);
-      var s = dt.toISOString().slice(0, 10);
-      var out = dt.getUTCMonth() !== state.m;
-      if (i >= 35 && out) break; // 마지막 줄이 전부 다음 달이면 생략
-      var list = map[s] || [];
-      var dow = dt.getUTCDay();
-      var cls = "day" + (out ? " out" : "") + (dow === 0 ? " sun" : dow === 6 ? " sat" : "") +
-        (s === TODAY ? " today" : "") + (s === state.sel ? " sel" : "") + (list.length ? " has" : "");
-      var b = el("button", cls);
-      b.type = "button";
-      b.dataset.date = s;
+      var dt = new Date(start.getTime() + i * 86400000), s = dt.toISOString().slice(0, 10), out = dt.getUTCMonth() !== state.m;
+      if (i >= 35 && out) break;
+      var list = map[s] || [], dow = dt.getUTCDay();
+      var b = el("button", "day" + (out ? " out" : "") + (dow === 0 ? " sun" : dow === 6 ? " sat" : "") + (s === TODAY ? " today" : "") + (s === state.sel ? " sel" : "") + (list.length ? " has" : ""));
+      b.type = "button"; b.dataset.date = s;
       b.setAttribute("aria-label", (dt.getUTCMonth() + 1) + "월 " + dt.getUTCDate() + "일" + (list.length ? ", 행사 " + list.length + "건" : ""));
       b.appendChild(el("span", "n", String(dt.getUTCDate())));
       var dots = el("span", "dots");
-      list.slice(0, 4).forEach(function (e) {
-        var d = el("b"); d.style.setProperty("--hc", colorOf(e.hospital)); dots.appendChild(d);
-      });
+      list.slice(0, 4).forEach(function (e) { var d = el("b"); d.style.setProperty("--hc", colorOf(e.hospital)); dots.appendChild(d); });
       if (list.length > 4) dots.appendChild(el("em", null, "+"));
       b.appendChild(dots);
-      b.addEventListener("click", onDay);
+      b.addEventListener("click", function (ev) { goTo(ev.currentTarget.dataset.date); });
       box.appendChild(b);
     }
   }
 
-  function onDay(ev) {
-    var s = ev.currentTarget.dataset.date;
+  function goTo(s) {
     state.sel = s;
-    var p = parts(s);
-    state.y = p.y; state.m = p.m;
-    if (s < TODAY && !state.showPast) {
-      state.showPast = true;
-      $("showPast").checked = true;
-    }
+    var p = parts(s); state.y = p.y; state.m = p.m;
+    if (s < TODAY && !state.showPast) { state.showPast = true; $("showPast").checked = true; }
     renderAll();
-    var groups = document.querySelectorAll(".group");
-    var target = null;
-    for (var i = 0; i < groups.length; i++) {
-      if (groups[i].dataset.date >= s) { target = groups[i]; break; }
-    }
+    var groups = document.querySelectorAll(".group"), target = null;
+    for (var i = 0; i < groups.length; i++) { if (groups[i].dataset.date >= s) { target = groups[i]; break; } }
     if (!target && groups.length) target = groups[groups.length - 1];
     if (target) {
       var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -392,7 +714,6 @@ footer p { margin: 8px 0 0; }
     }
   }
 
-  /* ---------- agenda ---------- */
   function timeText(e) {
     if (e.start_date !== e.end_date) return md(e.start_date) + " ~ " + md(e.end_date);
     if (e.start_time) return e.start_time + (e.end_time ? "–" + e.end_time : "");
@@ -400,46 +721,30 @@ footer p { margin: 8px 0 0; }
   }
 
   function renderAgenda(events) {
-    var box = $("agenda");
-    box.textContent = "";
+    var box = $("agenda"); box.textContent = "";
     var list = events.filter(function (e) { return state.showPast || upcoming(e); });
-
-    if (!state.data.events.length) {
-      box.appendChild(el("div", "empty", "아직 수집된 행사가 없습니다. GitHub의 Actions 탭에서 ‘행사 수집’을 한 번 실행해 주세요."));
-      return;
-    }
-    if (!list.length) {
-      box.appendChild(el("div", "empty", "조건에 맞는 행사가 없습니다. 병원 선택을 바꾸거나 ‘지난 행사 포함’을 켜 보세요."));
-      return;
-    }
-
+    if (!state.data.events.length) { box.appendChild(el("div", "empty", "아직 수집된 행사가 없습니다.")); return; }
+    if (!list.length) { box.appendChild(el("div", "empty", state.onlyDue ? "지금 신청할 수 있는 행사가 없습니다. ‘신청 가능만’을 끄면 전체 일정이 보입니다." : "조건에 맞는 행사가 없습니다. 병원 선택을 바꾸거나 ‘지난 행사 포함’을 켜 보세요.")); return; }
     var groups = {}, order = [];
     list.forEach(function (e) {
-      var key = (!state.showPast && e.start_date < TODAY && !isLong(e)) ? TODAY : e.start_date; // 진행 중인 여러 날 행사는 오늘에 묶는다
+      var key = (!state.showPast && e.start_date < TODAY && !isLong(e)) ? TODAY : e.start_date;
       if (!groups[key]) { groups[key] = []; order.push(key); }
       groups[key].push(e);
     });
     order.sort();
-
     var lastMonth = "";
     order.forEach(function (day) {
-      var p = parts(day);
-      var month = p.y + "년 " + (p.m + 1) + "월";
+      var p = parts(day), month = p.y + "년 " + (p.m + 1) + "월";
       if (month !== lastMonth) { box.appendChild(el("h2", "month-h", month)); lastMonth = month; }
-
       var dow = weekday(day);
-      var g = el("section", "group" + (day === TODAY ? " today" : ""));
-      g.dataset.date = day;
+      var g = el("section", "group" + (day === TODAY ? " today" : "")); g.dataset.date = day;
       var gut = el("div", "gutter" + (dow === 0 ? " sun" : dow === 6 ? " sat" : ""));
-      gut.appendChild(el("div", "d", String(p.d)));
-      gut.appendChild(el("div", "w", day === TODAY ? "오늘" : WEEK[dow]));
+      gut.appendChild(el("div", "d", String(p.d))); gut.appendChild(el("div", "w", day === TODAY ? "오늘" : WEEK[dow]));
       g.appendChild(gut);
-
       var items = el("div", "items");
       groups[day].forEach(function (e) {
         var card = el("article", "ev" + (!upcoming(e) ? " past" : ""));
         card.style.setProperty("--hc", colorOf(e.hospital));
-
         var meta = el("div", "meta");
         meta.appendChild(el("span", "hosp", nameOf(e.hospital)));
         meta.appendChild(el("span", "time", timeText(e)));
@@ -449,109 +754,83 @@ footer p { margin: 8px 0 0; }
         var badge = regBadge(e);
         if (badge) meta.appendChild(el("span", "dday" + (badge.cls ? " " + badge.cls : ""), badge.text));
         card.appendChild(meta);
-
-        var h = el("h3");
-        var url = safeUrl(e.url);
-        if (url) {
-          var a = el("a", null, e.title);
-          a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer";
-          h.appendChild(a);
-        } else {
-          h.textContent = e.title;
-        }
-        if (e.kind === "건강강좌") h.appendChild(el("span", "tag", "건강강좌"));
+        var h = el("h3"), url = safeUrl(e.url);
+        if (url) { var a = el("a", null, e.title); a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer"; h.appendChild(a); } else h.textContent = e.title;
+        if (!academic(e)) h.appendChild(el("span", "tag", "건강강좌"));
         if (isLong(e)) h.appendChild(el("span", "tag", "장기 과정"));
         card.appendChild(h);
-
         var sub = [e.organizer && ("주관 " + e.organizer), e.location].filter(Boolean).join(" · ");
-        if (sub) card.appendChild(el("div", "sub", sub));
+        if (sub) card.appendChild(el("div", "subline", sub));
         items.appendChild(card);
       });
-      g.appendChild(items);
-      box.appendChild(g);
+      g.appendChild(items); box.appendChild(g);
     });
-  }
-
-  /* ---------- footer / notice ---------- */
-  function renderFooter() {
-    var d = state.data;
-    var checked = Object.keys(d.sources || {}).some(function (k) { return d.sources[k].checked_at; });
-    var notice = $("notice");
-    if (!checked) {
-      notice.hidden = false;
-      notice.textContent = "자동 수집이 아직 한 번도 실행되지 않았습니다. 지금 보이는 행사는 초기 예시이며, 수집이 실행되면 전체 목록으로 바뀝니다.";
-    } else {
-      notice.hidden = true;
-    }
-    $("stamp").textContent = d.updated_at ? "갱신 " + d.updated_at.replace("T", " ").slice(0, 16) : "";
-
-    var foot = $("foot");
-    foot.textContent = "";
-    foot.appendChild(el("strong", null, "수집 현황"));
-    var ul = el("ul");
-    hospitalKeys.forEach(function (k) {
-      var s = (d.sources || {})[k] || {};
-      var li = el("li", s.ok === false ? "bad" : "");
-      var dot = el("i"); dot.style.setProperty("--hc", colorOf(k));
-      li.appendChild(dot);
-      var txt;
-      if (s.ok === false) txt = nameOf(k) + " — 수집 실패" + (s.error ? ": " + s.error : "");
-      else if (s.checked_at) txt = nameOf(k) + " — " + s.count + "건 (확인 " + s.checked_at.replace("T", " ") + ")";
-      else txt = nameOf(k) + " — 수집 전";
-      li.appendChild(document.createTextNode(txt));
-      ul.appendChild(li);
-    });
-    foot.appendChild(ul);
-    foot.appendChild(el("p", null, "각 병원 홈페이지의 공개 게시판을 하루 한 번 읽어 옵니다. 일정은 바뀔 수 있으니 신청 전에 원문 링크에서 확인하세요."));
   }
 
   function renderAll() {
     var events = visible();
-    renderChips();
-    renderDept();
-    renderCalendar(events);
-    renderAgenda(events);
+    renderChips(); renderDept(); renderCalendar(events); renderAgenda(events);
   }
 
-  /* ---------- boot ---------- */
-  function boot(data) {
-    data.events = data.events || [];
-    data.hospitals = data.hospitals || {};
-    state.data = data;
-    hospitalKeys = Object.keys(data.hospitals);
-    data.events.forEach(function (e) { if (hospitalKeys.indexOf(e.hospital) < 0) hospitalKeys.push(e.hospital); });
-    try { state.hidden = JSON.parse(load("hidden") || "{}") || {}; } catch (e) { state.hidden = {}; }
-
-    var t = parts(TODAY);
-    state.y = t.y; state.m = t.m;
-
+  function initEvents() {
     renderDow();
-    renderFooter();
-    renderAll();
-
-    $("prev").addEventListener("click", function () {
-      state.m--; if (state.m < 0) { state.m = 11; state.y--; } renderAll();
-    });
-    $("next").addEventListener("click", function () {
-      state.m++; if (state.m > 11) { state.m = 0; state.y++; } renderAll();
-    });
-    $("todayBtn").addEventListener("click", function () {
-      state.y = t.y; state.m = t.m; state.sel = TODAY; renderAll();
-      window.scrollTo({ top: 0 });
-    });
+    var t = parts(TODAY);
+    $("prev").addEventListener("click", function () { state.m--; if (state.m < 0) { state.m = 11; state.y--; } renderAll(); });
+    $("next").addEventListener("click", function () { state.m++; if (state.m > 11) { state.m = 0; state.y++; } renderAll(); });
+    $("todayBtn").addEventListener("click", function () { state.y = t.y; state.m = t.m; state.sel = TODAY; renderAll(); window.scrollTo({ top: 0 }); });
     $("dept").addEventListener("change", function (ev) { state.dept = ev.target.value; renderAll(); });
     $("q").addEventListener("input", function (ev) { state.q = ev.target.value; renderAll(); });
+    $("onlyDue").addEventListener("change", function (ev) { state.onlyDue = ev.target.checked; renderAll(); });
     $("showPast").addEventListener("change", function (ev) { state.showPast = ev.target.checked; renderAll(); });
     $("showPublic").addEventListener("change", function (ev) { state.showPublic = ev.target.checked; renderAll(); });
   }
 
+  /* ================= 안내 · 공통 ================= */
+  function renderStatus() {
+    var d = state.data;
+    $("stamp").textContent = d.updated_at ? "갱신 " + d.updated_at.replace("T", " ").slice(0, 16) : "";
+    var checked = Object.keys(d.sources || {}).some(function (k) { return d.sources[k].checked_at; });
+    if (!checked) { $("notice").hidden = false; $("notice").textContent = "자동 수집이 아직 실행되지 않았습니다. 지금 보이는 행사는 초기 예시입니다."; }
+    var body = $("statusBody"); body.textContent = "";
+    hospitalKeys.forEach(function (k) {
+      var s = (d.sources || {})[k] || {}, tr = el("tr");
+      var td1 = el("td"), dot = el("i"); dot.style.setProperty("--hc", colorOf(k)); td1.appendChild(dot); td1.appendChild(document.createTextNode(nameOf(k)));
+      var td2 = el("td", s.ok === false ? "bad" : "");
+      td2.textContent = s.ok === false ? "수집 실패" + (s.error ? ": " + s.error : "") : s.checked_at ? s.count + "건 · 확인 " + s.checked_at.replace("T", " ") : "수집 전";
+      var td3 = el("td"), url = safeUrl((d.hospitals[k] || {}).url);
+      if (url) { var a = el("a", null, "게시판 열기"); a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer"; td3.appendChild(a); }
+      tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3); body.appendChild(tr);
+    });
+  }
+
+  function boot(data) {
+    data.events = data.events || []; data.hospitals = data.hospitals || {};
+    state.data = data;
+    hospitalKeys = Object.keys(data.hospitals);
+    data.events.forEach(function (e) { if (hospitalKeys.indexOf(e.hospital) < 0) hospitalKeys.push(e.hospital); });
+    try { state.hidden = JSON.parse(load("hidden") || "{}") || {}; } catch (e) { state.hidden = {}; }
+    var t = parts(TODAY); state.y = t.y; state.m = t.m;
+    renderStatus(); renderHome();
+    document.querySelectorAll("#boardTabs button").forEach(function (b) { b.addEventListener("click", function () { renderBoard(b.dataset.tab); }); });
+    route();
+  }
+
+  window.addEventListener("hashchange", function () {
+    route();
+    var r = parseHash();
+    if (r.page === "events" && (r.q.go || pendingGo)) { var g = r.q.go || pendingGo; pendingGo = ""; setTimeout(function () { goTo(g); }, 0); }
+  });
+
+  buildMenu();
+  route();
   fetch("events.json", { cache: "no-cache" })
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(boot)
-    .catch(function (err) {
-      var box = $("agenda");
-      box.appendChild(el("div", "empty", "행사 데이터를 불러오지 못했습니다 (" + err.message + "). 잠시 후 다시 시도해 주세요."));
-    });
+    .then(function (data) {
+      boot(data);
+      var r = parseHash();
+      if (r.page === "events" && r.q.go) goTo(r.q.go);
+    })
+    .catch(function (err) { $("boardList").appendChild(el("li", "empty", "행사 데이터를 불러오지 못했습니다 (" + err.message + ").")); });
 })();
 </script>
 </body>
