@@ -104,9 +104,6 @@ _REG = re.compile(
 )
 
 
-DEBUG: list[str] = []
-
-
 def parse_detail(html: str) -> dict:
     """상세 페이지에서 장소와 신청 기간을 꺼낸다. 없는 값은 빈 문자열."""
     text = clean(make_soup(html).get_text(" "))
@@ -152,11 +149,7 @@ def scrape(known: dict | None = None) -> list[Event]:
         if ev.end_date < today or ev.url == LIST_URL:
             continue
         try:
-            html = fetch(ev.url, name=f"{KEY}-detail-{ev.id.split('-')[1]}")
-            d = parse_detail(html)
-            if not d["reg_end"] and len(DEBUG) < 2:  # 임시: 신청기간 구조 확인용
-                i = html.find("신청")
-                DEBUG.append(html[max(0, i - 300): i + 700] if i >= 0 else "no 신청")
+            d = parse_detail(fetch(ev.url, name=f"{KEY}-detail-{ev.id.split('-')[1]}"))
             ev.location, ev.reg_start, ev.reg_end = d["location"], d["reg_start"], d["reg_end"]
         except Exception as exc:  # noqa: BLE001 - 상세를 못 읽어도 행사 자체는 저장한다
             print(f"  (상세 건너뜀) {ev.id}: {exc}")

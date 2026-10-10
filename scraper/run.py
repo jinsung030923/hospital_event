@@ -64,8 +64,6 @@ def main() -> int:
                 merged[ev.id] = ev.to_dict()
             sources[mod.KEY] = {"ok": True, "count": len(events),
                                 "checked_at": now.isoformat(timespec="minutes"), "error": ""}
-            if getattr(mod, "DEBUG", None):
-                sources[mod.KEY]["debug"] = mod.DEBUG
             print(f"[ok]   {mod.NAME}: {len(events)}건")
         except Exception as exc:  # noqa: BLE001 - 병원 하나의 실패가 전체를 막지 않게 한다
             failures += 1
