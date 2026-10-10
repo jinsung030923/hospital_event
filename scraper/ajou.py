@@ -76,6 +76,8 @@ def parse_list(html: str) -> list[Event]:
         org = _ORG.search(rest)
         organizer = org.group(1) if org else ""
         place = clean(rest[: org.start()] if org else rest)
+        place = re.sub(r"^장\s*소\s*[:：]\s*", "", place)
+        place = re.sub(r"\s*(?:주\s*관|주\s*최)\s*[:：]?\s*$", "", place)
 
         public = text.lstrip().startswith("건강강좌") or classify(title) == "건강강좌"
         events[no] = Event(
