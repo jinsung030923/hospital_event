@@ -6,6 +6,8 @@ import time
 from dataclasses import dataclass, asdict
 from datetime import date
 from pathlib import Path
+from urllib import robotparser
+from urllib.parse import urlsplit
 from zoneinfo import ZoneInfo
 
 import requests
@@ -23,6 +25,8 @@ PUBLIC_KEYWORDS = (
     "가족참여", "환자 교실", "환자교실", "환우", "캠페인",
 )
 
+ROBOT_NAME = "HospitalEventCalendar"
+
 _session = requests.Session()
 _session.headers.update({"User-Agent": USER_AGENT, "Accept-Language": "ko,en;q=0.8"})
 _dump_dir: Path | None = None
@@ -36,9 +40,37 @@ def set_dump_dir(path: str | None) -> None:
         _dump_dir.mkdir(parents=True, exist_ok=True)
 
 
+_robots: dict[str, robotparser.RobotFileParser | None] = {}
+
+
+def parse_robots(text: str) -> robotparser.RobotFileParser:
+    rp = robotparser.RobotFileParser()
+    rp.parse(text.splitlines())
+    return rp
+
+
+def allowed(url: str) -> bool:
+    """사이트의 robots.txt 가 이 주소의 수집을 허용하는지 확인한다.
+
+    robots.txt 가 없거나(4xx) 읽을 수 없으면 제한이 없는 것으로 본다.
+    """
+    parts = urlsplit(url)
+    origin = f"{parts.scheme}://{parts.netloc}"
+    if origin not in _robots:
+        try:
+            res = _session.get(origin + "/robots.txt", timeout=15)
+            _robots[origin] = parse_robots(res.text) if res.status_code == 200 else None
+        except requests.RequestException:
+            _robots[origin] = None
+    rp = _robots[origin]
+    return True if rp is None else rp.can_fetch(ROBOT_NAME, url)
+
+
 def fetch(url: str, *, params: dict | None = None, name: str = "page",
           retries: int = 3, pause: float = 1.0) -> str:
     """페이지를 내려받아 HTML 문자열로 돌려준다. 실패하면 RuntimeError."""
+    if not allowed(url):
+        raise RuntimeError(f"robots.txt 가 이 주소의 자동 수집을 허용하지 않습니다: {url}")
     last_error: Exception | None = None
     for attempt in range(retries):
         try:

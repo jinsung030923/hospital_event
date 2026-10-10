@@ -17,14 +17,17 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import ajou  # noqa: E402
 import asan  # noqa: E402
+import eulji  # noqa: E402
 import hanyang  # noqa: E402
 import samsung  # noqa: E402
 from common import KST, set_dump_dir  # noqa: E402
+from depts import infer_depts  # noqa: E402
 
 # 새 병원을 추가하려면 모듈을 하나 만들고 여기에 한 줄을 넣는다.
 # 목록 순서가 화면의 색상 순서가 된다.
-SOURCES = [samsung, asan, hanyang]
+SOURCES = [samsung, asan, hanyang, eulji, ajou]
 KEEP_DAYS = 180  # 이보다 오래 지난 행사는 정리한다
 
 
@@ -71,6 +74,8 @@ def main() -> int:
 
     cutoff = (now - timedelta(days=KEEP_DAYS)).date().isoformat()
     events = [e for e in merged.values() if e["end_date"] >= cutoff]
+    for e in events:  # 규칙을 고치면 이전에 저장된 행사에도 다시 적용된다
+        e["depts"] = infer_depts(e.get("organizer", ""), e.get("title", ""))
     events.sort(key=lambda e: (e["start_date"], e["start_time"], e["id"]))
 
     result = {

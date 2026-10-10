@@ -81,6 +81,11 @@ header.top .stamp { color: var(--muted); font-size: 13px; }
   flex: 0 1 220px; min-width: 150px; padding: 7px 12px;
   border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
 }
+.select {
+  flex: 0 1 170px; min-width: 130px; padding: 7px 12px;
+  border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
+}
+.select[hidden] { display: none; }
 .toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--muted); user-select: none; }
 .toggle input { accent-color: var(--ink); width: 16px; height: 16px; margin: 0; }
 
@@ -145,6 +150,9 @@ header.top .stamp { color: var(--muted); font-size: 13px; }
 .ev h3 { margin: 2px 0 2px; font-size: 16px; font-weight: 600; line-height: 1.4; word-break: keep-all; overflow-wrap: anywhere; }
 .ev h3 a { text-decoration: none; }
 .ev h3 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.meta .dday { font-weight: 600; }
+.meta .dday.urgent { color: var(--sun); }
+.meta .dday.closed { color: var(--muted); font-weight: 400; }
 .sub { font-size: 13px; color: var(--muted); }
 .tag { display: inline-block; font-size: 12px; border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; margin-left: 4px; color: var(--muted); }
 .empty { padding: 40px 8px; text-align: center; color: var(--muted); }
@@ -159,6 +167,7 @@ footer p { margin: 8px 0 0; }
   .group { grid-template-columns: 46px 1fr; gap: 0 10px; }
   .gutter .d { font-size: 24px; }
   .search { flex: 1 1 100%; }
+  .select { flex: 1 1 100%; }
   .day { min-height: 46px; }
 }
 @media (prefers-reduced-motion: reduce) { .group.flash { animation: none; } }
@@ -176,6 +185,7 @@ footer p { margin: 8px 0 0; }
   <div class="controls">
     <div class="chips" id="chips" role="group" aria-label="병원 선택"></div>
     <span class="spacer"></span>
+    <select class="select" id="dept" aria-label="진료과 선택" hidden></select>
     <input class="search" id="q" type="search" placeholder="제목·주관·장소 검색" aria-label="행사 검색">
     <label class="toggle"><input type="checkbox" id="showPast"> 지난 행사 포함</label>
     <label class="toggle"><input type="checkbox" id="showPublic"> 건강강좌 포함</label>
@@ -206,7 +216,7 @@ footer p { margin: 8px 0 0; }
   var WEEK = ["일", "월", "화", "수", "목", "금", "토"];
   var TODAY = new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Seoul" });
 
-  var state = { data: null, hidden: {}, showPublic: false, showPast: false, q: "", y: 0, m: 0, sel: "" };
+  var state = { data: null, hidden: {}, showPublic: false, showPast: false, q: "", dept: "", y: 0, m: 0, sel: "" };
   var $ = function (id) { return document.getElementById(id); };
 
   function el(tag, cls, text) {
@@ -234,10 +244,11 @@ footer p { margin: 8px 0 0; }
   function isLong(e) { return (Date.parse(e.end_date) - Date.parse(e.start_date)) / 86400000 > LONG_DAYS; }
   function upcoming(e) { return isLong(e) ? e.start_date >= TODAY : e.end_date >= TODAY; }
 
-  function visible() {
+  function visible(skipDept) {
     var q = state.q.trim().toLowerCase();
     return state.data.events.filter(function (e) {
       if (state.hidden[e.hospital]) return false;
+      if (!skipDept && state.dept && (e.depts || []).indexOf(state.dept) < 0) return false;
       if (!state.showPublic && e.kind === "건강강좌") return false;
       if (q && (e.title + " " + e.organizer + " " + e.location).toLowerCase().indexOf(q) < 0) return false;
       return true;
@@ -267,6 +278,43 @@ footer p { margin: 8px 0 0; }
       });
       box.appendChild(b);
     });
+  }
+
+  /* ---------- 진료과 ---------- */
+  function renderDept() {
+    var sel = $("dept");
+    var counts = {}, any = false;
+    state.data.events.forEach(function (e) { if ((e.depts || []).length) any = true; });
+    visible(true).forEach(function (e) {
+      if (!(state.showPast || upcoming(e))) return;
+      (e.depts || []).forEach(function (d) { counts[d] = (counts[d] || 0) + 1; });
+    });
+    if (state.dept && !(state.dept in counts)) counts[state.dept] = 0; // 선택한 값이 사라져 목록이 조용히 바뀌지 않게 한다
+    var names = Object.keys(counts).sort(function (a, b) {
+      return (a === "기타") - (b === "기타") || counts[b] - counts[a] || a.localeCompare(b, "ko");
+    });
+    sel.textContent = "";
+    var all = document.createElement("option");
+    all.value = ""; all.textContent = "진료과 전체";
+    sel.appendChild(all);
+    names.forEach(function (d) {
+      var o = document.createElement("option");
+      o.value = d; o.textContent = d + " (" + counts[d] + ")";
+      sel.appendChild(o);
+    });
+    sel.value = state.dept;
+    sel.hidden = !any;
+  }
+
+  /* 신청 마감 D-day */
+  function regBadge(e) {
+    if (!e.reg_end || e.end_date < TODAY) return null;
+    var diff = Math.round((Date.parse(e.reg_end) - Date.parse(TODAY)) / 86400000);
+    if (diff < 0) return { text: "신청 마감", cls: "closed" };
+    return {
+      text: (diff === 0 ? "신청 D-day" : "신청 D-" + diff) + " (" + md(e.reg_end) + " 마감)",
+      cls: diff <= 3 ? "urgent" : ""
+    };
   }
 
   /* ---------- calendar ---------- */
@@ -396,7 +444,10 @@ footer p { margin: 8px 0 0; }
         meta.appendChild(el("span", "hosp", nameOf(e.hospital)));
         meta.appendChild(el("span", "time", timeText(e)));
         if (e.start_date < day && e.end_date >= TODAY && !isLong(e)) meta.appendChild(el("span", null, "진행 중 (" + md(e.start_date) + " 시작)"));
-        if (e.reg_end) meta.appendChild(el("span", null, "신청 ~ " + md(e.reg_end)));
+        var dd = (e.depts || []).filter(function (d) { return d !== "기타"; }).join(", ");
+        if (dd) meta.appendChild(el("span", null, dd));
+        var badge = regBadge(e);
+        if (badge) meta.appendChild(el("span", "dday" + (badge.cls ? " " + badge.cls : ""), badge.text));
         card.appendChild(meta);
 
         var h = el("h3");
@@ -457,6 +508,7 @@ footer p { margin: 8px 0 0; }
   function renderAll() {
     var events = visible();
     renderChips();
+    renderDept();
     renderCalendar(events);
     renderAgenda(events);
   }
@@ -487,6 +539,7 @@ footer p { margin: 8px 0 0; }
       state.y = t.y; state.m = t.m; state.sel = TODAY; renderAll();
       window.scrollTo({ top: 0 });
     });
+    $("dept").addEventListener("change", function (ev) { state.dept = ev.target.value; renderAll(); });
     $("q").addEventListener("input", function (ev) { state.q = ev.target.value; renderAll(); });
     $("showPast").addEventListener("change", function (ev) { state.showPast = ev.target.checked; renderAll(); });
     $("showPublic").addEventListener("change", function (ev) { state.showPublic = ev.target.checked; renderAll(); });

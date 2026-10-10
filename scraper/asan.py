@@ -99,18 +99,32 @@ def parse_list(html: str) -> list[Event]:
     return list(events.values())
 
 
-def parse_detail(html: str) -> str:
-    """상세 페이지에서 장소 한 줄을 꺼낸다. 없으면 빈 문자열."""
+_REG = re.compile(
+    r"신청\s*기간\s*:\s*(\d{4})\.(\d{1,2})\.(\d{1,2}).{0,30}?~\s*(\d{4})\.(\d{1,2})\.(\d{1,2})"
+)
+
+
+def parse_detail(html: str) -> dict:
+    """상세 페이지에서 장소와 신청 기간을 꺼낸다. 없는 값은 빈 문자열."""
     text = clean(make_soup(html).get_text(" "))
+    out = {"location": "", "reg_start": "", "reg_end": ""}
     for m in _PLACE.finditer(text):
         place = clean(m.group(1))
         if place:
-            return place[:60]
-    return ""
+            out["location"] = place[:60]
+            break
+    r = _REG.search(text)
+    if r:
+        try:
+            out["reg_start"] = ymd(*r.groups()[:3])
+            out["reg_end"] = ymd(*r.groups()[3:])
+        except ValueError:
+            pass
+    return out
 
 
 def scrape(known: dict | None = None) -> list[Event]:
-    """known: 이미 저장된 행사(id -> dict). 장소가 있는 행사는 상세 페이지를 다시 읽지 않는다."""
+    """known: 이미 저장된 행사(id -> dict). 장소·신청기간을 아는 행사는 상세 페이지를 다시 읽지 않는다."""
     found: dict[str, Event] = {}
     for page in range(1, PAGES + 1):
         params = {"pageIndex": page} if page > 1 else None
@@ -123,18 +137,20 @@ def scrape(known: dict | None = None) -> list[Event]:
     if not found:
         raise RuntimeError("서울아산병원: 목록에서 행사를 찾지 못했습니다 (페이지 구조가 바뀌었을 수 있음)")
 
-    # 장소는 상세 페이지에만 있다. 앞으로 열릴 행사만, 아직 장소를 모르는 것만 읽는다.
+    # 장소와 신청 기간은 상세 페이지에만 있다. 앞으로 열릴 행사만, 아직 모르는 것만 읽는다.
     today = datetime.now(KST).date().isoformat()
     known = known or {}
     for ev in found.values():
-        old_place = (known.get(ev.id) or {}).get("location", "")
-        if old_place:
-            ev.location = old_place
+        old = known.get(ev.id) or {}
+        if old.get("location") or old.get("reg_end"):
+            ev.location = old.get("location", "")
+            ev.reg_start, ev.reg_end = old.get("reg_start", ""), old.get("reg_end", "")
             continue
         if ev.end_date < today or ev.url == LIST_URL:
             continue
         try:
-            ev.location = parse_detail(fetch(ev.url, name=f"{KEY}-detail-{ev.id.split('-')[1]}"))
-        except Exception as exc:  # noqa: BLE001 - 장소를 못 읽어도 행사 자체는 저장한다
-            print(f"  (장소 건너뜀) {ev.id}: {exc}")
+            d = parse_detail(fetch(ev.url, name=f"{KEY}-detail-{ev.id.split('-')[1]}"))
+            ev.location, ev.reg_start, ev.reg_end = d["location"], d["reg_start"], d["reg_end"]
+        except Exception as exc:  # noqa: BLE001 - 상세를 못 읽어도 행사 자체는 저장한다
+            print(f"  (상세 건너뜀) {ev.id}: {exc}")
     return list(found.values())

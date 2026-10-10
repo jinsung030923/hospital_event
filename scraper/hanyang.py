@@ -23,6 +23,7 @@ _DATE = re.compile(
 )
 _LEAD = re.compile(r"^(?:D-\d+|D-day|D\+\d+|종료|진행중|예정|접수중)\s*")
 _PLACE = re.compile(r"장\s*소\s*[:：]\s*(.+?)(?=\s+(?:[-○▶●■]|주\s*제|사전|참가|연\s*사|대\s*상|주\s*관|비\s*용)|$)")
+_REG = re.compile(r"사전\s*등록\s*[:：]?\s*(\d{1,2})\s*[.월]\s*(\d{1,2})\s*[.일]?\s*(?:\([^)]*\))?\s*까지")
 _ORG = re.compile(r"주\s*[관최]\s*[:：]\s*(\S+)")
 
 
@@ -44,6 +45,21 @@ def _title(anchor, text: str) -> str:
     body = _LEAD.sub("", text)
     cut = body.find("안녕하십니까")
     return clean(body[:cut] if cut > 0 else body[:80])
+
+
+def _reg_end(text: str, start: str) -> str:
+    """'사전등록 : 11. 13.(금)까지' 같은 문구에서 신청 마감일을 만든다. 연도는 행사일 기준."""
+    m = _REG.search(text)
+    if not m:
+        return ""
+    mo, da = int(m.group(1)), int(m.group(2))
+    year = int(start[:4])
+    if (mo, da) > (int(start[5:7]), int(start[8:10])):
+        year -= 1  # 마감이 행사 월일보다 늦으면 전년도 연말 행사
+    try:
+        return ymd(year, mo, da)
+    except ValueError:
+        return ""
 
 
 def _fix_year(title: str, start: str, end: str) -> tuple[str, str]:
@@ -89,6 +105,7 @@ def parse_list(html: str) -> list[Event]:
             end_time=hhmm(eh, em) if eh else "",
             location=_clean_place(place.group(1)) if place else "",
             organizer=clean(org.group(1)) if org else "",
+            reg_end=_reg_end(text, start),
             url=f"{BASE}/hyumc/board/seminarBoardView.do?no={no}",
             kind=classify(title),
         )

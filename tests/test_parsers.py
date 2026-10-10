@@ -8,7 +8,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scraper"))
 
+import ajou  # noqa: E402
 import asan  # noqa: E402
+import common  # noqa: E402
+import depts  # noqa: E402
+import eulji  # noqa: E402
 import hanyang  # noqa: E402
 import samsung  # noqa: E402
 
@@ -56,9 +60,11 @@ def test_asan():
     assert e.url.endswith("eventDetail.do?eventId=1629")  # '조회'(사전등록 조회)가 아니라 상세 페이지
 
 
-def test_asan_detail_place():
-    assert asan.parse_detail(read("asan_detail.html")) == "롯데호텔 에메랄드룸"
-    assert asan.parse_detail("<html><body>장소 없음</body></html>") == ""
+def test_asan_detail():
+    d = asan.parse_detail(read("asan_detail.html"))
+    assert d["location"] == "롯데호텔 에메랄드룸"
+    assert (d["reg_start"], d["reg_end"]) == ("2026-08-31", "2026-10-17")
+    assert asan.parse_detail("<html><body>장소 없음</body></html>") == {"location": "", "reg_start": "", "reg_end": ""}
 
 
 def test_hanyang_place_cleanup():
@@ -78,6 +84,55 @@ def test_hanyang():
     assert by_title(ev, "핑크 힐링").kind == "건강강좌"
     typo = by_title(ev, "(TEST) 연수강좌")
     assert typo.start_date == "2026-11-28"  # 제목의 연도로 바로잡힘
+    assert typo.reg_end == "2026-11-13"  # '사전등록 : 11. 13.(금)까지'
+    assert by_title(ev, "공동 심포지엄").reg_end == ""  # 링크만 있고 마감일 없음
+
+
+def test_eulji():
+    rows = eulji.parse_list(read("eulji_list.html"))
+    assert len(rows) == 6
+    assert rows[2][2] == "https://refer.eulji.or.kr/news/news_pg02_02.jsp?board_code=BOARD_126&board_sequence=20690"
+    ev = [e for e in (eulji.to_event(*r) for r in rows) if e]
+    assert len(ev) == 3, [e.title for e in ev]  # 진료일정·가정간호·일시 없는 글은 제외
+    e = by_title(ev, "비뇨의학과")
+    assert (e.id, e.start_date, e.start_time, e.end_time) == ("eulji-20721", "2026-10-23", "18:30", "21:00")
+    assert e.title == "2026년 비뇨의학과 개원의 연수강좌"
+    assert by_title(ev, "내과 개원의").start_date == "2026-11-08"
+
+
+def test_ajou():
+    ev = ajou.parse_list(read("ajou_list.html"))
+    assert len(ev) == 4, [e.title for e in ev]
+    e = by_title(ev, "Hebei")
+    assert (e.start_date, e.start_time, e.end_time) == ("2026-06-04", "13:40", "17:00")
+    assert e.organizer == "외과학교실" and e.location.startswith("Basement Level 1")
+    assert e.url.endswith("commBoardHLectureView.do?no=72001")
+    assert by_title(ev, "신경과학").start_date == "2026-12-06"
+    multi = by_title(ev, "호스피스")
+    assert (multi.start_date, multi.end_date, multi.kind) == ("2026-09-09", "2026-09-10", "건강강좌")
+    split = by_title(ev, "제목만 링크")
+    assert (split.start_date, split.start_time, split.organizer) == ("2026-11-14", "09:00", "정형외과학교실")
+
+
+def test_depts():
+    f = depts.infer_depts
+    assert f("신경과", "CADASIL") == ["신경과"]
+    assert f("소화기내과", "AIDDS") == ["내과"]
+    assert f("", "2026년 비뇨의학과 개원의 연수강좌") == ["비뇨의학과"]
+    assert f("", "[SMC 병리과 심포지엄] Digital pathology") == ["병리과"]
+    assert f("", "삼성서울병원 로봇수술 30,000례 기념 심포지엄") == ["외과"]
+    assert f("", "신경외과 연수강좌") == ["신경외과"]  # 일반 '외과'가 겹치지 않는다
+    assert f("", "정보관리부 공동 심포지엄") == ["기타"]
+    assert f("태아치료센터", "Fetal Treatment Center Workshop") == ["산부인과"]
+    assert f("시뮬레이션센터", "응급 초음파 교육") == ["응급의학과"] or f("시뮬레이션센터", "응급 초음파 교육")[0] == "응급의학과"
+
+
+def test_robots():
+    rp = common.parse_robots("User-agent: *\nDisallow: /private/\nAllow: /\n")
+    assert rp.can_fetch(common.ROBOT_NAME, "https://x.kr/notice/list.do")
+    assert not rp.can_fetch(common.ROBOT_NAME, "https://x.kr/private/a.do")
+    blocked = common.parse_robots("User-agent: *\nDisallow: /\n")
+    assert not blocked.can_fetch(common.ROBOT_NAME, "https://x.kr/")
 
 
 if __name__ == "__main__":
