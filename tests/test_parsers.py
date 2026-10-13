@@ -14,6 +14,7 @@ import common  # noqa: E402
 import depts  # noqa: E402
 import eulji  # noqa: E402
 import hanyang  # noqa: E402
+import notices  # noqa: E402
 import samsung  # noqa: E402
 
 FIX = Path(__file__).parent / "fixtures"
@@ -133,6 +134,26 @@ def test_robots():
     assert not rp.can_fetch(common.ROBOT_NAME, "https://x.kr/private/a.do")
     blocked = common.parse_robots("User-agent: *\nDisallow: /\n")
     assert not blocked.can_fetch(common.ROBOT_NAME, "https://x.kr/")
+
+
+def test_notices_amc():
+    ns = notices.parse_amc(read("amc_notice_list.html"))
+    got = {n.title: n.category for n in ns}
+    assert got == {
+        "2026년 하계 서브인턴 프로그램": "subintern",
+        "2026년 동계 서브인턴 프로그램 모집 안내": "subintern",
+        "2026년도 서울아산병원 레지던트 1년차 모집 공고": "residency",
+    }, got
+    n = [x for x in ns if "하계" in x.title][0]
+    assert n.posted == "2026-06-17" and n.url == "https://edtr.amc.seoul.kr/education/service/notice/view.do?seq=1016"
+
+
+def test_notices_snuh():
+    ns = {n.id: n for n in notices.parse_snuh(read("snuh_recruit_list.html"))}
+    assert set(ns) == {"snuh-n26096", "snuh-n26073", "snuh-n25173"}, set(ns)
+    assert ns["snuh-n26096"].category == "residency"
+    assert (ns["snuh-n26073"].category, ns["snuh-n26073"].reg_end) == ("subintern", "2026-06-19")
+    assert ns["snuh-n25173"].reg_end == "2025-12-19"  # 1년 밀려 적힌 마감 연도 보정
 
 
 if __name__ == "__main__":

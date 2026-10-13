@@ -251,6 +251,24 @@ main { padding-bottom: 56px; }
   .day { min-height: 46px; }
 }
 
+/* ---------- 공고 목록 ---------- */
+.nfilter { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 24px 0 14px; }
+.nlist { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.nlist > li { display: grid; grid-template-columns: 120px 1fr auto; gap: 6px 16px; align-items: center; padding: 16px 18px; border-bottom: 1px solid var(--line); }
+.nlist > li:last-child { border-bottom: 0; }
+.nlist .h { font-size: 13px; font-weight: 600; color: var(--navy-3); }
+.nlist .ti { font-size: 16px; font-weight: 600; line-height: 1.45; word-break: keep-all; }
+.nlist .ti a { text-decoration: none; }
+.nlist .ti a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.nlist .pd { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.nlist .st { text-align: right; white-space: nowrap; font-size: 14px; font-weight: 600; }
+.nlist .st.open { color: var(--navy-3); }
+.nlist .st.urgent { color: var(--sun); }
+.nlist .st.closed, .nlist .st.unknown { color: var(--muted); font-weight: 400; }
+.nlist > li.past { opacity: .6; }
+.nlist .empty { display: block; }
+@media (max-width: 640px) { .nlist > li { grid-template-columns: 1fr auto; } .nlist .h { grid-column: 1 / -1; } }
+
 /* ---------- coming soon / about ---------- */
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
 .card h2 { margin: 0 0 8px; font-size: 19px; }
@@ -313,7 +331,7 @@ footer nav a { text-decoration: none; color: var(--on-navy); }
     <section class="section" aria-label="바로가기">
       <div class="quick">
         <a href="#/events"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M7.5 14h2M11 14h2M14.5 14h2M7.5 17.5h2M11 17.5h2"/></svg><span><b>학술행사 달력</b><small>병원·진료과별로 보기</small></span></a>
-        <a href="#/subintern"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="7" r="3.5"/><path d="M5 21v-1.5A5.5 5.5 0 0 1 10.5 14h3a5.5 5.5 0 0 1 5.5 5.5V21M12 14v4M10.5 18h3"/></svg><span><b>서브인턴십</b><small>선택실습 모집 공고</small></span></a>
+        <a href="#/subintern"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="7" r="3.5"/><path d="M5 21v-1.5A5.5 5.5 0 0 1 10.5 14h3a5.5 5.5 0 0 1 5.5 5.5V21M12 14v4M10.5 18h3"/></svg><span><b>서브인턴십</b><small>모집 공고 모아보기</small></span></a>
         <a href="#/residency"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 12h7M9 15.5h7M9 19h4"/></svg><span><b>전공의·인턴 모집</b><small>병원별 모집 공고</small></span></a>
         <a href="#/events?due=1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg><span><b>마감 임박</b><small>신청 마감 순으로 보기</small></span></a>
       </div>
@@ -378,21 +396,15 @@ footer nav a { text-decoration: none; color: var(--on-navy); }
   <section class="band"><div class="wrap">
     <div class="crumb"><a href="#/">홈</a> &gt; 서브인턴십/선택실습</div>
     <h1>서브인턴십 · 선택실습</h1>
-    <p>병원·진료과별 서브인턴십과 선택실습 모집 공고를 모읍니다.</p>
+    <p>병원 교육수련부·채용 게시판에 올라온 서브인턴십 모집 공고를 모았습니다. 접수 중인 공고가 위에 나옵니다.</p>
   </div></section>
-  <div class="wrap section">
-    <div class="cols">
-      <div class="card">
-        <span class="soon">준비 중</span>
-        <h2>모집 공고 목록</h2>
-        <p>공고가 모이면 이 자리에 아래 항목으로 정리된 표가 나옵니다.</p>
-        <ul><li>병원 · 진료과</li><li>모집 기간과 신청 마감 D-day</li><li>대상(학년·학교 제한)과 인원</li><li>원문 공고 링크</li></ul>
-      </div>
-      <div class="card">
-        <h2>어디서 모으나요?</h2>
-        <p>서브인턴십 공고는 병원 교육수련부 페이지와 의과대학 학생 게시판에 흩어져 올라옵니다. 의대 게시판에는 다른 병원 공고도 함께 올라와서 이 두 곳을 출처로 확인하고 있습니다.</p>
-        <p>먼저 보고 싶은 병원이 있으면 알려 주세요.</p>
-      </div>
+  <div class="wrap">
+    <div class="nfilter" data-for="subintern"></div>
+    <ul class="nlist" id="list-subintern"></ul>
+    <div class="card section">
+      <h2>어디서 모으나요?</h2>
+      <p>서울아산병원 교육수련부 공지와 서울대학교병원 채용공고를 매일 확인합니다. 서울아산병원 공고는 모집 기간이 포스터 이미지에만 있어 게시일만 표시하니, 원문에서 기간을 확인하세요.</p>
+      <p>서브인턴 공고는 보통 하계(5~6월)와 동계(11~12월)에 올라옵니다. 다른 병원도 순서대로 늘려 갈 예정입니다.</p>
     </div>
   </div>
 </main>
@@ -402,20 +414,14 @@ footer nav a { text-decoration: none; color: var(--on-navy); }
   <section class="band"><div class="wrap">
     <div class="crumb"><a href="#/">홈</a> &gt; 전공의/인턴 모집공고</div>
     <h1>전공의 · 인턴 모집공고</h1>
-    <p>병원별 인턴·레지던트 모집 공고와 설명회 일정을 모읍니다.</p>
+    <p>병원별 인턴·레지던트·전임의 모집 공고를 모았습니다. 접수 중인 공고가 위에 나옵니다.</p>
   </div></section>
-  <div class="wrap section">
-    <div class="cols">
-      <div class="card">
-        <span class="soon">준비 중</span>
-        <h2>모집 공고 목록</h2>
-        <p>공고가 모이면 이 자리에 아래 항목으로 정리된 표가 나옵니다.</p>
-        <ul><li>병원 · 모집 구분(인턴/레지던트/전임의)</li><li>원서 접수 기간과 마감 D-day</li><li>모집 과목과 인원</li><li>병원 설명회 일정</li><li>원문 공고 링크</li></ul>
-      </div>
-      <div class="card">
-        <h2>어디서 모으나요?</h2>
-        <p>각 병원 채용·교육수련 페이지의 모집 공고를 출처로 확인하고 있습니다. 자동 수집을 허용하지 않는 병원(robots.txt)은 제외합니다.</p>
-      </div>
+  <div class="wrap">
+    <div class="nfilter" data-for="residency"></div>
+    <ul class="nlist" id="list-residency"></ul>
+    <div class="card section">
+      <h2>어디서 모으나요?</h2>
+      <p>서울아산병원 교육수련부 공지와 서울대학교병원 채용공고를 매일 확인합니다. 합격자 발표·지원 현황·기숙사 안내 같은 글은 빼고 모집 공고만 남깁니다.</p>
     </div>
   </div>
 </main>
@@ -548,6 +554,7 @@ footer nav a { text-decoration: none; color: var(--on-navy); }
       $("showPast").checked = state.showPast;
       renderAll();
     }
+    if (r.page === "subintern" || r.page === "residency") renderNotices(r.page);
     if (r.page === "about" && r.q.s === "status") { var t = $("about-status"); if (t) t.scrollIntoView(); } else window.scrollTo(0, 0);
   }
 
@@ -598,13 +605,76 @@ footer nav a { text-decoration: none; color: var(--on-navy); }
     });
   }
 
+  /* ================= 공고 (서브인턴십 · 전공의) ================= */
+  var NOTICES = null;
+  var nState = { subintern: { hosp: "", openOnly: false }, residency: { hosp: "", openOnly: false } };
+  function nStatus(n) {
+    if (!n.reg_end) return { text: "게시 " + (n.posted ? md(n.posted) : "-"), cls: "unknown", open: null };
+    var d = daysUntil(n.reg_end);
+    if (d < 0) return { text: "접수 마감", cls: "closed", open: false };
+    if (n.reg_start && n.reg_start > TODAY) return { text: md(n.reg_start) + " 접수 시작", cls: "open", open: true };
+    return { text: d === 0 ? "오늘 마감" : "마감 D-" + d, cls: d <= 3 ? "urgent" : "open", open: true };
+  }
+  function nSorted(cat) {
+    var list = (NOTICES ? NOTICES.notices : []).filter(function (n) { return n.category === cat; });
+    return list.sort(function (a, b) {
+      var oa = nStatus(a).open === true, ob = nStatus(b).open === true;
+      if (oa !== ob) return oa ? -1 : 1;
+      if (oa) return a.reg_end < b.reg_end ? -1 : 1;
+      var ka = a.reg_start || a.posted || "", kb = b.reg_start || b.posted || "";
+      return ka < kb ? 1 : ka > kb ? -1 : 0;
+    });
+  }
+  function nHospName(k) { var s = NOTICES && NOTICES.sources[k]; return s ? s.name : (state.data && state.data.hospitals[k] ? state.data.hospitals[k].name : k); }
+  function renderNotices(cat) {
+    var ul = $("list-" + cat); if (!ul) return;
+    var st = nState[cat], box = document.querySelector('.nfilter[data-for="' + cat + '"]');
+    var all = nSorted(cat);
+    box.textContent = "";
+    var hosps = []; all.forEach(function (n) { if (hosps.indexOf(n.hospital) < 0) hosps.push(n.hospital); });
+    [""].concat(hosps).forEach(function (k) {
+      var b = el("button", "chip"); b.type = "button";
+      b.setAttribute("aria-pressed", String(st.hosp === k));
+      b.textContent = k ? nHospName(k) : "전체";
+      b.addEventListener("click", function () { st.hosp = k; renderNotices(cat); });
+      box.appendChild(b);
+    });
+    var lab = el("label", "toggle"), cb = el("input"); cb.type = "checkbox"; cb.checked = st.openOnly;
+    cb.addEventListener("change", function () { st.openOnly = cb.checked; renderNotices(cat); });
+    lab.appendChild(cb); lab.appendChild(document.createTextNode(" 접수 중만")); box.appendChild(lab);
+
+    ul.textContent = "";
+    var list = all.filter(function (n) { return (!st.hosp || n.hospital === st.hosp) && (!st.openOnly || nStatus(n).open === true); });
+    if (!NOTICES) { ul.appendChild(el("li", "empty", "공고를 아직 수집하지 않았습니다. 다음 수집 때 채워집니다.")); return; }
+    if (!list.length) { ul.appendChild(el("li", "empty", st.openOnly ? "지금 접수 중인 공고가 없습니다. ‘접수 중만’을 끄면 지난 공고도 보입니다." : "모인 공고가 없습니다.")); return; }
+    list.forEach(function (n) {
+      var s2 = nStatus(n), li = el("li", s2.open === false ? "past" : "");
+      li.appendChild(el("span", "h", nHospName(n.hospital)));
+      var mid = el("div"), ti = el("div", "ti"), a = el("a", null, n.title);
+      a.href = safeUrl(n.url) || "#"; a.target = "_blank"; a.rel = "noopener noreferrer";
+      ti.appendChild(a); mid.appendChild(ti);
+      var pd = n.reg_start && n.reg_end ? "접수 " + n.reg_start.replace(/-/g, ".") + " ~ " + n.reg_end.replace(/-/g, ".") : n.posted ? "게시 " + n.posted.replace(/-/g, ".") + " · 모집 기간은 원문 확인" : "";
+      if (pd) mid.appendChild(el("div", "pd", pd));
+      li.appendChild(mid);
+      li.appendChild(el("span", "st " + s2.cls, s2.text));
+      ul.appendChild(li);
+    });
+  }
+
   var pendingGo = "";
   function renderBoard(tab) {
     document.querySelectorAll("#boardTabs button").forEach(function (b) { b.setAttribute("aria-selected", String(b.dataset.tab === tab)); });
     $("boardMore").href = "#/" + tab;
     var ul = $("boardList"); ul.textContent = "";
     if (tab !== "events") {
-      ul.appendChild(el("li", "empty", tab === "subintern" ? "서브인턴십 공고는 준비 중입니다." : "전공의·인턴 모집 공고는 준비 중입니다."));
+      var ns = nSorted(tab).slice(0, 6);
+      if (!ns.length) { ul.appendChild(el("li", "empty", "모인 공고가 없습니다.")); return; }
+      ns.forEach(function (n) {
+        var s2 = nStatus(n);
+        var li = boardLink(nHospName(n.hospital), null, n.title, s2.text, safeUrl(n.url) || "#/" + tab);
+        li.firstChild.target = "_blank"; li.firstChild.rel = "noopener noreferrer";
+        ul.appendChild(li);
+      });
       return;
     }
     var list = state.data.events.filter(function (e) { return academic(e) && upcoming(e) && !isLong(e); }).slice(0, 6);
@@ -827,6 +897,13 @@ footer nav a { text-decoration: none; color: var(--on-navy); }
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (data) {
       boot(data);
+      fetch("notices.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })
+        .then(function (n) {
+          NOTICES = n;
+          var cur = document.querySelector("#boardTabs button[aria-selected=true]");
+          if (cur && cur.dataset.tab !== "events") renderBoard(cur.dataset.tab);
+          var pg = parseHash().page; if (pg === "subintern" || pg === "residency") renderNotices(pg);
+        });
       var r = parseHash();
       if (r.page === "events" && r.q.go) goTo(r.q.go);
     })

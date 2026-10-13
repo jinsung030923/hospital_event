@@ -21,6 +21,7 @@ import ajou  # noqa: E402
 import asan  # noqa: E402
 import eulji  # noqa: E402
 import hanyang  # noqa: E402
+import notices  # noqa: E402
 import samsung  # noqa: E402
 from common import KST, set_dump_dir  # noqa: E402
 from depts import infer_depts  # noqa: E402
@@ -87,7 +88,37 @@ def main() -> int:
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(result, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print(f"저장: {out} (행사 {len(events)}건)")
+    update_notices(out.parent / "notices.json", now)
     return 1 if failures == len(SOURCES) else 0
+
+
+NOTICE_KEEP_DAYS = 400  # 서브인턴은 해마다 비슷한 시기에 열리므로 1년치를 남겨 둔다
+
+
+def update_notices(path: Path, now: datetime) -> None:
+    """서브인턴십·전공의 모집 공고를 모아 notices.json 에 저장한다. 실패해도 행사 수집에는 영향이 없다."""
+    data = load(path)
+    merged = {n["id"]: n for n in data.get("notices", [])}
+    sources = data.get("sources", {})
+    for key, name, url, fn in notices.SOURCES:
+        try:
+            found = fn()
+            for n in found:
+                merged[n.id] = n.to_dict()
+            sources[key] = {"name": name, "url": url, "ok": True, "count": len(found),
+                            "checked_at": now.isoformat(timespec="minutes"), "error": ""}
+            print(f"[ok]   공고 {name}: {len(found)}건")
+        except Exception as exc:  # noqa: BLE001
+            prev = sources.get(key, {})
+            sources[key] = {"name": name, "url": url, "ok": False, "count": prev.get("count", 0),
+                            "checked_at": prev.get("checked_at", ""), "error": str(exc)[:300]}
+            print(f"[fail] 공고 {name}: {exc}", file=sys.stderr)
+    cutoff = (now - timedelta(days=NOTICE_KEEP_DAYS)).date().isoformat()
+    items = [n for n in merged.values() if (n.get("reg_end") or n.get("posted") or "9999") >= cutoff]
+    items.sort(key=lambda n: (n.get("reg_start") or n.get("posted") or ""), reverse=True)
+    path.write_text(json.dumps({"updated_at": now.isoformat(timespec="minutes"), "sources": sources,
+                                "notices": items}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    print(f"저장: {path} (공고 {len(items)}건)")
 
 
 if __name__ == "__main__":
