@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-13T06:31+09:00",
+ "updated_at": "2026-10-13T19:40+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원",
@@ -26,31 +26,31 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-10-13T06:31+09:00",
+   "checked_at": "2026-10-13T19:40+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-10-13T06:31+09:00",
+   "checked_at": "2026-10-13T19:40+09:00",
    "error": ""
   },
   "hyumc": {
-   "ok": false,
+   "ok": true,
    "count": 18,
-   "checked_at": "2026-10-12T06:30+09:00",
-   "error": "요청 실패: https://seoul.hyumc.com/hyumc/board/seminarBoardList.do (403 Client Error:  for url: https://seoul.hyumc.com/hyumc/board/seminarBoardList.do?page=1)"
+   "checked_at": "2026-10-13T19:40+09:00",
+   "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-10-13T06:31+09:00",
+   "checked_at": "2026-10-13T19:40+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-10-13T06:31+09:00",
+   "checked_at": "2026-10-13T19:40+09:00",
    "error": ""
   }
  },
@@ -1172,6 +1172,24 @@
    "kind": "학술",
    "depts": [
     "기타"
+   ]
+  },
+  {
+   "id": "hyumc-439",
+   "hospital": "hyumc",
+   "title": "2026년 장기이식 환우 건강강좌 개최",
+   "start_date": "2026-11-04",
+   "end_date": "2026-11-04",
+   "start_time": "13:20",
+   "end_time": "14:20",
+   "location": "한양대학교병원 본관 3층 HY 이음홀",
+   "organizer": "",
+   "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=439",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "건강강좌",
+   "depts": [
+    "외과"
    ]
   },
   {

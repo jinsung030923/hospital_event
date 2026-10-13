@@ -1,0 +1,173 @@
+{
+ "updated_at": "2026-10-13T19:40+09:00",
+ "sources": {
+  "amc": {
+   "name": "서울아산병원",
+   "url": "https://edtr.amc.seoul.kr/education/service/notice/list.do",
+   "ok": true,
+   "count": 4,
+   "checked_at": "2026-10-13T19:40+09:00",
+   "error": ""
+  },
+  "snuh": {
+   "name": "서울대학교병원",
+   "url": "https://www.snuh.org/about/news/recruit/recruList.do",
+   "ok": true,
+   "count": 18,
+   "checked_at": "2026-10-13T19:40+09:00",
+   "error": ""
+  }
+ },
+ "notices": [
+  {
+   "id": "snuh-n26096",
+   "hospital": "snuh",
+   "category": "residency",
+   "title": "2026년도 하반기 서울대학교병원 전공의(인턴) 모집 공고",
+   "url": "https://www.snuh.org/about/news/recruit/recruView.do?recruit_id=26096",
+   "posted": "2026-08-10",
+   "reg_start": "2026-08-10",
+   "reg_end": "2026-08-12"
+  },
+  {
+   "id": "snuh-n26095",
+   "hospital": "snuh",
+   "category": "residency",
+   "title": "2026년도 하반기 레지던트 1년차 모집 공고",
+   "url": "https://www.snuh.org/about/news/recruit/recruView.do?recruit_id=26095",
+   "posted": "2026-08-10",
+   "reg_start": "2026-08-10",
+   "reg_end": "2026-08-12"
+  },
+  {
+   "id": "snuh-n26093",
+   "hospital": "snuh",
+   "category": "residency",
+   "title": "2026년도 하반기 레지던트 상급년차 모집 진료과 면접 장소 및 시간 안내",
+   "url": "https://www.snuh.org/about/news/recruit/recruView.do?recruit_id=26093",
+   "posted": "2026-07-31",
+   "reg_start": "2026-07-31",
+   "reg_end": "2026-07-31"
+  },
+  {
+   "id": "snuh-n26085",
+   "hospital": "snuh",
+   "category": "residency",
+   "title": "2026년도 하반기 레지던트 상급년차 모집 공고",
+   "url": "https://www.snuh.org/about/news/recruit/recruView.do?recruit_id=26085",
+   "posted": "2026-07-13",
+   "reg_start": "2026-07-13",
+   "reg_end": "2026-07-27"
+  },
+  {
+   "id": "snuh-n26083",
+   "hospital": "snuh",
+   "category": "residency",
+   "title": "2026년도 임상강사(Fellow) 4차 선발 공고",
+   "url": "https://www.snuh.org/about/news/recruit/recruView.do?recruit_id=26083",
+   "posted": "2026-07-09",
+   "reg_start": "2026-07-09",
+   "reg_end": "2026-07-23"
+  },
+  {
+   "id": "amc-n1016",
+   "hospital": "amc",
+   "category": "subintern",
+   "title": "2026년 하계 서브인턴 프로그램",
+   "url": "https://edtr.amc.seoul.kr/education/service/notice/view.do?seq=1016",
+   "posted": "2026-06-17",
+   "reg_start": "",
+   "reg_end": ""
+  },
+  {
+   "id": "snuh-n26073",
+   "hospital": "snuh",
+   "category": "subintern",
+   "title": "2026년도(하계) 심장혈관흉부외과 학생 서브 인턴 모집 공고",
+   "url": "https://www.snuh.org/about/news/recruit/recruView.do?recruit_id=26073",
+   "posted": "2026-06-09",
+   "reg_start": "2026-06-09",
+   "reg_end": "2026-06-19"
+  },
+  {
+   "id": "snuh-n26046",
+   "hospital": "snuh",
+   "category": "residency",
+   "title": "2026년도 임상강사(Fellow) 3차 선발 공고",
+   "url": "https://www.snuh.org/about/news/recruit/recruView.do?recruit_id=26046",
+   "posted": "2026-04-06",
+   "reg_start": "2026-04-06",
+   "reg_end": "2026-04-20"
+  },
+  {
+   "id": "snuh-n26021",
+   "hospital": "snuh",
+   "category": "residency",
+   "title": "2026년도 레지던트 상급년차 모집 진료과별 면접 장소 및 시간 안내",
+   "url": "https://www.snuh.org/about/news/recruit/recruView.do?recruit_id=26021",
+   "posted": "2026-01-30",
+   "reg_start": "2026-01-30",
+   "reg_end": "2026-01-30"
+  },
+  {
+   "id": "snuh-n26003",
+   "hospital": "snuh",
+   "category": "residency",
+   "title": "2026년 상반기 서울대학교병원 전공의(인턴) 선발 수정 공고",
+   "url": "https://www.snuh.org/about/news/recruit/recruView.do?recruit_id=26003",
+   "posted": "2026-01-22",
+   "reg_start": "2026-01-22",
+   "reg_end": "2026-01-23"
+  },
+  {
+   "id": "snuh-n26009",
+   "hospital": "snuh",
+   "category": "residency",
+   "title": "2026년도 상반기 레지던트 상급년차 모집 공고",
+   "url": "https://www.snuh.org/about/news/recruit/recruView.do?recruit_id=26009",
+   "posted": "2026-01-15",
+   "reg_start": "2026-01-15",
+   "reg_end": "2026-01-28"
+  },
+  {
+   "id": "snuh-n25173",
+   "hospital": "snuh",
+   "category": "subintern",
+   "title": "2026년도(동계)심장혈관흉부외과 학생 서브인턴 모집 공고",
+   "url": "https://www.snuh.org/about/news/recruit/recruView.do?recruit_id=25173",
+   "posted": "2025-12-12",
+   "reg_start": "2025-12-12",
+   "reg_end": "2025-12-19"
+  },
+  {
+   "id": "amc-n1008",
+   "hospital": "amc",
+   "category": "residency",
+   "title": "'26년 레지던트 1년차 모집 진료과별 면접 안내",
+   "url": "https://edtr.amc.seoul.kr/education/service/notice/view.do?seq=1008",
+   "posted": "2025-12-11",
+   "reg_start": "",
+   "reg_end": ""
+  },
+  {
+   "id": "amc-n1007",
+   "hospital": "amc",
+   "category": "residency",
+   "title": "'26년 레지던트 1년차 모집 경쟁률",
+   "url": "https://edtr.amc.seoul.kr/education/service/notice/view.do?seq=1007",
+   "posted": "2025-12-08",
+   "reg_start": "",
+   "reg_end": ""
+  },
+  {
+   "id": "amc-n1006",
+   "hospital": "amc",
+   "category": "residency",
+   "title": "'26년도 치과 레지던트 1년차 추가모집",
+   "url": "https://edtr.amc.seoul.kr/education/service/notice/view.do?seq=1006",
+   "posted": "2025-12-05",
+   "reg_start": "",
+   "reg_end": ""
+  }
+ ]
+}
