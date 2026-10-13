@@ -1,20 +1,20 @@
 {
- "updated_at": "2026-10-13T19:40+09:00",
+ "updated_at": "2026-10-13T19:42+09:00",
  "sources": {
   "amc": {
    "name": "서울아산병원",
    "url": "https://edtr.amc.seoul.kr/education/service/notice/list.do",
    "ok": true,
-   "count": 4,
-   "checked_at": "2026-10-13T19:40+09:00",
+   "count": 2,
+   "checked_at": "2026-10-13T19:42+09:00",
    "error": ""
   },
   "snuh": {
    "name": "서울대학교병원",
    "url": "https://www.snuh.org/about/news/recruit/recruList.do",
    "ok": true,
-   "count": 18,
-   "checked_at": "2026-10-13T19:40+09:00",
+   "count": 16,
+   "checked_at": "2026-10-13T19:42+09:00",
    "error": ""
   }
  },
@@ -38,16 +38,6 @@
    "posted": "2026-08-10",
    "reg_start": "2026-08-10",
    "reg_end": "2026-08-12"
-  },
-  {
-   "id": "snuh-n26093",
-   "hospital": "snuh",
-   "category": "residency",
-   "title": "2026년도 하반기 레지던트 상급년차 모집 진료과 면접 장소 및 시간 안내",
-   "url": "https://www.snuh.org/about/news/recruit/recruView.do?recruit_id=26093",
-   "posted": "2026-07-31",
-   "reg_start": "2026-07-31",
-   "reg_end": "2026-07-31"
   },
   {
    "id": "snuh-n26085",
@@ -100,16 +90,6 @@
    "reg_end": "2026-04-20"
   },
   {
-   "id": "snuh-n26021",
-   "hospital": "snuh",
-   "category": "residency",
-   "title": "2026년도 레지던트 상급년차 모집 진료과별 면접 장소 및 시간 안내",
-   "url": "https://www.snuh.org/about/news/recruit/recruView.do?recruit_id=26021",
-   "posted": "2026-01-30",
-   "reg_start": "2026-01-30",
-   "reg_end": "2026-01-30"
-  },
-  {
    "id": "snuh-n26003",
    "hospital": "snuh",
    "category": "residency",
@@ -138,26 +118,6 @@
    "posted": "2025-12-12",
    "reg_start": "2025-12-12",
    "reg_end": "2025-12-19"
-  },
-  {
-   "id": "amc-n1008",
-   "hospital": "amc",
-   "category": "residency",
-   "title": "'26년 레지던트 1년차 모집 진료과별 면접 안내",
-   "url": "https://edtr.amc.seoul.kr/education/service/notice/view.do?seq=1008",
-   "posted": "2025-12-11",
-   "reg_start": "",
-   "reg_end": ""
-  },
-  {
-   "id": "amc-n1007",
-   "hospital": "amc",
-   "category": "residency",
-   "title": "'26년 레지던트 1년차 모집 경쟁률",
-   "url": "https://edtr.amc.seoul.kr/education/service/notice/view.do?seq=1007",
-   "posted": "2025-12-08",
-   "reg_start": "",
-   "reg_end": ""
   },
   {
    "id": "amc-n1006",
