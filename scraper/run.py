@@ -114,7 +114,9 @@ def update_notices(path: Path, now: datetime) -> None:
                             "checked_at": prev.get("checked_at", ""), "error": str(exc)[:300]}
             print(f"[fail] 공고 {name}: {exc}", file=sys.stderr)
     cutoff = (now - timedelta(days=NOTICE_KEEP_DAYS)).date().isoformat()
-    items = [n for n in merged.values() if (n.get("reg_end") or n.get("posted") or "9999") >= cutoff]
+    items = [n for n in merged.values()
+             if (n.get("reg_end") or n.get("posted") or "9999") >= cutoff
+             and notices.categorize(n["title"]) == n["category"]]  # 걸러내기 규칙을 바꾸면 저장된 공고에도 적용
     items.sort(key=lambda n: (n.get("reg_start") or n.get("posted") or ""), reverse=True)
     path.write_text(json.dumps({"updated_at": now.isoformat(timespec="minutes"), "sources": sources,
                                 "notices": items}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")

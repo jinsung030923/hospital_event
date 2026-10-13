@@ -22,7 +22,7 @@ RESIDENCY = "residency"
 _SUB = re.compile(r"서브\s*인턴|subintern|선택\s*실습|elective", re.I)
 _RES = re.compile(r"전공의|레지던트|인턴|전임의|펠로우|fellow", re.I)
 _RECRUIT = re.compile(r"모집|선발|프로그램|공고")
-_SKIP = re.compile(r"합격|지원\s*현황|기숙사|결과|장애인|직원|체험형|간호|면접\s*일정|필기시험")
+_SKIP = re.compile(r"합격|지원\s*현황|경쟁률|기숙사|결과|장애인|직원|체험형|간호|면접|필기시험|장소")
 _DATE = re.compile(r"(20\d{2})[.\-/]\s*(\d{1,2})[.\-/]\s*(\d{1,2})")
 
 
