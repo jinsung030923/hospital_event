@@ -403,8 +403,10 @@ footer nav a { text-decoration: none; color: var(--on-navy); }
     <ul class="nlist" id="list-subintern"></ul>
     <div class="card section">
       <h2>어디서 모으나요?</h2>
-      <p>서울아산병원 교육수련부 공지와 서울대학교병원 채용공고를 매일 확인합니다. 서울아산병원 공고는 모집 기간이 포스터 이미지에만 있어 게시일만 표시하니, 원문에서 기간을 확인하세요.</p>
-      <p>서브인턴 공고는 보통 하계(5~6월)와 동계(11~12월)에 올라옵니다. 다른 병원도 순서대로 늘려 갈 예정입니다.</p>
+      <p>아래 병원의 교육수련·채용 게시판을 매일 확인합니다. 서브인턴 공고는 보통 하계(5~6월)와 동계(11~12월)에 올라옵니다.</p>
+      <ul class="nsrc"></ul>
+      <p>서울아산병원 공고는 모집 기간이 포스터 이미지에만 있어 게시일만 표시하니, 원문에서 기간을 확인하세요.</p>
+      <p>세브란스·고려대·한양대·순천향대는 채용 목록이 자바스크립트로만 열려서, 강북삼성·경희대·강동경희대·중앙대는 자동 수집을 허용하지 않아서(robots.txt) 아직 모으지 못합니다. 가톨릭 계열(서울성모 등)은 공고 목록을 확인하지 못했습니다.</p>
     </div>
   </div>
 </main>
@@ -421,7 +423,9 @@ footer nav a { text-decoration: none; color: var(--on-navy); }
     <ul class="nlist" id="list-residency"></ul>
     <div class="card section">
       <h2>어디서 모으나요?</h2>
-      <p>서울아산병원 교육수련부 공지와 서울대학교병원 채용공고를 매일 확인합니다. 합격자 발표·지원 현황·기숙사 안내 같은 글은 빼고 모집 공고만 남깁니다.</p>
+      <p>아래 병원의 교육수련·채용 게시판을 매일 확인합니다. 합격자 발표·지원 현황·면접 안내 같은 글은 빼고 모집 공고만 남깁니다.</p>
+      <ul class="nsrc"></ul>
+      <p>세브란스·고려대·한양대·순천향대는 채용 목록이 자바스크립트로만 열려서, 강북삼성·경희대·강동경희대·중앙대는 자동 수집을 허용하지 않아서(robots.txt) 아직 모으지 못합니다. 가톨릭 계열(서울성모 등)은 공고 목록을 확인하지 못했습니다.</p>
     </div>
   </div>
 </main>
@@ -900,6 +904,16 @@ footer nav a { text-decoration: none; color: var(--on-navy); }
       fetch("notices.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })
         .then(function (n) {
           NOTICES = n;
+          if (n) document.querySelectorAll(".nsrc").forEach(function (ul) {
+            ul.textContent = "";
+            Object.keys(n.sources || {}).forEach(function (k) {
+              var s3 = n.sources[k], li = el("li"), a = el("a", null, s3.name);
+              a.href = safeUrl(s3.url) || "#"; a.target = "_blank"; a.rel = "noopener noreferrer";
+              li.appendChild(a);
+              li.appendChild(document.createTextNode(s3.ok === false ? " — 이번 수집 실패" : ""));
+              ul.appendChild(li);
+            });
+          });
           var cur = document.querySelector("#boardTabs button[aria-selected=true]");
           if (cur && cur.dataset.tab !== "events") renderBoard(cur.dataset.tab);
           var pg = parseHash().page; if (pg === "subintern" || pg === "residency") renderNotices(pg);

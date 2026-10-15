@@ -156,6 +156,19 @@ def test_notices_snuh():
     assert ns["snuh-n25173"].reg_end == "2025-12-19"  # 1년 밀려 적힌 마감 연도 보정
 
 
+def test_notices_more():
+    smc = {n.title: n for n in notices.parse_smc(read("smc_recruit_list.html"))}
+    assert set(smc) == {"2027년도 임상강사(Fellow) 초빙 안내", "2027년도 레지던트 1년차 모집 공고"}, set(smc)
+    r = smc["2027년도 레지던트 1년차 모집 공고"]
+    assert (r.reg_start, r.reg_end, r.category) == ("2026-11-20", "2026-11-27", "residency")
+    kuh = {n.id: n for n in notices.parse_kuh(read("kuh_recruit_list.html"))}
+    assert set(kuh) == {"kuh-n128", "kuh-n108"}, set(kuh)
+    assert kuh["kuh-n108"].category == "subintern" and kuh["kuh-n108"].reg_end == "2025-12-12"
+    paik = notices.parse_paik(read("paik_recruit_list.html"))
+    assert [n.id for n in paik] == ["paik-n1430"]
+    assert paik[0].url.endswith("jobId=1430")
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):

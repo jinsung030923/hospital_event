@@ -21,7 +21,7 @@ RESIDENCY = "residency"
 
 _SUB = re.compile(r"서브\s*인턴|subintern|선택\s*실습|elective", re.I)
 _RES = re.compile(r"전공의|레지던트|인턴|전임의|펠로우|fellow", re.I)
-_RECRUIT = re.compile(r"모집|선발|프로그램|공고")
+_RECRUIT = re.compile(r"모집|선발|프로그램|공고|초빙")
 _SKIP = re.compile(r"합격|지원\s*현황|경쟁률|기숙사|결과|장애인|직원|체험형|간호|면접|필기시험|장소")
 _DATE = re.compile(r"(20\d{2})[.\-/]\s*(\d{1,2})[.\-/]\s*(\d{1,2})")
 
@@ -148,7 +148,110 @@ def scrape_snuh() -> list[Notice]:
     return list(found.values())
 
 
+# ---------------- 공통: 표 형식 채용 게시판 ----------------
+def parse_rows(html: str, id_re: re.Pattern, hospital: str, url_fmt: str,
+               keep=lambda text: True) -> list[Notice]:
+    """링크 하나가 공고 한 건인 목록. 같은 행에서 날짜를 찾아 '시작 ~ 마감' 또는 게시일로 쓴다."""
+    out: dict[str, Notice] = {}
+    for a in make_soup(html).find_all("a"):
+        src = (a.get("href") or "") + " " + (a.get("onclick") or "")
+        m = id_re.search(src)
+        if not m or m.group(1) in out:
+            continue
+        title = re.sub(r"^D-\d+\s*|^D-day\s*|^오늘\s*", "", clean(a.get_text(" ")))
+        cat = categorize(title)
+        if not cat:
+            continue
+        row = clean(item_container(a, id_re).get_text(" "))
+        if not keep(row):
+            continue
+        dates = _dates(row)
+        n = Notice(id=f"{hospital}-n{m.group(1)}", hospital=hospital, category=cat, title=title,
+                   url=url_fmt.format(id=m.group(1)))
+        if len(dates) >= 2:
+            n.reg_start, n.reg_end = dates[0], _fix_span(dates[0], dates[1])
+            n.posted = n.reg_start
+        elif dates:
+            n.posted = dates[0]
+        out[m.group(1)] = n
+    return list(out.values())
+
+
+# ---------------- 삼성서울병원 ----------------
+SMC_LIST = "https://www.samsunghospital.com/home/recruit/recruitInfo/recruitNotice.do"
+_SMC_ID = re.compile(r"RECRUIT_CD=([0-9A-Za-z]+)")
+
+
+def parse_smc(html: str) -> list[Notice]:
+    return parse_rows(html, _SMC_ID, "smc",
+                      "https://www.samsunghospital.com/home/recruit/recruitInfo/recruitNoticeView.do?RECRUIT_CD={id}")
+
+
+def scrape_smc() -> list[Notice]:
+    found: dict[str, Notice] = {}
+    for page in range(1, 4):
+        for n in parse_smc(fetch(SMC_LIST, params={"cPage": f"{page:02d}"}, name=f"smc-recruit-{page}")):
+            found.setdefault(n.id, n)
+    return list(found.values())
+
+
+# ---------------- 건국대학교병원 (의사직 채용공고) ----------------
+KUH_LIST = "https://www.kuh.ac.kr/m/recruit/docApply/noticeList.do"
+_KUH_ID = re.compile(r"anc_seq\D{0,3}(\d+)")
+
+
+def parse_kuh(html: str) -> list[Notice]:
+    return parse_rows(html, _KUH_ID, "kuh", "https://www.kuh.ac.kr/recruit/docApply/noticeView.do?anc_seq={id}")
+
+
+def scrape_kuh() -> list[Notice]:
+    return parse_kuh(fetch(KUH_LIST, name="kuh-recruit-1"))
+
+
+# ---------------- 이화의료원 (목동·서울병원) ----------------
+EUMC_LIST = "https://www.eumc.ac.kr/intro/recrut/list.do"
+_EUMC_ID = re.compile(r"bbs_no=(\d+)")
+
+
+def parse_eumc(html: str) -> list[Notice]:
+    return parse_rows(html, _EUMC_ID, "eumc", "https://www.eumc.ac.kr/intro/recrut/view.do?bbs_no={id}")
+
+
+def scrape_eumc() -> list[Notice]:
+    found: dict[str, Notice] = {}
+    for i, q in enumerate(("전공의", "인턴", "레지던트", "서브인턴")):
+        for n in parse_eumc(fetch(EUMC_LIST, params={"searchWord": q, "bid_status": ""}, name=f"eumc-recruit-{i}")):
+            found.setdefault(n.id, n)
+    return list(found.values())
+
+
+# ---------------- 인제대학교 백병원 (상계·일산) ----------------
+PAIK_LIST = "https://www.paik.ac.kr/recruit/user/job/list.do"
+_PAIK_ID = re.compile(r"(?:view\(\s*'|jobId=)(\d+)")
+_PAIK_HERE = re.compile(r"상계백|서울백|일산백|백중앙")
+_PAIK_AWAY = re.compile(r"부산백|해운대백")
+
+
+def parse_paik(html: str) -> list[Notice]:
+    return parse_rows(html, _PAIK_ID, "paik", "https://www.paik.ac.kr/recruit/user/job/view.do?jobId={id}",
+                      keep=lambda row: bool(_PAIK_HERE.search(row)) and not _PAIK_AWAY.search(row))
+
+
+def scrape_paik() -> list[Notice]:
+    found: dict[str, Notice] = {}
+    for i, q in enumerate(("전공의", "인턴", "레지던트")):
+        html = fetch(PAIK_LIST, params={"searchCondition": "1", "searchKeyword": q, "pageIndex": "1"},
+                     name=f"paik-recruit-{i}")
+        for n in parse_paik(html):
+            found.setdefault(n.id, n)
+    return list(found.values())
+
+
 SOURCES = [
     (AMC_KEY, "서울아산병원", AMC_LIST, scrape_amc),
     (SNUH_KEY, "서울대학교병원", SNUH_LIST, scrape_snuh),
+    ("smc", "삼성서울병원", SMC_LIST, scrape_smc),
+    ("kuh", "건국대학교병원", KUH_LIST, scrape_kuh),
+    ("eumc", "이화의료원(목동·서울)", EUMC_LIST, scrape_eumc),
+    ("paik", "인제대 백병원(상계·일산)", PAIK_LIST, scrape_paik),
 ]
