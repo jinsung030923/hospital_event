@@ -164,6 +164,8 @@ def test_notices_more():
     kuh = {n.id: n for n in notices.parse_kuh(read("kuh_recruit_list.html"))}
     assert set(kuh) == {"kuh-n128", "kuh-n108"}, set(kuh)
     assert kuh["kuh-n108"].category == "subintern" and kuh["kuh-n108"].reg_end == "2025-12-12"
+    assert notices._clean_title("D--2마감 [목동병원] 2027년도 전공의(인턴) 모집 공고") == "[목동병원] 2027년도 전공의(인턴) 모집 공고"
+    assert notices._clean_title("마감 2026년도 인턴 모집 공고 2026-08-10 09:00 ~ 2026-08-12 17:00") == "2026년도 인턴 모집 공고"
     paik = notices.parse_paik(read("paik_recruit_list.html"))
     assert [n.id for n in paik] == ["paik-n1430"]
     assert paik[0].url.endswith("jobId=1430")

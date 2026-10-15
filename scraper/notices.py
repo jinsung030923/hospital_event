@@ -148,6 +148,18 @@ def scrape_snuh() -> list[Notice]:
     return list(found.values())
 
 
+_LEAD = re.compile(r"^(?:(?:D-+\d+|D-day|오늘)\s*(?:마감)?|진행중|접수중|마감|접수)\s*")
+_TRAIL_DATE = re.compile(r"\s*20\d{2}[.\-/]\d{1,2}[.\-/]\d{1,2}.*$")
+
+
+def _clean_title(t: str) -> str:
+    """목록 링크에 섞여 들어오는 'D-3', '마감', 뒤쪽 접수기간을 떼어 낸다."""
+    prev = None
+    while prev != t:
+        prev, t = t, _LEAD.sub("", t)
+    return _TRAIL_DATE.sub("", t).strip()
+
+
 # ---------------- 공통: 표 형식 채용 게시판 ----------------
 def parse_rows(html: str, id_re: re.Pattern, hospital: str, url_fmt: str,
                keep=lambda text: True) -> list[Notice]:
@@ -158,7 +170,8 @@ def parse_rows(html: str, id_re: re.Pattern, hospital: str, url_fmt: str,
         m = id_re.search(src)
         if not m or m.group(1) in out:
             continue
-        title = re.sub(r"^D-\d+\s*|^D-day\s*|^오늘\s*", "", clean(a.get_text(" ")))
+        inner = a.find(["strong", "b"]) or a.select_one(".tit, .title, .subject")
+        title = _clean_title(clean((inner or a).get_text(" ")))
         cat = categorize(title)
         if not cat:
             continue
@@ -219,9 +232,12 @@ def parse_eumc(html: str) -> list[Notice]:
 
 def scrape_eumc() -> list[Notice]:
     found: dict[str, Notice] = {}
-    for i, q in enumerate(("전공의", "인턴", "레지던트", "서브인턴")):
-        for n in parse_eumc(fetch(EUMC_LIST, params={"searchWord": q, "bid_status": ""}, name=f"eumc-recruit-{i}")):
-            found.setdefault(n.id, n)
+    # 검색이 동작하지 않아 진행중 목록과 마감 목록 앞쪽을 매일 읽는다(새 공고는 올라오는 날 잡힌다)
+    for status, pages in (("I", 1), ("E", 2)):
+        for page in range(1, pages + 1):
+            html = fetch(EUMC_LIST, params={"bid_status": status, "pageIndex": page}, name=f"eumc-recruit-{status}{page}")
+            for n in parse_eumc(html):
+                found.setdefault(n.id, n)
     return list(found.values())
 
 
