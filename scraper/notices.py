@@ -170,9 +170,14 @@ def parse_rows(html: str, id_re: re.Pattern, hospital: str, url_fmt: str,
         m = id_re.search(src)
         if not m or m.group(1) in out:
             continue
-        inner = a.find(["strong", "b"]) or a.select_one(".tit, .title, .subject")
-        title = _clean_title(clean((inner or a).get_text(" ")))
-        cat = categorize(title)
+        # 링크 안에 상태 배지(<b>마감</b> 등)와 제목이 섞여 있을 수 있어, 공고로 분류되는 첫 후보를 쓴다
+        title, cat = "", None
+        for node in a.select("strong, b, .tit, .title, .subject") + [a]:
+            cand = _clean_title(clean(node.get_text(" ")))
+            cat = categorize(cand)
+            if cat:
+                title = cand
+                break
         if not cat:
             continue
         row = clean(item_container(a, id_re).get_text(" "))

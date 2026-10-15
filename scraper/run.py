@@ -113,6 +113,8 @@ def update_notices(path: Path, now: datetime) -> None:
             sources[key] = {"name": name, "url": url, "ok": False, "count": prev.get("count", 0),
                             "checked_at": prev.get("checked_at", ""), "error": str(exc)[:300]}
             print(f"[fail] 공고 {name}: {exc}", file=sys.stderr)
+    for n in merged.values():
+        n["title"] = notices._clean_title(n["title"])
     cutoff = (now - timedelta(days=NOTICE_KEEP_DAYS)).date().isoformat()
     items = [n for n in merged.values()
              if (n.get("reg_end") or n.get("posted") or "9999") >= cutoff
