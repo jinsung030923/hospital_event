@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-15T06:44+09:00",
+ "updated_at": "2026-10-16T06:45+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원",
@@ -26,31 +26,31 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-10-15T06:44+09:00",
+   "checked_at": "2026-10-16T06:45+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-10-15T06:44+09:00",
+   "checked_at": "2026-10-16T06:45+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-10-15T06:44+09:00",
+   "checked_at": "2026-10-16T06:45+09:00",
    "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-10-15T06:44+09:00",
+   "checked_at": "2026-10-16T06:45+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-10-15T06:44+09:00",
+   "checked_at": "2026-10-16T06:45+09:00",
    "error": ""
   }
  },
@@ -1010,6 +1010,24 @@
    "kind": "학술",
    "depts": [
     "소아청소년과"
+   ]
+  },
+  {
+   "id": "hyumc-440",
+   "hospital": "hyumc",
+   "title": "'약물 안전 세미나 - 임신과 약물사용' 개최",
+   "start_date": "2026-10-22",
+   "end_date": "2026-10-22",
+   "start_time": "12:30",
+   "end_time": "",
+   "location": "서울 성동구 한양대학교병원 본관 3층 HY이음홀",
+   "organizer": "",
+   "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=440",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "학술",
+   "depts": [
+    "기타"
    ]
   },
   {
