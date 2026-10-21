@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-21T06:45+09:00",
+ "updated_at": "2026-10-22T06:47+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원",
@@ -26,31 +26,31 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-10-21T06:45+09:00",
+   "checked_at": "2026-10-22T06:47+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-10-21T06:45+09:00",
+   "checked_at": "2026-10-22T06:47+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-10-21T06:45+09:00",
+   "checked_at": "2026-10-22T06:47+09:00",
    "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-10-21T06:45+09:00",
+   "checked_at": "2026-10-22T06:47+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-10-21T06:45+09:00",
+   "checked_at": "2026-10-22T06:47+09:00",
    "error": ""
   }
  },
@@ -1388,6 +1388,25 @@
    "kind": "학술",
    "depts": [
     "종양(암)"
+   ]
+  },
+  {
+   "id": "smc-23240",
+   "hospital": "smc",
+   "title": "2026년 뇌졸중 재활 활성화를 위한 정책 심포지엄",
+   "start_date": "2026-11-27",
+   "end_date": "2026-11-27",
+   "start_time": "13:00",
+   "end_time": "18:00",
+   "location": "삼성서울병원 본관 지하 1층 대강당",
+   "organizer": "",
+   "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23240",
+   "reg_start": "2026-10-20",
+   "reg_end": "2026-11-26",
+   "kind": "학술",
+   "depts": [
+    "신경과",
+    "재활의학과"
    ]
   },
   {
