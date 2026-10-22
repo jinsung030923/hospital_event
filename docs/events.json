@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-22T06:47+09:00",
+ "updated_at": "2026-10-23T06:44+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원",
@@ -26,31 +26,31 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-10-22T06:47+09:00",
+   "checked_at": "2026-10-23T06:44+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-10-22T06:47+09:00",
+   "checked_at": "2026-10-23T06:44+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-10-22T06:47+09:00",
+   "checked_at": "2026-10-23T06:44+09:00",
    "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-10-22T06:47+09:00",
+   "checked_at": "2026-10-23T06:44+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-10-22T06:47+09:00",
+   "checked_at": "2026-10-23T06:44+09:00",
    "error": ""
   }
  },
@@ -1373,6 +1373,25 @@
    ]
   },
   {
+   "id": "smc-23241",
+   "hospital": "smc",
+   "title": "제1회 SMC 방사선종양학 심포지엄",
+   "start_date": "2026-11-20",
+   "end_date": "2026-11-20",
+   "start_time": "13:00",
+   "end_time": "17:30",
+   "location": "삼성생명 일원역 빌딩B동 9층 히포크라테스홀",
+   "organizer": "",
+   "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23241",
+   "reg_start": "2026-10-22",
+   "reg_end": "2026-11-13",
+   "kind": "학술",
+   "depts": [
+    "방사선종양학과",
+    "종양(암)"
+   ]
+  },
+  {
    "id": "smc-23229",
    "hospital": "smc",
    "title": "제7회 암병원 심포지엄",
@@ -1443,6 +1462,24 @@
    "kind": "학술",
    "depts": [
     "내과"
+   ]
+  },
+  {
+   "id": "amc-1635",
+   "hospital": "amc",
+   "title": "서울아산병원 소아청소년과 조혈모세포이식과 면역세포치료 심포지엄",
+   "start_date": "2026-12-04",
+   "end_date": "2026-12-04",
+   "start_time": "12:30",
+   "end_time": "17:40",
+   "location": "동관 소강당",
+   "organizer": "소아청소년병원",
+   "url": "https://www.amc.seoul.kr/asan/academy/event/eventDetail.do?eventId=1635",
+   "reg_start": "2026-10-01",
+   "reg_end": "2026-11-27",
+   "kind": "학술",
+   "depts": [
+    "소아청소년과"
    ]
   },
   {
