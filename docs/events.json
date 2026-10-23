@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-23T06:44+09:00",
+ "updated_at": "2026-10-24T06:44+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원",
@@ -26,31 +26,31 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-10-23T06:44+09:00",
+   "checked_at": "2026-10-24T06:44+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-10-23T06:44+09:00",
+   "checked_at": "2026-10-24T06:44+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-10-23T06:44+09:00",
+   "checked_at": "2026-10-24T06:44+09:00",
    "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-10-23T06:44+09:00",
+   "checked_at": "2026-10-24T06:44+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-10-23T06:44+09:00",
+   "checked_at": "2026-10-24T06:44+09:00",
    "error": ""
   }
  },
@@ -1265,6 +1265,24 @@
    ]
   },
   {
+   "id": "smc-23242",
+   "hospital": "smc",
+   "title": "[2026 SPC Webinar 11] 간암의 진단과 치료 : 꼭 알아야 할 최신 전략",
+   "start_date": "2026-11-11",
+   "end_date": "2026-11-11",
+   "start_time": "13:00",
+   "end_time": "13:50",
+   "location": "온라인",
+   "organizer": "",
+   "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23242",
+   "reg_start": "2026-10-20",
+   "reg_end": "2026-11-11",
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
+  },
+  {
    "id": "smc-23220",
    "hospital": "smc",
    "title": "2026년 제8회 삼성서울병원 중환자 영양 심포지엄 8th SMC Critical Care Nutrition (CCN) Symposium, 2026",
@@ -1516,6 +1534,24 @@
    "kind": "학술",
    "depts": [
     "마취통증의학과"
+   ]
+  },
+  {
+   "id": "smc-23243",
+   "hospital": "smc",
+   "title": "2026 성균관의대 삼성서울병원 산부인과 연수강좌",
+   "start_date": "2026-12-06",
+   "end_date": "2026-12-06",
+   "start_time": "08:30",
+   "end_time": "16:40",
+   "location": "삼성서울병원 암병원 지하 1층 강당",
+   "organizer": "",
+   "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23243",
+   "reg_start": "2026-10-23",
+   "reg_end": "2026-12-01",
+   "kind": "학술",
+   "depts": [
+    "산부인과"
    ]
   },
   {
