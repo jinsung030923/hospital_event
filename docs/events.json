@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-24T06:44+09:00",
+ "updated_at": "2026-10-25T06:42+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원",
@@ -26,31 +26,31 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-10-24T06:44+09:00",
+   "checked_at": "2026-10-25T06:42+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-10-24T06:44+09:00",
+   "checked_at": "2026-10-25T06:42+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-10-24T06:44+09:00",
+   "checked_at": "2026-10-25T06:42+09:00",
    "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-10-24T06:44+09:00",
+   "checked_at": "2026-10-25T06:42+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-10-24T06:44+09:00",
+   "checked_at": "2026-10-25T06:42+09:00",
    "error": ""
   }
  },
@@ -1115,6 +1115,24 @@
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventDetail.do?eventId=1607",
    "reg_start": "2026-08-01",
    "reg_end": "2026-10-12",
+   "kind": "학술",
+   "depts": [
+    "내과"
+   ]
+  },
+  {
+   "id": "amc-xb592cfec",
+   "hospital": "amc",
+   "title": "제 15회 아산국제소화기병심포지엄 (AIDDS) 2026",
+   "start_date": "2026-10-24",
+   "end_date": "2026-10-24",
+   "start_time": "09:00",
+   "end_time": "16:30",
+   "location": "",
+   "organizer": "소화기내과",
+   "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
+   "reg_start": "",
+   "reg_end": "",
    "kind": "학술",
    "depts": [
     "내과"
