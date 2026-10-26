@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-26T06:42+09:00",
+ "updated_at": "2026-10-27T06:45+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원",
@@ -26,31 +26,31 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-10-26T06:42+09:00",
+   "checked_at": "2026-10-27T06:45+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-10-26T06:42+09:00",
+   "checked_at": "2026-10-27T06:45+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-10-26T06:42+09:00",
+   "checked_at": "2026-10-27T06:45+09:00",
    "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-10-26T06:42+09:00",
+   "checked_at": "2026-10-27T06:45+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-10-26T06:42+09:00",
+   "checked_at": "2026-10-27T06:45+09:00",
    "error": ""
   }
  },
@@ -1519,6 +1519,24 @@
    ]
   },
   {
+   "id": "amc-x3c7cb89c",
+   "hospital": "amc",
+   "title": "제26차 외과병리 연수교육",
+   "start_date": "2026-12-05",
+   "end_date": "2026-12-05",
+   "start_time": "09:00",
+   "end_time": "17:20",
+   "location": "",
+   "organizer": "병리과",
+   "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "학술",
+   "depts": [
+    "병리과"
+   ]
+  },
+  {
    "id": "amc-1640",
    "hospital": "amc",
    "title": "제 11회 선천성심장병센터 심포지엄 (The 11th AMC Congenital Heart Disease Center Symposium)",
@@ -1660,6 +1678,25 @@
    "kind": "학술",
    "depts": [
     "내과"
+   ]
+  },
+  {
+   "id": "amc-xdd1394af",
+   "hospital": "amc",
+   "title": "12th Surgical Critical Care Symposium",
+   "start_date": "2027-01-23",
+   "end_date": "2027-01-23",
+   "start_time": "08:00",
+   "end_time": "16:30",
+   "location": "",
+   "organizer": "중환자ㆍ외상외과",
+   "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "학술",
+   "depts": [
+    "중환자의학",
+    "외과"
    ]
   }
  ]
