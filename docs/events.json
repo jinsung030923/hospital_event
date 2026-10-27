@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-27T06:45+09:00",
+ "updated_at": "2026-10-28T06:47+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원",
@@ -26,31 +26,31 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-10-27T06:45+09:00",
+   "checked_at": "2026-10-28T06:47+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-10-27T06:45+09:00",
+   "checked_at": "2026-10-28T06:47+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-10-27T06:45+09:00",
+   "checked_at": "2026-10-28T06:47+09:00",
    "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-10-27T06:45+09:00",
+   "checked_at": "2026-10-28T06:47+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-10-27T06:45+09:00",
+   "checked_at": "2026-10-28T06:47+09:00",
    "error": ""
   }
  },
@@ -1247,6 +1247,24 @@
    ]
   },
   {
+   "id": "hyumc-441",
+   "hospital": "hyumc",
+   "title": "HY IBB & RMSC 미니 심포지엄 개최 (11. 3. 13:40)",
+   "start_date": "2026-11-03",
+   "end_date": "2026-11-03",
+   "start_time": "13:40",
+   "end_time": "17:00",
+   "location": "서울 성동구 한양대학교 의과대학 본관 6층 TBL룸",
+   "organizer": "",
+   "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=441",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
+  },
+  {
    "id": "hyumc-439",
    "hospital": "hyumc",
    "title": "2026년 장기이식 환우 건강강좌 개최",
@@ -1262,6 +1280,24 @@
    "kind": "건강강좌",
    "depts": [
     "외과"
+   ]
+  },
+  {
+   "id": "hyumc-442",
+   "hospital": "hyumc",
+   "title": "제3회 첨단재생의료센터·세포치료센터–한국뇌연구원 공동심포지엄 개최",
+   "start_date": "2026-11-06",
+   "end_date": "2026-11-06",
+   "start_time": "12:00",
+   "end_time": "18:10",
+   "location": "한양대학교병원 본관 3층 HY이음홀(강당)",
+   "organizer": "",
+   "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=442",
+   "reg_start": "",
+   "reg_end": "2026-11-03",
+   "kind": "학술",
+   "depts": [
+    "기타"
    ]
   },
   {
@@ -1298,6 +1334,24 @@
    "kind": "학술",
    "depts": [
     "기타"
+   ]
+  },
+  {
+   "id": "hyumc-443",
+   "hospital": "hyumc",
+   "title": "2026 로봇수술 4000례 및 SP 로봇수술 500례 기념 심포지엄 개최",
+   "start_date": "2026-11-13",
+   "end_date": "2026-11-13",
+   "start_time": "14:00",
+   "end_time": "17:15",
+   "location": "서울 성동구 왕십리로 222-1 한양대학교병원 본관 3층 HY이음홀 보다 자세한 사항은 하단의 포스터를 참조",
+   "organizer": "",
+   "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=443",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "학술",
+   "depts": [
+    "외과"
    ]
   },
   {
