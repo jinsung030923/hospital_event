@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-28T06:47+09:00",
+ "updated_at": "2026-10-29T06:51+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원",
@@ -26,31 +26,31 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-10-28T06:47+09:00",
+   "checked_at": "2026-10-29T06:51+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-10-28T06:47+09:00",
+   "checked_at": "2026-10-29T06:51+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-10-28T06:47+09:00",
+   "checked_at": "2026-10-29T06:51+09:00",
    "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-10-28T06:47+09:00",
+   "checked_at": "2026-10-29T06:51+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-10-28T06:47+09:00",
+   "checked_at": "2026-10-29T06:51+09:00",
    "error": ""
   }
  },
@@ -1660,6 +1660,24 @@
    "kind": "학술",
    "depts": [
     "내과"
+   ]
+  },
+  {
+   "id": "amc-xb9634d62",
+   "hospital": "amc",
+   "title": "2026 Asan Forum on Otology-Neurotology (아산이과포럼)",
+   "start_date": "2026-12-12",
+   "end_date": "2026-12-12",
+   "start_time": "08:55",
+   "end_time": "16:30",
+   "location": "",
+   "organizer": "이비인후과",
+   "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "학술",
+   "depts": [
+    "이비인후과"
    ]
   },
   {

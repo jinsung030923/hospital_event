@@ -1,12 +1,12 @@
 {
- "updated_at": "2026-10-28T06:47+09:00",
+ "updated_at": "2026-10-29T06:51+09:00",
  "sources": {
   "amc": {
    "name": "서울아산병원",
    "url": "https://edtr.amc.seoul.kr/education/service/notice/list.do",
    "ok": true,
    "count": 2,
-   "checked_at": "2026-10-28T06:47+09:00",
+   "checked_at": "2026-10-29T06:51+09:00",
    "error": ""
   },
   "snuh": {
@@ -14,15 +14,15 @@
    "url": "https://www.snuh.org/about/news/recruit/recruList.do",
    "ok": true,
    "count": 16,
-   "checked_at": "2026-10-28T06:47+09:00",
+   "checked_at": "2026-10-29T06:51+09:00",
    "error": ""
   },
   "smc": {
    "name": "삼성서울병원",
    "url": "https://www.samsunghospital.com/home/recruit/recruitInfo/recruitNotice.do",
    "ok": true,
-   "count": 1,
-   "checked_at": "2026-10-28T06:47+09:00",
+   "count": 0,
+   "checked_at": "2026-10-29T06:51+09:00",
    "error": ""
   },
   "kuh": {
@@ -30,7 +30,7 @@
    "url": "https://www.kuh.ac.kr/m/recruit/docApply/noticeList.do",
    "ok": true,
    "count": 4,
-   "checked_at": "2026-10-28T06:47+09:00",
+   "checked_at": "2026-10-29T06:51+09:00",
    "error": ""
   },
   "eumc": {
@@ -38,7 +38,7 @@
    "url": "https://www.eumc.ac.kr/intro/recrut/list.do",
    "ok": true,
    "count": 0,
-   "checked_at": "2026-10-28T06:47+09:00",
+   "checked_at": "2026-10-29T06:51+09:00",
    "error": ""
   },
   "paik": {
@@ -46,7 +46,7 @@
    "url": "https://www.paik.ac.kr/recruit/user/job/list.do",
    "ok": true,
    "count": 5,
-   "checked_at": "2026-10-28T06:47+09:00",
+   "checked_at": "2026-10-29T06:51+09:00",
    "error": ""
   }
  },
