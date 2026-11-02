@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-02T06:47+09:00",
+ "updated_at": "2026-11-03T06:52+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원",
@@ -26,53 +26,35 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-11-02T06:47+09:00",
+   "checked_at": "2026-11-03T06:52+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-11-02T06:47+09:00",
+   "checked_at": "2026-11-03T06:52+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-11-02T06:47+09:00",
+   "checked_at": "2026-11-03T06:52+09:00",
    "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-11-02T06:47+09:00",
+   "checked_at": "2026-11-03T06:52+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-11-02T06:47+09:00",
+   "checked_at": "2026-11-03T06:52+09:00",
    "error": ""
   }
  },
  "events": [
-  {
-   "id": "smc-23213",
-   "hospital": "smc",
-   "title": "[2026 SPC Webinar 05] 유방암 호르몬 요법의 최신 지견",
-   "start_date": "2026-05-06",
-   "end_date": "2026-05-06",
-   "start_time": "13:00",
-   "end_time": "13:50",
-   "location": "온라인",
-   "organizer": "",
-   "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23213",
-   "reg_start": "2026-04-13",
-   "reg_end": "2026-05-06",
-   "kind": "학술",
-   "depts": [
-    "외과"
-   ]
-  },
   {
    "id": "eulji-19872",
    "hospital": "eulji",
@@ -1606,6 +1588,24 @@
    "kind": "학술",
    "depts": [
     "내과"
+   ]
+  },
+  {
+   "id": "amc-x2e242644",
+   "hospital": "amc",
+   "title": "2026년 제 2회 젊은 암 심포지엄",
+   "start_date": "2026-12-02",
+   "end_date": "2026-12-02",
+   "start_time": "13:00",
+   "end_time": "17:10",
+   "location": "",
+   "organizer": "유방외과",
+   "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "학술",
+   "depts": [
+    "외과"
    ]
   },
   {

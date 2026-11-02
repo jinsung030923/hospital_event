@@ -1,20 +1,20 @@
 {
- "updated_at": "2026-11-02T06:47+09:00",
+ "updated_at": "2026-11-03T06:52+09:00",
  "sources": {
   "amc": {
    "name": "서울아산병원",
    "url": "https://edtr.amc.seoul.kr/education/service/notice/list.do",
    "ok": true,
    "count": 2,
-   "checked_at": "2026-11-02T06:47+09:00",
+   "checked_at": "2026-11-03T06:52+09:00",
    "error": ""
   },
   "snuh": {
    "name": "서울대학교병원",
    "url": "https://www.snuh.org/about/news/recruit/recruList.do",
    "ok": true,
-   "count": 16,
-   "checked_at": "2026-11-02T06:47+09:00",
+   "count": 17,
+   "checked_at": "2026-11-03T06:52+09:00",
    "error": ""
   },
   "smc": {
@@ -22,7 +22,7 @@
    "url": "https://www.samsunghospital.com/home/recruit/recruitInfo/recruitNotice.do",
    "ok": true,
    "count": 0,
-   "checked_at": "2026-11-02T06:47+09:00",
+   "checked_at": "2026-11-03T06:52+09:00",
    "error": ""
   },
   "kuh": {
@@ -30,7 +30,7 @@
    "url": "https://www.kuh.ac.kr/m/recruit/docApply/noticeList.do",
    "ok": true,
    "count": 4,
-   "checked_at": "2026-11-02T06:47+09:00",
+   "checked_at": "2026-11-03T06:52+09:00",
    "error": ""
   },
   "eumc": {
@@ -38,7 +38,7 @@
    "url": "https://www.eumc.ac.kr/intro/recrut/list.do",
    "ok": true,
    "count": 0,
-   "checked_at": "2026-11-02T06:47+09:00",
+   "checked_at": "2026-11-03T06:52+09:00",
    "error": ""
   },
   "paik": {
@@ -46,11 +46,21 @@
    "url": "https://www.paik.ac.kr/recruit/user/job/list.do",
    "ok": true,
    "count": 5,
-   "checked_at": "2026-11-02T06:47+09:00",
+   "checked_at": "2026-11-03T06:52+09:00",
    "error": ""
   }
  },
  "notices": [
+  {
+   "id": "snuh-n26136",
+   "hospital": "snuh",
+   "category": "subintern",
+   "title": "2026년도(동계)외과 학생서브인턴 모집 공고",
+   "url": "https://www.snuh.org/about/news/recruit/recruView.do?recruit_id=26136",
+   "posted": "2026-11-02",
+   "reg_start": "2026-11-02",
+   "reg_end": "2026-12-02"
+  },
   {
    "id": "kuh-n132",
    "hospital": "kuh",
