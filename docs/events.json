@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-03T06:52+09:00",
+ "updated_at": "2026-11-04T06:56+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원",
@@ -26,31 +26,31 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-11-03T06:52+09:00",
+   "checked_at": "2026-11-04T06:56+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-11-03T06:52+09:00",
+   "checked_at": "2026-11-04T06:56+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-11-03T06:52+09:00",
+   "checked_at": "2026-11-04T06:56+09:00",
    "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-11-03T06:52+09:00",
+   "checked_at": "2026-11-04T06:56+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-11-03T06:52+09:00",
+   "checked_at": "2026-11-04T06:56+09:00",
    "error": ""
   }
  },
@@ -1515,6 +1515,24 @@
    "depts": [
     "방사선종양학과",
     "종양(암)"
+   ]
+  },
+  {
+   "id": "hyumc-444",
+   "hospital": "hyumc",
+   "title": "제2회 한양 암 아카데미 비뇨기암 건강강좌 개최",
+   "start_date": "2026-11-20",
+   "end_date": "2026-11-20",
+   "start_time": "13:30",
+   "end_time": "",
+   "location": "서울 성동구 한양대학교병원 본관 3층 HY 이음홀",
+   "organizer": "",
+   "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=444",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "건강강좌",
+   "depts": [
+    "비뇨의학과"
    ]
   },
   {
