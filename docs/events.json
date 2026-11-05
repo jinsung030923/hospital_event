@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-05T06:57+09:00",
+ "updated_at": "2026-11-06T06:57+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원",
@@ -26,71 +26,35 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-11-05T06:57+09:00",
+   "checked_at": "2026-11-06T06:57+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-11-05T06:57+09:00",
+   "checked_at": "2026-11-06T06:57+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-11-05T06:57+09:00",
+   "checked_at": "2026-11-06T06:57+09:00",
    "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-11-05T06:57+09:00",
+   "checked_at": "2026-11-06T06:57+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-11-05T06:57+09:00",
+   "checked_at": "2026-11-06T06:57+09:00",
    "error": ""
   }
  },
  "events": [
-  {
-   "id": "eulji-19872",
-   "hospital": "eulji",
-   "title": "2026년 노원을지대학교병원 신경과 개원의 연수강좌",
-   "start_date": "2026-05-09",
-   "end_date": "2026-05-09",
-   "start_time": "",
-   "end_time": "",
-   "location": "",
-   "organizer": "",
-   "url": "https://refer.eulji.or.kr/news/news_pg02_02.jsp?board_code=BOARD_126&board_sequence=19872",
-   "reg_start": "",
-   "reg_end": "",
-   "kind": "학술",
-   "depts": [
-    "신경과"
-   ]
-  },
-  {
-   "id": "smc-23214",
-   "hospital": "smc",
-   "title": "2026 제 19회 The Vascular Symposium",
-   "start_date": "2026-05-09",
-   "end_date": "2026-05-09",
-   "start_time": "09:00",
-   "end_time": "17:10",
-   "location": "삼성서울병원 본관 지하 1층 대강당",
-   "organizer": "",
-   "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23214",
-   "reg_start": "2026-01-19",
-   "reg_end": "2026-05-01",
-   "kind": "학술",
-   "depts": [
-    "기타"
-   ]
-  },
   {
    "id": "smc-23212",
    "hospital": "smc",
@@ -1854,6 +1818,25 @@
    "organizer": "중환자ㆍ외상외과",
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventDetail.do?eventId=1641",
    "reg_start": "2026-11-01",
+   "reg_end": "2027-01-10",
+   "kind": "학술",
+   "depts": [
+    "중환자의학",
+    "외과"
+   ]
+  },
+  {
+   "id": "amc-1646",
+   "hospital": "amc",
+   "title": "12th Surgical Critical Care Symposium",
+   "start_date": "2027-01-23",
+   "end_date": "2027-01-23",
+   "start_time": "08:00",
+   "end_time": "14:40",
+   "location": "동관 대강당",
+   "organizer": "중환자ㆍ외상외과",
+   "url": "https://www.amc.seoul.kr/asan/academy/event/eventDetail.do?eventId=1646",
+   "reg_start": "2026-11-05",
    "reg_end": "2027-01-10",
    "kind": "학술",
    "depts": [
