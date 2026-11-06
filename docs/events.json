@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-06T06:57+09:00",
+ "updated_at": "2026-11-07T06:51+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원",
@@ -26,31 +26,31 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-11-06T06:57+09:00",
+   "checked_at": "2026-11-07T06:51+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-11-06T06:57+09:00",
+   "checked_at": "2026-11-07T06:51+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-11-06T06:57+09:00",
+   "checked_at": "2026-11-07T06:51+09:00",
    "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-11-06T06:57+09:00",
+   "checked_at": "2026-11-07T06:51+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-11-06T06:57+09:00",
+   "checked_at": "2026-11-07T06:51+09:00",
    "error": ""
   }
  },
@@ -1693,6 +1693,24 @@
    "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23243",
    "reg_start": "2026-10-23",
    "reg_end": "2026-12-01",
+   "kind": "학술",
+   "depts": [
+    "산부인과"
+   ]
+  },
+  {
+   "id": "amc-x401f49cd",
+   "hospital": "amc",
+   "title": "2026 서울아산병원 산부인과 연수강좌",
+   "start_date": "2026-12-06",
+   "end_date": "2026-12-06",
+   "start_time": "13:30",
+   "end_time": "17:35",
+   "location": "",
+   "organizer": "산부인과",
+   "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
+   "reg_start": "",
+   "reg_end": "",
    "kind": "학술",
    "depts": [
     "산부인과"
