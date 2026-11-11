@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-10T12:35+09:00",
+ "updated_at": "2026-11-11T10:15+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원",
@@ -26,31 +26,31 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-11-10T12:35+09:00",
+   "checked_at": "2026-11-11T10:15+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-11-10T12:35+09:00",
+   "checked_at": "2026-11-11T10:15+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-11-10T12:35+09:00",
+   "checked_at": "2026-11-11T10:15+09:00",
    "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-11-10T12:35+09:00",
+   "checked_at": "2026-11-11T10:15+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-11-10T12:35+09:00",
+   "checked_at": "2026-11-11T10:15+09:00",
    "error": ""
   }
  },
@@ -1732,6 +1732,25 @@
    "kind": "학술",
    "depts": [
     "산부인과"
+   ]
+  },
+  {
+   "id": "amc-xf6878824",
+   "hospital": "amc",
+   "title": "서울아산병원 소아소화기학 워크숍 3차",
+   "start_date": "2026-12-12",
+   "end_date": "2026-12-13",
+   "start_time": "",
+   "end_time": "",
+   "location": "",
+   "organizer": "소아소화기영양과",
+   "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "학술",
+   "depts": [
+    "소아청소년과",
+    "내과"
    ]
   },
   {
