@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-12T11:16+09:00",
+ "updated_at": "2026-11-13T10:50+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원",
@@ -26,31 +26,31 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-11-12T11:16+09:00",
+   "checked_at": "2026-11-13T10:50+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
-   "count": 20,
-   "checked_at": "2026-11-12T11:16+09:00",
+   "count": 19,
+   "checked_at": "2026-11-13T10:50+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-11-12T11:16+09:00",
+   "checked_at": "2026-11-13T10:50+09:00",
    "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-11-12T11:16+09:00",
+   "checked_at": "2026-11-13T10:50+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-11-12T11:16+09:00",
+   "checked_at": "2026-11-13T10:50+09:00",
    "error": ""
   }
  },
@@ -1853,6 +1853,24 @@
    "end_time": "12:30",
    "location": "",
    "organizer": "소화기내과",
+   "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "학술",
+   "depts": [
+    "내과"
+   ]
+  },
+  {
+   "id": "amc-x7412a5c3",
+   "hospital": "amc",
+   "title": "(온-오프병행)Advanced Course of Infectious Diseases (ACID) in AMC",
+   "start_date": "2027-01-22",
+   "end_date": "2027-01-22",
+   "start_time": "09:00",
+   "end_time": "18:00",
+   "location": "",
+   "organizer": "감염내과",
    "url": "https://www.amc.seoul.kr/asan/academy/event/eventList.do",
    "reg_start": "",
    "reg_end": "",
