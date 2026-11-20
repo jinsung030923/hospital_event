@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-19T11:35+09:00",
+ "updated_at": "2026-11-20T11:20+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원",
@@ -26,53 +26,35 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-11-19T11:35+09:00",
+   "checked_at": "2026-11-20T11:20+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 19,
-   "checked_at": "2026-11-19T11:35+09:00",
+   "checked_at": "2026-11-20T11:20+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-11-19T11:35+09:00",
+   "checked_at": "2026-11-20T11:20+09:00",
    "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-11-19T11:35+09:00",
+   "checked_at": "2026-11-20T11:20+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-11-19T11:35+09:00",
+   "checked_at": "2026-11-20T11:20+09:00",
    "error": ""
   }
  },
  "events": [
-  {
-   "id": "smc-23212",
-   "hospital": "smc",
-   "title": "Samsung Heart Valve Excellence Forum 2026",
-   "start_date": "2026-05-23",
-   "end_date": "2026-05-23",
-   "start_time": "09:00",
-   "end_time": "17:00",
-   "location": "삼성서울병원 본관 B1 대강당",
-   "organizer": "",
-   "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23212",
-   "reg_start": "2026-04-13",
-   "reg_end": "2026-05-20",
-   "kind": "학술",
-   "depts": [
-    "기타"
-   ]
-  },
   {
    "id": "eulji-19989",
    "hospital": "eulji",
@@ -1518,6 +1500,24 @@
    ]
   },
   {
+   "id": "hyumc-445",
+   "hospital": "hyumc",
+   "title": "제15회 HY IBB & RMSC 세미나 개최",
+   "start_date": "2026-11-25",
+   "end_date": "2026-11-25",
+   "start_time": "15:00",
+   "end_time": "",
+   "location": "서울 성동구 한양대학교 의과대학 본관 6층 TBL룸",
+   "organizer": "",
+   "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=445",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
+  },
+  {
    "id": "smc-23240",
    "hospital": "smc",
    "title": "2026년 뇌졸중 재활 활성화를 위한 정책 심포지엄",
@@ -1787,6 +1787,42 @@
    "kind": "학술",
    "depts": [
     "이비인후과"
+   ]
+  },
+  {
+   "id": "smc-23244",
+   "hospital": "smc",
+   "title": "2026년 삼성서울병원 제 13회 모아집중치료센터 온라인 심포지엄 - 중증모자의료센터 1년, 삼성서울병원의 진료 경험과 노하우",
+   "start_date": "2026-12-13",
+   "end_date": "2026-12-13",
+   "start_time": "12:50",
+   "end_time": "16:45",
+   "location": "온라인 심포지엄",
+   "organizer": "",
+   "url": "https://www.samsunghospital.com/home/info/scienceView.do?seq=23244",
+   "reg_start": "2026-11-19",
+   "reg_end": "2026-12-09",
+   "kind": "학술",
+   "depts": [
+    "기타"
+   ]
+  },
+  {
+   "id": "hyumc-446",
+   "hospital": "hyumc",
+   "title": "루게릭병 환자를 위한 가족참여 교육 개최 - 2026. 12. 19.(토) 10:00",
+   "start_date": "2026-12-19",
+   "end_date": "2026-12-19",
+   "start_time": "10:00",
+   "end_time": "11:30",
+   "location": "서울 성동구 한양대학교병원 본관 3층 HY이음홀",
+   "organizer": "",
+   "url": "https://seoul.hyumc.com/hyumc/board/seminarBoardView.do?no=446",
+   "reg_start": "",
+   "reg_end": "",
+   "kind": "건강강좌",
+   "depts": [
+    "기타"
    ]
   },
   {
