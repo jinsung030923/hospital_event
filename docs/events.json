@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-22T10:20+09:00",
+ "updated_at": "2026-11-23T10:45+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원",
@@ -26,31 +26,31 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-11-22T10:20+09:00",
+   "checked_at": "2026-11-23T10:45+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
-   "count": 19,
-   "checked_at": "2026-11-22T10:20+09:00",
+   "count": 20,
+   "checked_at": "2026-11-23T10:45+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-11-22T10:20+09:00",
+   "checked_at": "2026-11-23T10:45+09:00",
    "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-11-22T10:20+09:00",
+   "checked_at": "2026-11-23T10:45+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-11-22T10:20+09:00",
+   "checked_at": "2026-11-23T10:45+09:00",
    "error": ""
   }
  },
@@ -1988,6 +1988,24 @@
    "depts": [
     "중환자의학",
     "외과"
+   ]
+  },
+  {
+   "id": "amc-1648",
+   "hospital": "amc",
+   "title": "Valve summit 2027",
+   "start_date": "2027-01-30",
+   "end_date": "2027-01-30",
+   "start_time": "08:30",
+   "end_time": "17:30",
+   "location": "동관 대강당",
+   "organizer": "심장병원",
+   "url": "https://www.amc.seoul.kr/asan/academy/event/eventDetail.do?eventId=1648",
+   "reg_start": "2026-11-18",
+   "reg_end": "2027-01-25",
+   "kind": "학술",
+   "depts": [
+    "기타"
    ]
   }
  ]
