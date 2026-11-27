@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-26T12:35+09:00",
+ "updated_at": "2026-11-27T12:38+09:00",
  "hospitals": {
   "smc": {
    "name": "삼성서울병원",
@@ -26,53 +26,35 @@
   "smc": {
    "ok": true,
    "count": 30,
-   "checked_at": "2026-11-26T12:35+09:00",
+   "checked_at": "2026-11-27T12:38+09:00",
    "error": ""
   },
   "amc": {
    "ok": true,
    "count": 20,
-   "checked_at": "2026-11-26T12:35+09:00",
+   "checked_at": "2026-11-27T12:38+09:00",
    "error": ""
   },
   "hyumc": {
    "ok": true,
    "count": 18,
-   "checked_at": "2026-11-26T12:35+09:00",
+   "checked_at": "2026-11-27T12:38+09:00",
    "error": ""
   },
   "eulji": {
    "ok": true,
    "count": 7,
-   "checked_at": "2026-11-26T12:35+09:00",
+   "checked_at": "2026-11-27T12:38+09:00",
    "error": ""
   },
   "ajou": {
    "ok": true,
    "count": 12,
-   "checked_at": "2026-11-26T12:35+09:00",
+   "checked_at": "2026-11-27T12:38+09:00",
    "error": ""
   }
  },
  "events": [
-  {
-   "id": "eulji-19989",
-   "hospital": "eulji",
-   "title": "대한두통학회 2026년 제 1회 서울.경기지역 연수강좌 : 편두통 치료의 새로운 전략",
-   "start_date": "2026-05-30",
-   "end_date": "2026-05-30",
-   "start_time": "14:50",
-   "end_time": "18:15",
-   "location": "",
-   "organizer": "",
-   "url": "https://refer.eulji.or.kr/news/news_pg02_02.jsp?board_code=BOARD_126&board_sequence=19989",
-   "reg_start": "",
-   "reg_end": "",
-   "kind": "학술",
-   "depts": [
-    "신경과"
-   ]
-  },
   {
    "id": "hyumc-415",
    "hospital": "hyumc",
